@@ -20,7 +20,7 @@ Prototyp av en app för coachning i vardagens exekutiva förmågor, för vuxna m
 |---|---|---|
 | Designtokens | `<style>`, `:root` | Färger (ljust och mörkt tema), typsnitt, radier, rörelse |
 | Innehåll | `<script type="application/json" id="innehall">` | Kategorier, livsområden, program, strategier, Just nu, reflektion. Varje session och strategi har fältet `granskning` med den princip den bygger på. Strategier har `livsomraden` som etiketter. |
-| Illustrationer | `SCENES`, `MINI` | Inline-SVG, en scen per kategori |
+| Ikoner | `SICO`, `.sico` i CSS | En mjuk ikon per kategori, byggd med CSS (inga svg) |
 | Lagring | `load()` / `save()` | `localStorage`, nyckeln `smasteg:v1`. Allt går via två funktioner så att synk kan läggas till senare. |
 | Vyer | `VIEWS` | En funktion per skärm |
 | Handlingar | `ACT` | Klick hanteras via `data-act` på elementen |

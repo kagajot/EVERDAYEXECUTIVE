@@ -17,18 +17,15 @@
   color-scheme: light;
   --text-scale: 1;
 
-  --bg:#FAF7F5; --surface:#FFFDFC; --surface-2:#F1ECEA; --surface-3:#E6DFDD;
-  --line:#E6DFDB; --line-strong:#ADA4A8;
-  --text:#1E1A22; --text-2:#57505B;
-  --btn:#1E1A22; --on-btn:#FFFDFC;
+  --bg:#F9F5EE; --surface:#FFFDF9; --surface-2:#F2ECE2; --surface-3:#E8E0D3;
+  --line:#E6DED1; --line-strong:#B3A898;
+  --text:#1E1A22; --text-2:#58505A;
+  --btn:#1E1A22; --on-btn:#FFFDF9;
   --focus:#1E1A22;
-  --toast-bg:#1E1A22; --toast-text:#FFFDFC;
+  --toast-bg:#1E1A22; --toast-text:#FFFDF9;
   --on-dark:#1E1A22;   /* text på ljusa kategorikort (solgul, persika) i båda teman */
 
-  /* illustrationens fasta färger */
-  --il-w:#FFFAF5; --face:#241C22; --leaf:#5E9E6E; --sun:#FFCB3D; --cheek:#EE8F80; --cloud:#D5D8E0;
-  --s1:#F3C9A8; --s2:#C98C63; --s3:#8A5A3C;
-  --h1:#2B211C; --h2:#8A3F28; --h3:#E3B24F;
+  --sun:#FFCB3D;
 
   /* kategorier: bas · t = ljus ton · k = djup ton · soft = UI-bakgrund
      vit text på bas ≥ 4,7:1, utom solgul och persika som har mörk text (≥ 8,9:1) */
@@ -40,6 +37,16 @@
   --kanslor:#B34872;    --kanslor-t:#F6C8DA;    --kanslor-k:#5E1D3A;    --kanslor-soft:#FAE6EE;
   --forandring:#3A7A58; --forandring-t:#C9E6D3; --forandring-k:#1C3F2C; --forandring-soft:#E5F3EA;
   --balans:#26356F;     --balans-t:#B9C4EE;     --balans-k:#111A40;     --balans-soft:#E5E9F8;
+
+  /* ljusa, beigeaktiga kortbakgrunder (-c) och ikonfärg (-i) per kategori */
+  --igang-c:#F7E2D8;      --igang-i:#CC4535;
+  --planera-c:#ECE4EF;    --planera-i:#7258C9;
+  --tid-c:#F7EBCB;        --tid-i:#DE9B00;        --tid-id:#26306B;
+  --minne-c:#E1EAEC;      --minne-i:#2A74BD;
+  --fokus-c:#F8E3D2;      --fokus-i:#F07A3A;      --fokus-id:#4B2A5E;
+  --kanslor-c:#F3E0E2;    --kanslor-i:#B34872;
+  --forandring-c:#E3EBDD; --forandring-i:#3A7A58;
+  --balans-c:#E1E4EC;     --balans-i:#26356F;
 
   --r-lg:20px; --r-md:16px; --r-sm:12px;
   --ease:cubic-bezier(.22,.8,.3,1); --dur:280ms;
@@ -54,7 +61,11 @@
     --text:#F3EEF2; --text-2:#C4BBC7;
     --btn:#F3EEF2; --on-btn:#19161E; --focus:#F3EEF2;
     --toast-bg:#F3EEF2; --toast-text:#19161E;
-    --il-w:#F2ECEF; --leaf:#5F9A70; --sun:#F0C94A; --cloud:#6C6676;
+    --sun:#F0C94A;
+    --igang-c:var(--igang-soft); --igang-i:var(--igang-t); --planera-c:var(--planera-soft); --planera-i:var(--planera-t);
+    --tid-c:var(--tid-soft); --tid-i:var(--tid-t); --tid-id:var(--tid-t); --minne-c:var(--minne-soft); --minne-i:var(--minne-t);
+    --fokus-c:var(--fokus-soft); --fokus-i:var(--fokus-t); --fokus-id:var(--fokus-t); --kanslor-c:var(--kanslor-soft); --kanslor-i:var(--kanslor-t);
+    --forandring-c:var(--forandring-soft); --forandring-i:var(--forandring-t); --balans-c:var(--balans-soft); --balans-i:var(--balans-t);
     --igang:#B54236;      --igang-t:#E6A99F;      --igang-k:#4A1420;      --igang-soft:#35202A;
     --planera:#6550B0;    --planera-t:#BEB2E6;    --planera-k:#2A1D5C;    --planera-soft:#2A2542;
     --tid:#E3B43A;        --tid-t:#F0D27A;        --tid-k:#26306B;        --tid-soft:#2B2B40;
@@ -72,7 +83,11 @@
   --text:#F3EEF2; --text-2:#C4BBC7;
   --btn:#F3EEF2; --on-btn:#19161E; --focus:#F3EEF2;
   --toast-bg:#F3EEF2; --toast-text:#19161E;
-  --il-w:#F2ECEF; --leaf:#5F9A70; --sun:#F0C94A; --cloud:#6C6676;
+  --sun:#F0C94A;
+  --igang-c:var(--igang-soft); --igang-i:var(--igang-t); --planera-c:var(--planera-soft); --planera-i:var(--planera-t);
+  --tid-c:var(--tid-soft); --tid-i:var(--tid-t); --tid-id:var(--tid-t); --minne-c:var(--minne-soft); --minne-i:var(--minne-t);
+  --fokus-c:var(--fokus-soft); --fokus-i:var(--fokus-t); --fokus-id:var(--fokus-t); --kanslor-c:var(--kanslor-soft); --kanslor-i:var(--kanslor-t);
+  --forandring-c:var(--forandring-soft); --forandring-i:var(--forandring-t); --balans-c:var(--balans-soft); --balans-i:var(--balans-t);
   --igang:#B54236;      --igang-t:#E6A99F;      --igang-k:#4A1420;      --igang-soft:#35202A;
   --planera:#6550B0;    --planera-t:#BEB2E6;    --planera-k:#2A1D5C;    --planera-soft:#2A2542;
   --tid:#E3B43A;        --tid-t:#F0D27A;        --tid-k:#26306B;        --tid-soft:#2B2B40;
@@ -84,25 +99,64 @@
 }
 
 /* kategoriomfång: sätter --base/--on/--tint/--ink/--soft/--acc för kort och illustrationer */
-.cat-igang{--base:var(--igang);--on:#fff;--tint:var(--igang-t);--ink:var(--igang-k);--soft:var(--igang-soft);--acc:var(--minne-t)}
-.cat-planera{--base:var(--planera);--on:#fff;--tint:var(--planera-t);--ink:var(--planera-k);--soft:var(--planera-soft);--acc:var(--tid-t)}
-.cat-tid{--base:var(--tid);--on:var(--on-dark);--tint:var(--tid-t);--ink:var(--tid-k);--soft:var(--tid-soft);--acc:var(--minne-t)}
-.cat-minne{--base:var(--minne);--on:#fff;--tint:var(--minne-t);--ink:var(--minne-k);--soft:var(--minne-soft);--acc:var(--fokus-t)}
-.cat-fokus{--base:var(--fokus);--on:var(--on-dark);--tint:var(--fokus-t);--ink:var(--fokus-k);--soft:var(--fokus-soft);--acc:var(--planera-t)}
-.cat-kanslor{--base:var(--kanslor);--on:#fff;--tint:var(--kanslor-t);--ink:var(--kanslor-k);--soft:var(--kanslor-soft);--acc:var(--forandring-t)}
-.cat-forandring{--base:var(--forandring);--on:#fff;--tint:var(--forandring-t);--ink:var(--forandring-k);--soft:var(--forandring-soft);--acc:var(--igang-t)}
-.cat-balans{--base:var(--balans);--on:#fff;--tint:var(--balans-t);--ink:var(--balans-k);--soft:var(--balans-soft);--acc:var(--fokus-t)}
+.cat-igang{--base:var(--igang);--card:var(--igang-c);--i:var(--igang-i);--on:#fff;--tint:var(--igang-t);--ink:var(--igang-k);--soft:var(--igang-soft);--acc:var(--minne-t)}
+.cat-planera{--base:var(--planera);--card:var(--planera-c);--i:var(--planera-i);--on:#fff;--tint:var(--planera-t);--ink:var(--planera-k);--soft:var(--planera-soft);--acc:var(--tid-t)}
+.cat-tid{--base:var(--tid);--card:var(--tid-c);--i:var(--tid-i);--id:var(--tid-id);--on:var(--on-dark);--tint:var(--tid-t);--ink:var(--tid-k);--soft:var(--tid-soft);--acc:var(--minne-t)}
+.cat-minne{--base:var(--minne);--card:var(--minne-c);--i:var(--minne-i);--on:#fff;--tint:var(--minne-t);--ink:var(--minne-k);--soft:var(--minne-soft);--acc:var(--fokus-t)}
+.cat-fokus{--base:var(--fokus);--card:var(--fokus-c);--i:var(--fokus-i);--id:var(--fokus-id);--on:var(--on-dark);--tint:var(--fokus-t);--ink:var(--fokus-k);--soft:var(--fokus-soft);--acc:var(--planera-t)}
+.cat-kanslor{--base:var(--kanslor);--card:var(--kanslor-c);--i:var(--kanslor-i);--on:#fff;--tint:var(--kanslor-t);--ink:var(--kanslor-k);--soft:var(--kanslor-soft);--acc:var(--forandring-t)}
+.cat-forandring{--base:var(--forandring);--card:var(--forandring-c);--i:var(--forandring-i);--on:#fff;--tint:var(--forandring-t);--ink:var(--forandring-k);--soft:var(--forandring-soft);--acc:var(--igang-t)}
+.cat-balans{--base:var(--balans);--card:var(--balans-c);--i:var(--balans-i);--on:#fff;--tint:var(--balans-t);--ink:var(--balans-k);--soft:var(--balans-soft);--acc:var(--fokus-t)}
 
-/* illustrationsklasser: fyllning (f-) och linje (s-) */
-.il{display:block;overflow:visible}
-.il .f-w{fill:var(--il-w)} .il .f-t{fill:var(--tint)} .il .f-k{fill:var(--ink)} .il .f-a{fill:var(--acc)} .il .f-b{fill:var(--cut,var(--base))}
-.il .f-s1{fill:var(--s1)} .il .f-s2{fill:var(--s2)} .il .f-s3{fill:var(--s3)}
-.il .f-h1{fill:var(--h1)} .il .f-h2{fill:var(--h2)} .il .f-h3{fill:var(--h3)}
-.il .f-face{fill:var(--face)} .il .f-leaf{fill:var(--leaf)} .il .f-sun{fill:var(--sun)} .il .f-cheek{fill:var(--cheek)} .il .f-cloud{fill:var(--cloud)}
-.il .ln{fill:none;stroke-linecap:round;stroke-linejoin:round}
-.il .s-w{stroke:var(--il-w)} .il .s-t{stroke:var(--tint)} .il .s-k{stroke:var(--ink)} .il .s-a{stroke:var(--acc)} .il .s-b{stroke:var(--base)}
-.il .s-s1{stroke:var(--s1)} .il .s-s2{stroke:var(--s2)} .il .s-s3{stroke:var(--s3)}
-.il .s-face{stroke:var(--face)} .il .s-leaf{stroke:var(--leaf)}
+/* Mjuka ikoner: byggda med CSS (inga svg). 1em = ikonens storlek. */
+.sico{position:relative;display:inline-block;width:1em;height:1em;font-size:56px;flex:none}
+.sico i{position:absolute;display:block;background:var(--i)}
+.sico i::before,.sico i::after{content:"";position:absolute;display:block;background:inherit}
+.sico-sm{font-size:40px} .sico-lg{font-size:64px} .sico-xl{font-size:104px}
+/* komma igång: två fotsteg */
+.sico .fp{width:.24em;height:.34em;border-radius:50% 50% 46% 46%}
+.sico .fp::after{left:.035em;top:.37em;width:.17em;height:.17em;border-radius:50%}
+.sico .fp1{left:.17em;top:.38em;transform:rotate(-14deg)}
+.sico .fp2{left:.57em;top:.06em;transform:rotate(12deg)}
+/* planera: lista */
+.sico .row{left:.38em;width:.5em;height:.13em;border-radius:.07em}
+.sico .row::before{left:-.27em;top:-.035em;width:.2em;height:.2em;border-radius:50%}
+.sico .r1{top:.17em} .sico .r2{top:.44em} .sico .r3{top:.71em;width:.34em}
+/* tid: klocka */
+.sico .ck{left:.06em;top:.06em;width:.88em;height:.88em;border-radius:50%}
+.sico .ck::before{inset:.12em;border-radius:50%;background:var(--card)}
+.sico .ck-h{left:.465em;top:.27em;width:.07em;height:.27em;border-radius:.04em;background:var(--id,var(--i))}
+.sico .ck-m{left:.47em;top:.465em;width:.26em;height:.07em;border-radius:.04em;background:var(--id,var(--i))}
+.sico .ck-c{left:.43em;top:.43em;width:.14em;height:.14em;border-radius:50%;background:var(--id,var(--i))}
+/* komma ihåg: nyckel */
+.sico-minne{transform:rotate(-35deg)}
+.sico .kb{left:.02em;top:.29em;width:.42em;height:.42em;border-radius:50%}
+.sico .kb::before{inset:.12em;border-radius:50%;background:var(--card)}
+.sico .ks{left:.4em;top:.44em;width:.54em;height:.12em;border-radius:.06em}
+.sico .ks::before{left:.3em;top:.08em;width:.08em;height:.17em;border-radius:.03em}
+.sico .ks::after{left:.43em;top:.08em;width:.08em;height:.12em;border-radius:.03em}
+/* fokus: måltavla */
+.sico .tg{left:.06em;top:.06em;width:.88em;height:.88em;border-radius:50%}
+.sico .tg::before{inset:.11em;border-radius:50%;background:var(--card)}
+.sico .tg2{left:.27em;top:.27em;width:.46em;height:.46em;border-radius:50%}
+.sico .tg2::before{inset:.12em;border-radius:50%;background:var(--id,var(--card))}
+/* känslor: hjärta */
+.sico .ht{left:.25em;top:.36em;width:.5em;height:.5em;transform:rotate(-45deg);border-radius:0 0 0 .1em}
+.sico .ht::before{left:0;top:-.25em;width:.5em;height:.5em;border-radius:50%}
+.sico .ht::after{left:.25em;top:0;width:.5em;height:.5em;border-radius:50%}
+/* förändringar: sol bakom moln */
+.sico .sn{left:.44em;top:.1em;width:.42em;height:.42em;border-radius:50%;background:var(--sun)}
+.sico .cl{left:.06em;top:.54em;width:.8em;height:.3em;border-radius:.15em}
+.sico .cl::before{left:.12em;top:-.17em;width:.34em;height:.34em;border-radius:50%}
+.sico .cl::after{left:.34em;top:-.27em;width:.4em;height:.4em;border-radius:50%}
+/* balans: måne och stjärnor */
+.sico .mn{left:.1em;top:.12em;width:.72em;height:.72em;border-radius:50%;background:transparent;box-shadow:inset -.2em -.02em 0 0 var(--i)}
+.sico .s1{left:.78em;top:.14em;width:.11em;height:.11em;border-radius:50%}
+.sico .s2{left:.66em;top:.02em;width:.07em;height:.07em;border-radius:50%}
+/* energinivå: tre staplar */
+.sico .lv{top:.2em;width:.2em;height:.6em;border-radius:.1em;opacity:.28}
+.sico .lv.on{opacity:1}
+.sico .lv1{left:.14em} .sico .lv2{left:.4em} .sico .lv3{left:.66em}
 
 /* =========================================================
    Grund
@@ -205,18 +259,16 @@ a{color:inherit}
 /* =========================================================
    Kategorikort
    ========================================================= */
-.card{position:relative;display:flex;flex-direction:column;width:100%;margin-top:24px;border-radius:var(--r-lg);background:var(--base);color:var(--on);text-align:left;overflow:visible;transition:transform var(--dur) var(--ease)}
+.card{position:relative;display:flex;flex-direction:column;gap:14px;width:100%;padding:18px;border-radius:var(--r-lg);background:var(--card);color:var(--text);text-align:left;transition:transform var(--dur) var(--ease)}
 button.card:active{transform:scale(.985)}
-.card-illu{display:flex;justify-content:flex-end;height:168px;padding-right:8px;margin-top:-24px;pointer-events:none}
-.card-illu .il{height:100%;width:auto;max-width:100%}
-.card-body{display:flex;flex-direction:column;gap:4px;padding:6px 18px 18px}
-.card-meta{font-size:1rem;font-weight:700;color:var(--on)}
-.card-title{font-family:var(--font-head);font-weight:800;font-size:1.375rem;line-height:1.2;color:var(--on);text-wrap:balance}
-.card-under{font-size:1rem;color:var(--on)}
+.card-body{display:flex;flex-direction:column;gap:4px}
+.card-meta{font-size:1rem;font-weight:700;color:var(--text-2)}
+.card-title{font-family:var(--font-head);font-weight:800;font-size:1.375rem;line-height:1.2;color:var(--text);text-wrap:balance}
+.card-under{font-size:1rem;color:var(--text-2)}
 .card-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px}
-.pill{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:2px 12px;border-radius:999px;background:var(--ink);color:#fff;font-size:1rem;font-weight:700}
-.play-dot{display:grid;place-items:center;width:52px;height:52px;border-radius:999px;background:var(--on);flex:none}
-.play-dot::before,.v-play::before{content:"";width:0;height:0;margin-left:4px;border-style:solid;border-width:9px 0 9px 15px;border-color:transparent transparent transparent var(--base)}
+.pill{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:2px 12px;border-radius:999px;background:var(--surface);color:var(--text);font-size:1rem;font-weight:700}
+.play-dot{display:grid;place-items:center;width:52px;height:52px;border-radius:999px;background:var(--btn);flex:none}
+.play-dot::before,.v-play::before{content:"";width:0;height:0;margin-left:4px;border-style:solid;border-width:9px 0 9px 15px;border-color:transparent transparent transparent var(--on-btn)}
 
 /* Idag: energirad */
 .energy-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 6px 8px 16px;border-radius:var(--r-md);background:var(--surface-2)}
@@ -226,21 +278,20 @@ button.card:active{transform:scale(.985)}
 .welcome{padding:16px 18px;border-radius:var(--r-md);background:var(--surface-2)}
 
 /* Idag: dagens steg klart */
-.soft-card{--cut:var(--soft);display:flex;gap:16px;align-items:center;padding:16px;border-radius:var(--r-lg);background:var(--soft)}
+.soft-card{display:flex;gap:16px;align-items:center;padding:18px;border-radius:var(--r-lg);background:var(--card)}
 .soft-card .stack{gap:6px}
 
 /* Just nu */
 .jn-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
 .jn-row{display:flex;align-items:center;gap:14px;width:100%;min-height:72px;padding:8px 14px 8px 8px;border-radius:var(--r-md);background:var(--surface);border:2px solid var(--line)}
 .jn-row:hover{border-color:var(--line-strong)}
-.jn-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;width:56px;height:56px;border-radius:14px;background:var(--base);color:var(--on);font-family:var(--font-head);line-height:1;flex:none}
+.jn-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;width:56px;height:56px;border-radius:14px;background:var(--card);color:var(--text);font-family:var(--font-head);line-height:1;flex:none}
 .jn-tile b{font-size:1.375rem;font-weight:900}
 .jn-tile small{font-size:.9375rem;font-weight:800}
 .jn-text{flex:1;display:flex;flex-direction:column}
 .jn-title{font-family:var(--font-head);font-weight:800;font-size:1.125rem;line-height:1.25}
 .jn-meta{color:var(--text-2);font-size:1rem}
-.e-tile{display:grid;place-items:end center;width:76px;height:64px;border-radius:14px;background:var(--base);overflow:hidden;flex:none}
-.e-tile svg{width:76px;height:auto}
+.e-tile{display:grid;place-items:center;width:64px;height:64px;border-radius:14px;background:var(--card);flex:none}
 
 /* Dagsplan */
 .plan{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
@@ -261,17 +312,15 @@ button.card:active{transform:scale(.985)}
 .idea-wrap p{color:var(--text-2);font-size:1rem}
 .row-end{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap}
 .empty{display:flex;align-items:center;gap:16px;padding:4px 0 8px}
-.empty .il{width:88px;flex:none;padding:6px;border-radius:14px;background:var(--soft)}
+.empty .e-tile{width:72px;height:72px}
 /* Utforska */
-.explore{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:10px;row-gap:34px;padding-top:14px}
-.gcard{display:flex;flex-direction:column;width:100%;min-height:100%;border-radius:var(--r-lg);background:var(--base);color:var(--on);text-align:left;transition:transform var(--dur) var(--ease)}
+.explore{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.gcard{display:flex;flex-direction:column;justify-content:space-between;gap:18px;width:100%;min-height:180px;padding:16px 14px 14px;border-radius:var(--r-lg);background:var(--card);color:var(--text);text-align:left;transition:transform var(--dur) var(--ease)}
 .gcard:active{transform:scale(.97)}
-.g-illu{display:flex;justify-content:center;height:122px;margin-top:-22px;padding-inline:4px;pointer-events:none}
-.g-illu .il{height:100%;width:auto;max-width:100%}
-.g-body{display:flex;flex-direction:column;align-items:flex-start;gap:2px;margin-top:auto;padding:8px 12px 14px}
-.g-title{font-family:var(--font-head);font-weight:800;font-size:1.125rem;line-height:1.2;color:var(--on);hyphens:manual;overflow-wrap:break-word}
-.g-under{font-size:1rem;line-height:1.35;color:var(--on);hyphens:manual;overflow-wrap:break-word}
-.g-pill{margin-bottom:6px;min-height:28px;font-size:.9375rem}
+.g-body{display:flex;flex-direction:column;align-items:flex-start;gap:2px}
+.g-title{font-family:var(--font-head);font-weight:800;font-size:1.125rem;line-height:1.2;color:var(--text);hyphens:manual;overflow-wrap:break-word}
+.g-under{font-size:1rem;line-height:1.35;color:var(--text-2);hyphens:manual;overflow-wrap:break-word}
+.g-pill{margin-bottom:6px;min-height:28px;padding:2px 10px;white-space:nowrap;font-size:.9375rem;background:var(--btn);color:var(--on-btn)}
 
 /* Kategori- och programsidor */
 .prog-card{display:flex;flex-direction:column;gap:12px;width:100%;padding:16px;border-radius:var(--r-lg);background:var(--surface);border:2px solid var(--line);text-align:left}
@@ -310,9 +359,10 @@ button.card:active{transform:scale(.985)}
 .tab[aria-current="page"] .tab-lab{background:var(--surface-3)}
 
 /* Session */
-.video{position:relative;display:block;width:100%;aspect-ratio:16/10;max-width:100%;border-radius:var(--r-lg);background:var(--base);overflow:hidden;color:var(--on)}
-.video .il{position:absolute;inset:8% 4% 0 auto;height:92%;width:auto}
-.video .v-play{position:absolute;left:18px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:68px;height:68px;border-radius:999px;background:var(--on)}
+.video{position:relative;display:block;width:100%;aspect-ratio:16/10;max-width:100%;border-radius:var(--r-lg);background:var(--card);overflow:hidden;color:var(--text)}
+.video .sico{position:absolute;right:12%;top:50%;transform:translateY(-50%)}
+.video .sico-minne{transform:translateY(-50%) rotate(-35deg)}
+.video .v-play{position:absolute;left:18px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:68px;height:68px;border-radius:999px;background:var(--btn)}
 .video .v-play::before{border-width:12px 0 12px 20px;margin-left:6px}
 .video .v-len{position:absolute;left:14px;bottom:14px}
 .prose{display:flex;flex-direction:column;gap:14px;max-width:38rem}
@@ -343,21 +393,19 @@ button.card:active{transform:scale(.985)}
 .help-card.urgent{border-color:var(--text)}
 .help-num{font-family:var(--font-head);font-weight:900;font-size:2rem;line-height:1.1;letter-spacing:.02em;font-variant-numeric:tabular-nums}
 .help-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-.placeholder{--cut:var(--soft);display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:22px;border-radius:var(--r-lg);background:var(--soft)}
-.illu-block{--cut:var(--base);display:flex;justify-content:center;align-items:flex-end;align-self:stretch;padding:18px 16px 0;border-radius:var(--r-lg);background:var(--base);overflow:hidden}
-.illu-block .il{width:100%;max-width:240px;height:auto}
-.illu-block.sm{align-self:center;width:96px;padding:8px 6px 0;border-radius:14px;flex:none}
+.placeholder{display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:22px;border-radius:var(--r-lg);background:var(--soft)}
+.hero{display:flex;align-items:center;justify-content:center;align-self:stretch;min-height:160px;border-radius:var(--r-lg);background:var(--card)}
 .confirm{display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:var(--r-md);border:2px solid var(--text);background:var(--surface)}
 .goal-box{display:block;padding:18px;border-radius:var(--r-lg);background:var(--surface);border:2px solid var(--line)}
 
 /* Toast */
-#toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:20;width:min(30rem,calc(100% - 32px));display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px 14px 20px;border-radius:var(--r-md);background:var(--toast-bg);color:var(--toast-text);font-weight:700;animation:enter var(--dur) var(--ease)}
+#toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:20;width:min(30rem,calc(100% - 32px));display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px 14px 20px;border-radius:var(--r-md);background:var(--toast-bg);color:var(--toast-text);font-weight:700;animation:toast-in var(--dur) var(--ease)}
+@keyframes toast-in{from{opacity:0;transform:translate(-50%,8px)}to{opacity:1;transform:translate(-50%,0)}}
 body[data-view="session"] #toast,body[data-view="onboarding"] #toast,body[data-view="checkin"] #toast{bottom:calc(96px + env(safe-area-inset-bottom,0px))}
 #toast button{min-height:44px;padding:0 14px;border-radius:999px;background:var(--toast-text);color:var(--toast-bg);font-family:var(--font-head);font-weight:800}
 
 @media (min-width:600px){
   h1{font-size:2rem}
-  .card-illu{height:190px}
 }
 </style>
 </head>
@@ -375,7 +423,7 @@ body[data-view="session"] #toast,body[data-view="onboarding"] #toast,body[data-v
 <script type="application/json" id="innehall">
 {
   "_om": "Innehåll för Småsteg. Allt är skrivet för att granskas av legitimerad arbetsterapeut innan användning. Poster med skriven:false har bara titel och planerad princip. Fältet livsomraden på strategier är etiketter; exempel finns för alla fem livsområden så att de kan anpassas efter användaren.",
-  "version": "0.2.1 (steg 2, ny färgskala)",
+  "version": "0.2.2 (steg 2, mjuka ikoner)",
   "granskningsstatus": "Ej granskat av arbetsterapeut",
   "kategorier": [
     {
@@ -2468,184 +2516,21 @@ function logo(){ return '<span class="logo">Småsteg</span>'; }
 var ARROW = '<span class="arrow" aria-hidden="true">→</span>';
 
 /* =========================================================
-   Illustrationer (inline-SVG, platta former utan konturer)
-   Figurer ritas i lokala koordinater: fötter vid y=0, mitt x=0.
+   Mjuka ikoner (CSS, inga svg)
    ========================================================= */
-function head(cx, cy, r, o){
-  o = o || {};
-  var sk = o.skin || 's1', hr = o.hair || 'h1', st = o.style || 'short';
-  var lx = (o.look || [0, 0])[0], ly = (o.look || [0, 0])[1];
-  var back = '', top = '';
-  if (st === 'long') back = '<rect x="' + (cx - r - 4) + '" y="' + (cy - 6) + '" width="' + (2 * r + 8) + '" height="' + (r + 16) + '" rx="12" class="f-' + hr + '"/>';
-  if (st === 'bun') back = '<circle cx="' + (cx + r * 0.5) + '" cy="' + (cy - r * 0.95) + '" r="' + (r * 0.46) + '" class="f-' + hr + '"/>';
-  if (st === 'curly') {
-    [200, 235, 270, 305, 340].forEach(function(a){
-      var rad = a * Math.PI / 180;
-      top += '<circle cx="' + (cx + Math.cos(rad) * r * 0.78).toFixed(1) + '" cy="' + (cy + Math.sin(rad) * r * 0.78).toFixed(1) + '" r="' + (r * 0.42).toFixed(1) + '" class="f-' + hr + '"/>';
-    });
-  } else {
-    top = '<path d="M' + (cx - r) + ' ' + cy + 'A' + r + ' ' + r + ' 0 0 1 ' + (cx + r) + ' ' + cy + 'Q' + (cx + r * 0.25) + ' ' + (cy - r * 0.72) + ' ' + (cx - r) + ' ' + cy + 'Z" class="f-' + hr + '"/>';
-  }
-  var eyes;
-  if (o.eyes === 'closed') {
-    eyes = '<path d="M' + (cx - 10 + lx) + ' ' + (cy + 4) + 'q3 3 6 0M' + (cx + 4 + lx) + ' ' + (cy + 4) + 'q3 3 6 0" class="ln s-face" stroke-width="2.2"/>';
-  } else {
-    eyes = '<ellipse cx="' + (cx - 7 + lx) + '" cy="' + (cy + 4 + ly) + '" rx="2.2" ry="2.8" class="f-face"/><ellipse cx="' + (cx + 7 + lx) + '" cy="' + (cy + 4 + ly) + '" rx="2.2" ry="2.8" class="f-face"/>';
-  }
-  var cheeks = '<circle cx="' + (cx - 11 + lx * .5) + '" cy="' + (cy + 10) + '" r="3" class="f-cheek" opacity=".55"/><circle cx="' + (cx + 11 + lx * .5) + '" cy="' + (cy + 10) + '" r="3" class="f-cheek" opacity=".55"/>';
-  var mouth = '<path d="M' + (cx - 4 + lx) + ' ' + (cy + 11) + 'q4 3.5 8 0" class="ln s-face" stroke-width="2.2"/>';
-  return back + '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" class="f-' + sk + '"/>' + top + cheeks + eyes + mouth;
-}
-/* stående figur. armL/armR = [handX, handY, kontrollX, kontrollY] */
-function fig(o){
-  var t = o.top || 'w', lg = o.legs || 'k', sk = o.skin || 's1';
-  var legs = o.noLegs ? '' : '<path d="M-9 -40V-9M9 -40V-9" class="ln s-' + lg + '" stroke-width="12"/><ellipse cx="-11" cy="-5" rx="9" ry="5" class="f-' + lg + '"/><ellipse cx="11" cy="-5" rx="9" ry="5" class="f-' + lg + '"/>';
-  function arm(a, side){
-    if (!a) return '';
-    var sx = side * 14;
-    return '<path d="M' + sx + ' -74Q' + a[2] + ' ' + a[3] + ' ' + a[0] + ' ' + a[1] + '" class="ln s-' + t + '" stroke-width="10"/><circle cx="' + a[0] + '" cy="' + a[1] + '" r="6" class="f-' + sk + '"/>';
-  }
-  return '<g transform="translate(' + o.x + ' ' + o.y + ') scale(' + (o.s || 1) + ')">' + legs +
-    '<rect x="-21" y="-88" width="42" height="56" rx="21" class="f-' + t + '"/>' +
-    (o.mid || '') + head(0, -106, 20, o.head) + arm(o.armL, -1) + arm(o.armR, 1) + (o.front || '') + '</g>';
-}
-
-var SCENES = {
-  /* Komma igång: vattnar en blomma */
-  igang: function(){
-    return '<circle cx="150" cy="46" r="40" class="f-t"/>' +
-      '<path d="M150 124V90" class="ln s-leaf" stroke-width="4"/>' +
-      '<ellipse cx="139" cy="106" rx="13" ry="6" transform="rotate(-28 139 106)" class="f-leaf"/>' +
-      '<ellipse cx="161" cy="100" rx="13" ry="6" transform="rotate(28 161 100)" class="f-leaf"/>' +
-      '<ellipse cx="150" cy="86" rx="6" ry="11" class="f-leaf"/>' +
-      '<path d="M130 122H170L165 158Q164 162 160 162H140Q136 162 135 158Z" class="f-k"/>' +
-      '<circle cx="142" cy="74" r="2.8" class="f-w"/><circle cx="146" cy="84" r="2.8" class="f-w"/><circle cx="139" cy="88" r="2.8" class="f-w"/>' +
-      fig({ x: 70, y: 164, top: 'w', legs: 'k', skin: 's2',
-        head: { skin: 's2', hair: 'h1', style: 'short', look: [2, 0] },
-        armL: [-26, -44, -28, -64],
-        armR: [44, -84, 30, -64],
-        front: '<rect x="32" y="-76" width="30" height="22" rx="8" class="f-a"/><path d="M38 -76Q46 -90 56 -76" class="ln s-a" stroke-width="4"/><path d="M60 -70L72 -88" class="ln s-a" stroke-width="5"/>' });
-  },
-  /* Planera: skriver en lista */
-  planera: function(){
-    return '<circle cx="44" cy="44" r="34" class="f-t"/>' +
-      fig({ x: 66, y: 164, top: 'a', legs: 'k', skin: 's1',
-        head: { skin: 's1', hair: 'h2', style: 'long', look: [3, 2] },
-        armL: null, armR: null }) +
-      '<rect x="92" y="56" width="66" height="88" rx="10" class="f-w"/>' +
-      '<rect x="112" y="50" width="26" height="12" rx="5" class="f-k"/>' +
-      '<rect x="114" y="78" width="32" height="6" rx="3" class="f-t"/><rect x="114" y="96" width="32" height="6" rx="3" class="f-t"/><rect x="114" y="114" width="24" height="6" rx="3" class="f-t"/>' +
-      '<path d="M100 81l3 3 6-7M100 99l3 3 6-7" class="ln s-b" stroke-width="3"/>' +
-      '<circle cx="104" cy="117" r="3.5" class="f-t"/>' +
-      '<path d="M52 90Q66 124 96 124" class="ln s-a" stroke-width="10"/><circle cx="96" cy="124" r="6" class="f-s1"/>' +
-      '<path d="M80 90Q100 108 126 112" class="ln s-a" stroke-width="10"/>' +
-      '<path d="M128 112L142 96" class="ln s-k" stroke-width="5"/><circle cx="127" cy="112" r="6" class="f-s1"/>';
-  },
-  /* Tiden: tittar på en stor klocka */
-  tid: function(){
-    return '<circle cx="62" cy="60" r="48" class="f-k"/><circle cx="62" cy="60" r="40" class="f-w"/>' +
-      '<circle cx="62" cy="28" r="4" class="f-k"/><circle cx="94" cy="60" r="4" class="f-k"/><circle cx="62" cy="92" r="4" class="f-k"/><circle cx="30" cy="60" r="4" class="f-k"/>' +
-      '<rect x="59" y="38" width="6" height="25" rx="3" transform="rotate(-55 62 60)" class="f-k"/>' +
-      '<rect x="60" y="30" width="4" height="33" rx="2" transform="rotate(35 62 60)" class="f-k"/>' +
-      '<circle cx="62" cy="60" r="5" class="f-b"/>' +
-      fig({ x: 148, y: 164, top: 'a', legs: 'k', skin: 's3',
-        head: { skin: 's3', hair: 'h1', style: 'curly', look: [-3, -2] },
-        armL: [-15, -86, -32, -76],
-        armR: [24, -44, 26, -62] });
-  },
-  /* Komma ihåg: hänger nycklar på en krok */
-  minne: function(){
-    return '<rect x="22" y="34" width="100" height="22" rx="11" class="f-a"/>' +
-      '<rect x="41" y="50" width="6" height="14" rx="3" class="f-k"/><rect x="69" y="50" width="6" height="14" rx="3" class="f-k"/><rect x="97" y="50" width="6" height="14" rx="3" class="f-k"/>' +
-      '<circle cx="44" cy="72" r="8" class="f-t"/><circle cx="44" cy="72" r="3.4" class="f-b"/><rect x="41" y="78" width="6" height="22" rx="3" class="f-t"/><rect x="46" y="91" width="6" height="4" rx="1.5" class="f-t"/>' +
-      '<path d="M66 64h12l-2 16h-8z" class="f-t"/>' +
-      fig({ x: 138, y: 164, top: 't', legs: 'k', skin: 's1',
-        head: { skin: 's1', hair: 'h3', style: 'bun', look: [-3, -3] },
-        armL: [-36, -102, -34, -80],
-        armR: [24, -44, 26, -62],
-        front: '<circle cx="-36" cy="-88" r="7" class="f-w"/><circle cx="-36" cy="-88" r="3" class="f-b"/><rect x="-39" y="-83" width="6" height="18" rx="3" class="f-w"/>' });
-  },
-  /* Fokus: sitter vid datorn med hörlurar */
-  fokus: function(){
-    return '<path d="M170 118V72" class="ln s-k" stroke-width="4"/><path d="M154 78Q170 48 186 78Z" class="f-a"/>' +
-      '<rect x="24" y="96" width="16" height="22" rx="5" class="f-w"/><path d="M40 102q8 0 8 6t-8 6" class="ln s-w" stroke-width="4"/>' +
-      fig({ x: 80, y: 172, top: 'a', legs: 'k', skin: 's2', noLegs: true,
-        head: { skin: 's2', hair: 'h2', style: 'short', look: [3, 3] },
-        armL: null, armR: null,
-        front: '<path d="M-23 -110A23 23 0 0 1 23 -110" class="ln s-k" stroke-width="5"/><rect x="-28" y="-116" width="10" height="20" rx="5" class="f-k"/><rect x="18" y="-116" width="10" height="20" rx="5" class="f-k"/>' }) +
-      '<rect x="14" y="116" width="172" height="10" rx="5" class="f-k"/>' +
-      '<rect x="28" y="124" width="8" height="40" rx="4" class="f-k"/><rect x="164" y="124" width="8" height="40" rx="4" class="f-k"/>' +
-      '<rect x="98" y="80" width="56" height="36" rx="6" class="f-w"/><circle cx="126" cy="98" r="4" class="f-t"/>' +
-      '<path d="M66 96Q70 112 88 114" class="ln s-a" stroke-width="10"/><circle cx="90" cy="114" r="6" class="f-s2"/>' +
-      '<path d="M94 96Q102 110 100 114" class="ln s-a" stroke-width="10"/><circle cx="100" cy="114" r="6" class="f-s2"/>';
-  },
-  /* Känslor och stress: lugn andning */
-  kanslor: function(){
-    return '<circle cx="100" cy="98" r="70" class="f-t" opacity=".4"/><circle cx="100" cy="98" r="52" class="f-t" opacity=".75"/>' +
-      '<circle cx="34" cy="44" r="4" class="f-w"/><circle cx="170" cy="54" r="3" class="f-w"/><circle cx="160" cy="30" r="5" class="f-w"/>' +
-      '<g transform="translate(100 162)">' +
-        '<rect x="-42" y="-26" width="84" height="24" rx="12" class="f-k"/>' +
-        '<rect x="-21" y="-78" width="42" height="56" rx="21" class="f-w"/>' +
-        head(0, -98, 20, { skin: 's3', hair: 'h1', style: 'long', eyes: 'closed' }) +
-        '<path d="M-14 -66Q-30 -40 -6 -40" class="ln s-w" stroke-width="10"/><path d="M14 -66Q30 -40 6 -40" class="ln s-w" stroke-width="10"/>' +
-        '<circle cx="-6" cy="-40" r="6" class="f-s3"/><circle cx="6" cy="-40" r="6" class="f-s3"/>' +
-      '</g>';
-  },
-  /* Förändringar: paraply när vädret skiftar */
-  forandring: function(){
-    return '<circle cx="182" cy="24" r="17" class="f-sun"/>' +
-      '<circle cx="34" cy="34" r="14" class="f-w"/><circle cx="52" cy="26" r="18" class="f-w"/><circle cx="70" cy="34" r="14" class="f-w"/><rect x="20" y="34" width="64" height="14" rx="7" class="f-w"/>' +
-      '<path d="M30 58l-3 8M48 62l-3 8M66 58l-3 8M38 80l-3 8M58 82l-3 8" class="ln s-t" stroke-width="4"/>' +
-      '<path d="M112 50A38 38 0 0 1 188 50Q178 42 169 50Q160 42 150 50Q140 42 131 50Q122 42 112 50Z" class="f-a"/>' +
-      '<path d="M150 50V104q0 8-7 8" class="ln s-k" stroke-width="4"/>' +
-      fig({ x: 132, y: 164, s: .92, top: 't', legs: 'k', skin: 's2',
-        head: { skin: 's2', hair: 'h1', style: 'short', look: [1, 0] },
-        armL: [-24, -44, -26, -62],
-        armR: [20, -78, 26, -62] });
-  },
-  /* Balans och återhämtning: vilar i soffan */
-  balans: function(){
-    return '<circle cx="156" cy="36" r="18" class="f-w"/><circle cx="164" cy="30" r="15" class="f-b"/>' +
-      '<circle cx="112" cy="24" r="2.6" class="f-w"/><circle cx="128" cy="50" r="2" class="f-w"/><circle cx="186" cy="64" r="2.6" class="f-w"/><circle cx="96" cy="46" r="2" class="f-w"/>' +
-      '<rect x="18" y="90" width="164" height="46" rx="20" class="f-t"/>' +
-      '<rect x="26" y="146" width="8" height="14" rx="3" class="f-k"/><rect x="166" y="146" width="8" height="14" rx="3" class="f-k"/>' +
-      head(46, 104, 18, { skin: 's1', hair: 'h2', style: 'short', eyes: 'closed' }) +
-      '<rect x="60" y="104" width="112" height="28" rx="14" class="f-a"/>' +
-      '<circle cx="176" cy="112" r="6" class="f-s1"/><circle cx="178" cy="124" r="6" class="f-s1"/>' +
-      '<path d="M64 112Q80 108 96 114" class="ln s-w" stroke-width="10"/><circle cx="98" cy="115" r="6" class="f-s1"/>' +
-      '<rect x="10" y="126" width="180" height="24" rx="12" class="f-w"/>';
-  }
+var SICO = {
+  igang: '<i class="fp fp1"></i><i class="fp fp2"></i>',
+  planera: '<i class="row r1"></i><i class="row r2"></i><i class="row r3"></i>',
+  tid: '<i class="ck"></i><i class="ck-h"></i><i class="ck-m"></i><i class="ck-c"></i>',
+  minne: '<i class="kb"></i><i class="ks"></i>',
+  fokus: '<i class="tg"></i><i class="tg2"></i>',
+  kanslor: '<i class="ht"></i>',
+  forandring: '<i class="sn"></i><i class="cl"></i>',
+  balans: '<i class="mn"></i><i class="s1"></i><i class="s2"></i>'
 };
-function illuBlock(id, cls){ return '<div class="illu-block cat-' + id + (cls ? ' ' + cls : '') + '">' + scene(id) + '</div>'; }
-function scene(id, cls){ return '<svg class="il' + (cls ? ' ' + cls : '') + '" viewBox="0 0 200 170" aria-hidden="true" focusable="false">' + SCENES[id]() + '</svg>'; }
-
-/* små scener för energiincheckningen */
-var MINI = {
-  lite: function(){
-    return '<circle cx="96" cy="24" r="11" class="f-w"/><circle cx="101" cy="20" r="9" class="f-b"/>' +
-      '<rect x="8" y="66" width="104" height="22" rx="11" class="f-t"/>' +
-      head(28, 58, 14, { skin: 's2', hair: 'h1', eyes: 'closed' }) +
-      '<rect x="40" y="52" width="66" height="20" rx="10" class="f-a"/>';
-  },
-  mitt: function(){
-    return fig({ x: 60, y: 100, s: .62, top: 'w', legs: 'k', skin: 's1',
-      head: { skin: 's1', hair: 'h3', style: 'bun' },
-      armL: [-8, -56, -30, -50], armR: [8, -56, 30, -50],
-      front: '<rect x="-12" y="-66" width="24" height="22" rx="6" class="f-a"/>' });
-  },
-  mycket: function(){
-    return '<circle cx="94" cy="26" r="14" class="f-w"/>' +
-      fig({ x: 56, y: 100, s: .62, top: 'a', legs: 'k', skin: 's3',
-        head: { skin: 's3', hair: 'h1', style: 'curly' },
-        armL: [-34, -130, -36, -96], armR: [34, -130, 36, -96] });
-  },
-  plan: function(){
-    return '<rect x="22" y="12" width="64" height="80" rx="10" class="f-w"/><rect x="42" y="6" width="24" height="12" rx="5" class="f-k"/>' +
-      '<rect x="36" y="36" width="36" height="6" rx="3" class="f-t"/><rect x="36" y="54" width="26" height="6" rx="3" class="f-t"/>' +
-      '<path d="M86 96V70" class="ln s-leaf" stroke-width="3"/><ellipse cx="80" cy="76" rx="8" ry="4" transform="rotate(-30 80 76)" class="f-leaf"/><ellipse cx="92" cy="70" rx="8" ry="4" transform="rotate(30 92 70)" class="f-leaf"/>';
-  }
-};
-function mini(id){ return '<svg class="il" viewBox="0 0 120 100" aria-hidden="true" focusable="false">' + MINI[id]() + '</svg>'; }
+function sico(id, size){ return '<span class="sico sico-' + id + (size ? ' sico-' + size : '') + '" aria-hidden="true">' + SICO[id] + '</span>'; }
+function hero(id){ return '<div class="hero cat-' + id + '">' + sico(id, 'xl') + '</div>'; }
+function levelIcon(n){ var h = ''; for (var i = 1; i <= 3; i++) h += '<i class="lv lv' + i + (i <= n ? ' on' : '') + '"></i>'; return '<span class="sico sico-sm" aria-hidden="true">' + h + '</span>'; }
 
 /* =========================================================
    Uppläsning (webbläsarens talsyntes, svenska)
@@ -2749,7 +2634,7 @@ function catCard(catId, o){
   var tag = o.act ? 'button' : 'div';
   var attrs = o.act ? ' data-act="' + o.act + '" data-key="' + (o.key || o.act) + '"' : '';
   return '<' + tag + ' class="card cat-' + catId + (o.cls ? ' ' + o.cls : '') + '"' + attrs + '>' +
-    '<span class="card-illu">' + scene(catId) + '</span>' +
+    sico(catId, 'lg') +
     '<span class="card-body">' +
       (o.meta ? '<span class="card-meta">' + o.meta + '</span>' : '') +
       '<span class="card-title">' + o.title + '</span>' +
@@ -2857,7 +2742,7 @@ function vCheckin(){
       '<div class="choices" role="group" aria-labelledby="q">' +
       C.energiIdag.map(function(e){
         return '<button class="choice cat-' + cats[e.id] + '" aria-pressed="' + (cur === e.id) + '" data-act="checkin-set" data-id="' + e.id + '" data-key="e-' + e.id + '">' +
-          '<span class="e-tile">' + mini(e.id) + '</span>' +
+          '<span class="e-tile">' + levelIcon(EDAG[e.id].platser) + '</span>' +
           '<span class="c-text"><span class="c-title">' + e.titel + '</span><span class="c-desc">' + e.text + '</span></span></button>';
       }).join('') + '</div>' +
     '</div></main>';
@@ -2880,14 +2765,14 @@ function stepSection(){
   var link = '<button class="btn-text" data-act="open-program" data-id="' + prog.id + '" data-key="prog-link" style="padding-left:0;margin-top:8px">Visa hela programmet</button>';
   if (S.program.paused) {
     var sg = suggestedStrategy();
-    return '<div class="soft-card cat-' + cat.id + '">' + illuBlock(cat.id, 'sm') + '<div class="stack"><h3>Programmet vilar</h3><p>Det gör ingenting. Du fortsätter där du slutade när du vill.</p><button class="btn-text" data-act="prog-resume" data-id="' + prog.id + '" data-key="resume" style="padding-left:0">Fortsätt programmet</button></div></div>' +
+    return '<div class="soft-card cat-' + cat.id + '">' + sico(cat.id, 'lg') + '<div class="stack"><h3>Programmet vilar</h3><p>Det gör ingenting. Du fortsätter där du slutade när du vill.</p><button class="btn-text" data-act="prog-resume" data-id="' + prog.id + '" data-key="resume" style="padding-left:0">Fortsätt programmet</button></div></div>' +
       (sg ? '<p class="sub" style="margin:18px 0 10px">Under tiden kan du prova en kort strategi.</p><ul class="jn-list">' + stratRow(sg) + '</ul>' : '');
   }
   if (!st.next) {
-    return '<div class="soft-card cat-' + cat.id + '">' + illuBlock(cat.id, 'sm') + '<div class="stack"><h3>Du har gått igenom hela programmet</h3><p>Du kan göra om delar när du vill, eller hitta något nytt i Utforska.</p></div></div>' + link;
+    return '<div class="soft-card cat-' + cat.id + '">' + sico(cat.id, 'lg') + '<div class="stack"><h3>Du har gått igenom hela programmet</h3><p>Du kan göra om delar när du vill, eller hitta något nytt i Utforska.</p></div></div>' + link;
   }
   if (doneToday && !V.showNext) {
-    return '<div class="soft-card cat-' + cat.id + '">' + illuBlock(cat.id, 'sm') + '<div class="stack"><h3>Dagens steg är gjort</h3><p>Nästa del väntar tills i morgon, eller tills du vill.</p><button class="btn-text" data-act="show-next" data-key="show-next" style="padding-left:0">Visa nästa del ändå</button></div></div>' + link;
+    return '<div class="soft-card cat-' + cat.id + '">' + sico(cat.id, 'lg') + '<div class="stack"><h3>Dagens steg är gjort</h3><p>Nästa del väntar tills i morgon, eller tills du vill.</p><button class="btn-text" data-act="show-next" data-key="show-next" style="padding-left:0">Visa nästa del ändå</button></div></div>' + link;
   }
   var x = st.next, short = isShort();
   return '<p class="sub" style="margin:-8px 0 14px">' + todayIntro() + '</p>' +
@@ -2931,7 +2816,7 @@ function planSection(){
   var empties = Math.max(0, slots - items.length), html = '';
   var allDone = items.length > 0 && items.every(function(i){ return i.done; });
   if (!items.length && !V.planEdit) {
-    html += '<div class="empty cat-planera">' + mini('plan') + '<p>Vad vill du hinna med idag? Skriv in det här, så slipper du hålla det i huvudet.</p></div>';
+    html += '<div class="empty cat-planera"><span class="e-tile">' + sico('planera', 'sm') + '</span><p>Vad vill du hinna med idag? Skriv in det här, så slipper du hålla det i huvudet.</p></div>';
   }
   html += '<ul class="plan">';
   items.forEach(function(it){
@@ -2997,7 +2882,7 @@ function vSession(){
   var eyebrow = '<p class="eyebrow">' + (isDel ? prog.titel + ' · Del ' + s.del + ' av ' + prog.delar.length : 'Strategi · ' + cat.titel) + (short ? ' · Kort version' : '') + '</p>';
   if (step === 0) {
     body = eyebrow + '<h1>' + s.titel + '</h1>' +
-      (short ? '' : '<button class="video" data-act="video" data-key="video" aria-label="' + s.forklaring.film.beskrivning + ', ' + s.forklaring.film.langd + ' lång. Inte inspelad än.">' + scene(cat.id) + '<span class="v-play" aria-hidden="true"></span><span class="pill v-len">Film · ' + s.forklaring.film.langd + '</span></button>') +
+      (short ? '' : '<button class="video" data-act="video" data-key="video" aria-label="' + s.forklaring.film.beskrivning + ', ' + s.forklaring.film.langd + ' lång. Inte inspelad än.">' + sico(cat.id, 'xl') + '<span class="v-play" aria-hidden="true"></span><span class="pill v-len">Film · ' + s.forklaring.film.langd + '</span></button>') +
       '<div class="prose">' + listenBtn() + '<h2>Varför hjälper det?</h2>' +
       (short ? '<p>' + s.forklaring.kort + '</p>' : s.forklaring.text.map(function(p){ return '<p>' + p + '</p>'; }).join('')) + '</div>';
   } else if (step === 1) {
@@ -3041,7 +2926,7 @@ function vDone(){
   }
   return topbar('', '') +
     '<main class="page flow"><div class="stack-lg cat-' + catId + '">' +
-      illuBlock(catId) +
+      hero(catId) +
       '<h1>' + (isDel ? 'Klart för idag' : 'Klart') + '</h1>' +
       '<p style="font-size:1.1875rem">' + (r ? r.svar : '') + '</p>' +
       '<p class="sub">' + info + '</p>' +
@@ -3053,7 +2938,7 @@ function vComing(){
   return topbar(backBtn(), '') +
     '<main class="page flow"><div class="stack-lg">' +
       '<p class="eyebrow">' + prog.titel + ' · Del ' + s.del + '</p><h1>' + s.titel + '</h1>' +
-      illuBlock(cat.id) + '<div class="placeholder cat-' + cat.id + '"><span class="chip chip-dev">Inte skriven än</span><p>Den här delen är inte skriven än. Den kommer att bygga på: ' + s.granskning.princip.toLowerCase() + '.</p></div>' +
+      hero(cat.id) + '<div class="placeholder cat-' + cat.id + '"><span class="chip chip-dev">Inte skriven än</span><p>Den här delen är inte skriven än. Den kommer att bygga på: ' + s.granskning.princip.toLowerCase() + '.</p></div>' +
     '</div></main>';
 }
 
@@ -3079,7 +2964,7 @@ function vUtforska(){
     '<main class="page"><div class="stack-lg"><p class="lead">Åtta områden. Börja med det som känns viktigast just nu.</p>' +
     '<div class="explore">' + C.kategorier.map(function(c){
       return '<button class="gcard cat-' + c.id + '" data-act="open-cat" data-id="' + c.id + '" data-key="cat-' + c.id + '">' +
-        '<span class="g-illu">' + scene(c.id) + '</span>' +
+        sico(c.id) +
         '<span class="g-body">' + (mineCat === c.id && S.onboarded ? '<span class="pill g-pill">Ditt program</span>' : '') +
         '<span class="g-title">' + shy(c.titel) + '</span><span class="g-under">' + shy(c.formaga) + '</span></span></button>';
     }).join('') + '</div></div></main>' + tabbar('utforska');
@@ -3091,7 +2976,7 @@ function vCategory(){
     : (st.done ? st.done + ' av ' + st.total + ' delar gjorda' : 'Inte påbörjat');
   return topbar(backBtn(), '') +
     '<main class="page flow cat-' + c.id + '">' +
-      '<div class="stack">' + illuBlock(c.id) + '<h1 style="margin-top:8px">' + c.titel + '</h1><p class="sub">Förmåga: ' + c.formaga.toLowerCase() + '</p><p>' + c.beskrivning + '</p></div>' +
+      '<div class="stack">' + hero(c.id) + '<h1 style="margin-top:8px">' + c.titel + '</h1><p class="sub">Förmåga: ' + c.formaga.toLowerCase() + '</p><p>' + c.beskrivning + '</p></div>' +
       '<section class="stack" aria-labelledby="h-prog"><h2 id="h-prog">Program</h2>' +
         '<button class="prog-card" data-act="open-program" data-id="' + p.id + '" data-key="prog">' +
           '<span class="p-top"><span class="p-text"><span class="p-title">' + p.titel + '</span><span class="p-meta">' + st.total + ' delar · ' + (isShort() ? p.delar[0].minKort : 'ca ' + p.delar[0].min) + ' min per del</span></span></span>' +
@@ -3121,7 +3006,7 @@ function vProgram(){
   else if (st.next) primary = '<button class="btn btn-primary" data-act="open-session" data-id="' + st.next.id + '" data-key="nextpart">' + (st.done ? 'Fortsätt med del ' + st.next.del : 'Börja med del 1') + '</button>';
   return topbar(backBtn(), '') +
     '<main class="page flow cat-' + c.id + '">' +
-      '<div class="stack">' + illuBlock(c.id) + '<p class="eyebrow" style="margin-top:8px">Program · ' + st.total + ' delar' + (paused ? ' · pausat' : '') + '</p><h1>' + p.titel + '</h1><p>' + p.undertitel + '</p></div>' +
+      '<div class="stack">' + hero(c.id) + '<p class="eyebrow" style="margin-top:8px">Program · ' + st.total + ' delar' + (paused ? ' · pausat' : '') + '</p><h1>' + p.titel + '</h1><p>' + p.undertitel + '</p></div>' +
       '<section class="stack" aria-labelledby="h-parts"><h2 id="h-parts">Delar</h2><p class="sub">En del per dag räcker. Missar du en dag fortsätter du bara där du var.</p><ol class="parts">' + parts + '</ol></section>' +
       (mine && !paused ? '<section class="stack" aria-labelledby="h-pause"><h2 id="h-pause">Behöver du en paus?</h2><p>Programmet väntar på dig, och du fortsätter där du slutade. Under tiden visar Idag en kort strategi.</p><button class="btn btn-secondary" data-act="prog-pause" data-key="pause" style="align-self:flex-start">Pausa programmet</button></section>' : '') +
       '<section class="stack" aria-labelledby="h-len"><h2 id="h-len">Passens längd</h2>' +
@@ -3135,7 +3020,7 @@ function vFramsteg(){
   return topbar('<h1>Framsteg</h1>', profileBtn()) +
     '<main class="page">' +
       '<div class="goal-box"><div class="stack" style="gap:4px"><p class="eyebrow">Ditt mål</p><p style="font-family:var(--font-head);font-weight:800;font-size:1.25rem">' + (g && g.text ? esc(g.text) : 'Inget mål än') + '</p></div></div>' +
-      illuBlock('igang') + '<div class="placeholder cat-forandring"><span class="chip chip-dev">Byggs i steg 3</span><h2>Här ser du hur det går</h2><p>En gång i veckan får du svara på hur det går med ditt mål. Du ser också det du har gjort, utan poäng och utan jämförelser.</p></div>' +
+      hero('forandring') + '<div class="placeholder cat-forandring"><span class="chip chip-dev">Byggs i steg 3</span><h2>Här ser du hur det går</h2><p>En gång i veckan får du svara på hur det går med ditt mål. Du ser också det du har gjort, utan poäng och utan jämförelser.</p></div>' +
     '</main>' + tabbar('framsteg');
 }
 

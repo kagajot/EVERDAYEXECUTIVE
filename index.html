@@ -380,6 +380,23 @@ button.card:active{transform:scale(.985)}
 .film-cap.fade{animation:enter 400ms var(--ease)}
 .film-prog{align-self:stretch;height:6px;border-radius:6px;background:rgba(255,255,255,.35)}
 .film-prog span{display:block;height:100%;width:0;border-radius:6px;background:var(--on);transition:width 400ms var(--ease)}
+.home{gap:28px;padding-inline:0}
+.home>*{margin-inline:16px}
+.home>.shelf{margin-inline:0}
+.shelf h2{margin:0 16px 12px}
+.rail{list-style:none;margin:0;padding:0 0 4px;display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.rail li{flex:none;scroll-snap-align:start;scroll-margin-left:16px}
+.rail li:first-child{margin-left:16px}
+.rail li:last-child{margin-right:16px}
+.poster{display:flex;flex-direction:column;justify-content:space-between;width:150px;height:190px;padding:16px 14px;border-radius:var(--r-lg);background:var(--base);color:var(--on);text-align:left}
+.p-foot{display:flex;flex-direction:column;gap:2px}
+.p-name{font-family:var(--font-head);font-weight:800;font-size:1.0625rem;line-height:1.2}
+.p-meta2{font-size:.9375rem;font-weight:700;opacity:.9}
+.quick{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.qbtn{display:flex;flex-direction:column;padding:14px 16px;border-radius:var(--r-md);background:var(--surface);text-align:left}
+.qbtn b{font-family:var(--font-head);font-weight:800}
+.qbtn span{color:var(--text-2)}
 /* Toast */
 #toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:20;width:min(30rem,calc(100% - 32px));display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px 14px 20px;border-radius:var(--r-md);background:var(--toast-bg);color:var(--toast-text);font-weight:700;animation:toast-in var(--dur) var(--ease)}
 @keyframes toast-in{from{opacity:0;transform:translate(-50%,8px)}to{opacity:1;transform:translate(-50%,0)}}
@@ -3103,23 +3120,30 @@ function weekStrip(){
   }
   return '<ol class="week" aria-label="Den här veckan. Fyllda dagar har ett gjort pass.">' + out + '</ol>';
 }
+function poster(catId, act, id, title, meta, key){
+  return '<li><button class="poster cat-' + catId + '" data-act="' + act + '" data-id="' + id + '" data-key="' + key + '">' + sico(catId, 'lg') +
+    '<span class="p-foot"><span class="p-name">' + title + '</span><span class="p-meta2">' + meta + '</span></span></button></li>';
+}
+function shelf(id, title, items){ return '<section class="shelf" aria-labelledby="' + id + '"><h2 id="' + id + '">' + title + '</h2><ul class="rail">' + items + '</ul></section>'; }
 function vIdag(){
-  var e = energyToday(), welcome = '', plan = planToday(), slots = slotsToday() + (plan.extra || 0);
-  var doneN = plan.items.filter(function(i){ return i.done; }).length;
-  if (PREV_VISIT && daysBetween(PREV_VISIT, today()) >= 3 && S.completed.length) {
-    welcome = '<div class="welcome"><p><b>Välkommen tillbaka.</b> Vi fortsätter där du slutade.</p></div>';
-  }
-  return topbar('<div><p class="date">' + cap(new Intl.DateTimeFormat('sv-SE', { weekday: 'long', day: 'numeric', month: 'long' }).format(new Date())) + '</p><h1 class="greet">' + greeting() + '</h1></div>', profileBtn()) +
-    '<main class="page idag">' + welcome +
-      '<section aria-labelledby="h-steg" class="hero-sec"><h2 id="h-steg" class="eyebrow">Dagens steg</h2>' + stepSection() + '</section>' +
-      weekStrip() +
-      '<div class="stats">' +
-        '<button class="stat" data-act="checkin-change" data-key="energy"><span class="stat-l">Energi idag</span><span class="stat-v">' + (e ? EDAG[e].titel : 'Välj') + '</span><span class="stat-a">Ändra</span></button>' +
-        '<a class="stat" href="#h-plan"><span class="stat-l">Din dag</span><span class="stat-v">' + doneN + ' av ' + Math.max(slots, plan.items.length) + '</span><span class="stat-a">gjort</span></a>' +
-      '</div>' +
-      '<section aria-labelledby="h-plan"><div class="section-head"><h2 id="h-plan">Din dag</h2><p class="sub">' + slotsText(slotsToday()) + '</p></div>' + planSection() + '</section>' +
-      '<section aria-labelledby="h-jn"><div class="section-head"><h2 id="h-jn">Just nu</h2><p class="sub">Korta övningar för stunder när det är svårt.</p></div>' + justNuSection() + '</section>' +
+  var e = energyToday(), plan = planToday(), slots = slotsToday() + (plan.extra || 0);
+  var doneN = plan.items.filter(function(i){ return i.done; }).length, d = doneIds();
+  var mine = S.profile.challenges;
+  var progs = C.program.slice().sort(function(a, b){ return (b.id === S.program.id) - (a.id === S.program.id) || (mine.indexOf(b.kategori) > -1) - (mine.indexOf(a.kategori) > -1); });
+  var strats = C.strategier.slice().sort(function(a, b){ return (mine.indexOf(b.kategori) > -1) - (mine.indexOf(a.kategori) > -1) || (!!d[a.id]) - (!!d[b.id]); }).slice(0, 8);
+  return topbar('<h1 class="greet">' + greeting() + '</h1>', profileBtn()) +
+    '<main class="page home">' +
+      '<section class="hero-sec" aria-labelledby="h-steg"><h2 id="h-steg" class="eyebrow">Fortsätt där du var</h2>' + stepSection() + '</section>' +
+      '<div class="quick"><button class="qbtn" data-act="open-dag" data-key="dag"><b>Din dag</b><span>' + doneN + ' av ' + Math.max(slots, plan.items.length) + ' gjort</span></button>' +
+        '<button class="qbtn" data-act="checkin-change" data-key="energy"><b>Energi</b><span>' + (e ? EDAG[e].titel : 'Välj') + '</span></button></div>' +
+      shelf('h-prog', 'Program för dig', progs.map(function(p){ var st = progState(p.id), w = p.delar.filter(function(x){ return x.skriven; }).length;
+        return poster(p.kategori, 'open-program', p.id, p.titel, st.done ? st.done + ' av ' + st.total + ' delar' : p.delar.length + ' delar' + (w < p.delar.length ? ' · ' + w + ' klar' : ''), 'pp-' + p.id); }).join('')) +
+      shelf('h-str', 'Korta strategier', strats.map(function(x){ return poster(x.kategori, 'open-session', x.id, x.titel, minutesFor(x) + ' min' + (d[x.id] ? ' · gjord' : ''), 'ps-' + x.id); }).join('')) +
+      shelf('h-jn', 'Just nu, när det är svårt', C.justNu.map(function(j){ return poster(j.kategori, 'open-justnu', j.id, j.titel, j.min + ' min', 'pj-' + j.id); }).join('')) +
     '</main>' + tabbar('idag');
+}
+function vDag(){
+  return topbar(backBtn(), '') + '<main class="page flow"><div class="stack-lg"><h1>Din dag</h1><p class="sub">' + slotsText(slotsToday()) + '</p>' + planSection() + '</div></main>';
 }
 
 /* =========================================================
@@ -3405,7 +3429,7 @@ function vFilm(){
 var VIEWS = {
   onboarding: vOnboarding, checkin: vCheckin,
   tab: function(){ return V.tab === 'utforska' ? vUtforska() : V.tab === 'framsteg' ? vFramsteg() : vIdag(); },
-  session: vSession, done: vDone, coming: vComing, justnu: vJustNu, category: vCategory, program: vProgram, film: vFilm,
+  session: vSession, done: vDone, coming: vComing, justnu: vJustNu, category: vCategory, dag: vDag, program: vProgram, film: vFilm,
   more: vMore, help: vHelp, about: vAbout, settings: vSettings
 };
 
@@ -3471,6 +3495,7 @@ var ACT = {
   /* navigering */
   'tab': function(el){ NAV = []; go({ name: 'tab', tab: el.dataset.tab }); },
   'back': back,
+  'open-dag': function(){ push({ name: 'dag' }); },
   'film-close': function(){ filmStop(); back(); },
   'open-more': function(){ push({ name: 'more' }); },
   'open-help': function(){ push({ name: 'help' }); },

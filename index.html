@@ -373,6 +373,13 @@ button.card:active{transform:scale(.985)}
 .stat-l{font-size:1rem;color:var(--text-2)}
 .stat-v{font-family:var(--font-head);font-weight:900;font-size:1.5rem;line-height:1.2}
 .stat-a{font-size:1rem;color:var(--text-2)}
+.film{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:18px;min-height:340px;padding:28px 20px 20px;border-radius:var(--r-lg);background:var(--base);color:var(--on);overflow:hidden}
+.film-ic{animation:breathe 4s ease-in-out infinite}
+@keyframes breathe{50%{transform:scale(1.08)}}
+.film-cap{font-family:var(--font-head);font-weight:800;font-size:1.375rem;line-height:1.35;text-align:center;min-height:5.4em;display:flex;align-items:center}
+.film-cap.fade{animation:enter 400ms var(--ease)}
+.film-prog{align-self:stretch;height:6px;border-radius:6px;background:rgba(255,255,255,.35)}
+.film-prog span{display:block;height:100%;width:0;border-radius:6px;background:var(--on);transition:width 400ms var(--ease)}
 /* Toast */
 #toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:20;width:min(30rem,calc(100% - 32px));display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px 14px 20px;border-radius:var(--r-md);background:var(--toast-bg);color:var(--toast-text);font-weight:700;animation:toast-in var(--dur) var(--ease)}
 @keyframes toast-in{from{opacity:0;transform:translate(-50%,8px)}to{opacity:1;transform:translate(-50%,0)}}
@@ -398,7 +405,7 @@ body[data-view="session"] #toast,body[data-view="onboarding"] #toast,body[data-v
 <script type="application/json" id="innehall">
 {
   "_om": "Innehåll för Småsteg. Allt är skrivet för att granskas av legitimerad arbetsterapeut innan användning. Poster med skriven:false har bara titel och planerad princip. Fältet livsomraden på strategier är etiketter; exempel finns för alla fem livsområden så att de kan anpassas efter användaren.",
-  "version": "0.2.2 (steg 2, mjuka ikoner)",
+  "version": "0.3.0 (tre kompletta program, filmspelare)",
   "granskningsstatus": "Ej granskat av arbetsterapeut",
   "kategorier": [
     {
@@ -694,10 +701,43 @@ body[data-view="session"] #toast,body[data-view="onboarding"] #toast,body[data-v
           "titel": "Gör starten lätt",
           "min": 4,
           "minKort": 2,
-          "skriven": false,
+          "skriven": true,
+          "forklaring": {
+            "text": [
+              "Varje sak du måste leta fram innan du börjar är ett litet hinder. Flera små hinder kan räcka för att du aldrig kommer igång.",
+              "Om det du behöver redan ligger framme, är det färre steg mellan tanke och handling. Då blir starten lättare."
+            ],
+            "kort": "Lägg fram det du behöver i förväg. Färre hinder gör starten lättare.",
+            "film": {
+              "langd": "1:05",
+              "beskrivning": "Film: gör starten lätt"
+            }
+          },
+          "strategi": {
+            "titel": "Förbered platsen",
+            "steg": [
+              "Välj en sak du ska göra i morgon.",
+              "Tänk igenom vad du behöver för att börja.",
+              "Lägg fram det där du ser det.",
+              "I morgon: börja med det som ligger framme."
+            ],
+            "tips": "Det räcker att förbereda en enda sak."
+          },
+          "exempel": {
+            "hem": "Ställ fram dammsugaren i hallen.",
+            "ekonomi": "Lägg räkningen och datorn på bordet.",
+            "arbete": "Packa väskan kvällen innan.",
+            "relationer": "Lägg kortet du ska skicka vid dörren.",
+            "halsa": "Ställ skorna vid dörren."
+          },
+          "ovning": {
+            "text": "Förbered en sak för i morgon.",
+            "dagsplan": "Förbereda en sak för i morgon"
+          },
           "granskning": {
-            "princip": "Miljöanpassning: förbereda material och plats i förväg",
-            "status": "Planerad"
+            "princip": "Miljöanpassning: förberedelse",
+            "notis": "Att förbereda material och miljö minskar antalet steg före start. Vanlig strategi vid svårigheter med igångsättning.",
+            "status": "Ej granskad"
           }
         },
         {
@@ -706,10 +746,43 @@ body[data-view="session"] #toast,body[data-view="onboarding"] #toast,body[data-v
           "titel": "En tydlig startsignal",
           "min": 4,
           "minKort": 2,
-          "skriven": false,
+          "skriven": true,
+          "forklaring": {
+            "text": [
+              "Det är lätt att tänka ”jag gör det sen”, och sen kommer aldrig. Hjärnan behöver en tydlig signal om att det är dags.",
+              "Ett larm eller en påminnelse kan vara den signalen. Den säger: nu. Då slipper du hålla koll på tiden själv."
+            ],
+            "kort": "Ett larm kan vara signalen som säger: nu börjar vi.",
+            "film": {
+              "langd": "1:00",
+              "beskrivning": "Film: en tydlig startsignal"
+            }
+          },
+          "strategi": {
+            "titel": "Ställ ett startlarm",
+            "steg": [
+              "Välj en sak och en tid idag.",
+              "Ställ ett larm i mobilen och ge det ett tydligt namn.",
+              "När larmet ringer: gör bara första steget.",
+              "Flytta larmet om tiden inte passar. Det är okej."
+            ],
+            "tips": "Ge larmet namnet på det du ska göra, till exempel ”Diska nu”."
+          },
+          "exempel": {
+            "hem": "Larm kl 18: ”Plocka undan i köket”.",
+            "ekonomi": "Larm på lönedagen: ”Betala räkningar”.",
+            "arbete": "Larm kl 9: ”Öppna dokumentet”.",
+            "relationer": "Larm kl 17: ”Ring Kim”.",
+            "halsa": "Larm kl 12: ”Ät lunch”."
+          },
+          "ovning": {
+            "text": "Ställ ett startlarm för en sak idag.",
+            "dagsplan": "Ställa ett startlarm"
+          },
           "granskning": {
-            "princip": "Externt stöd: yttre signal (t.ex. larm) som påminnelse om start",
-            "status": "Planerad"
+            "princip": "Externt stöd: yttre startsignal",
+            "notis": "Påminnelser och larm som signal för att påbörja en aktivitet är ett vanligt kompensatoriskt stöd vid nedsatt igångsättning.",
+            "status": "Ej granskad"
           }
         },
         {
@@ -718,10 +791,43 @@ body[data-view="session"] #toast,body[data-view="onboarding"] #toast,body[data-v
           "titel": "Koppla till något du redan gör",
           "min": 4,
           "minKort": 2,
-          "skriven": false,
+          "skriven": true,
+          "forklaring": {
+            "text": [
+              "Saker du redan gör varje dag, som att borsta tänderna eller koka kaffe, går nästan av sig själva. De är rutiner.",
+              "Om du kopplar en ny sak till en sådan rutin, får den nya saken en fast plats. Rutinen blir en påminnelse."
+            ],
+            "kort": "Koppla en ny sak till något du redan gör varje dag.",
+            "film": {
+              "langd": "1:10",
+              "beskrivning": "Film: koppla till något du redan gör"
+            }
+          },
+          "strategi": {
+            "titel": "Efter det, gör jag det här",
+            "steg": [
+              "Välj en ny sak du vill komma igång med.",
+              "Hitta en rutin du redan har, till exempel morgonkaffet.",
+              "Bestäm: ”Efter kaffet gör jag …”",
+              "Gör det i en vecka och se hur det går."
+            ],
+            "tips": "Välj en kort ny sak. Den ska ta några minuter, inte en timme."
+          },
+          "exempel": {
+            "hem": "Efter frukosten: sätt på diskmaskinen.",
+            "ekonomi": "Efter lönen: betala räkningarna.",
+            "arbete": "Efter lunchen: svara på ett mejl.",
+            "relationer": "Efter middagen: skicka ett sms till någon.",
+            "halsa": "Efter tandborstningen: ta medicinen."
+          },
+          "ovning": {
+            "text": "Koppla en sak till en rutin du redan har.",
+            "dagsplan": "Koppla en ny sak till en rutin"
+          },
           "granskning": {
-            "princip": "Rutiner och vanor: koppla ny aktivitet till befintlig rutin",
-            "status": "Planerad"
+            "princip": "Rutiner och vanor",
+            "notis": "Att knyta nya aktiviteter till etablerade rutiner är en vanlig arbetsterapeutisk strategi för att bygga vanor och minska krav på igångsättning.",
+            "status": "Ej granskad"
           }
         },
         {
@@ -730,10 +836,43 @@ body[data-view="session"] #toast,body[data-view="onboarding"] #toast,body[data-v
           "titel": "När det ändå är trögt",
           "min": 4,
           "minKort": 2,
-          "skriven": false,
+          "skriven": true,
+          "forklaring": {
+            "text": [
+              "Vissa dagar går det inte, hur små stegen än är. Det betyder inte att du har misslyckats. Så ser det ut ibland.",
+              "Då kan du sänka kraven ännu mer. Gör en mindre del, gör det enklare, eller vänta till en annan dag. Allt det är okej."
+            ],
+            "kort": "Trögt ibland är normalt. Sänk kraven, eller vänta. Båda är okej.",
+            "film": {
+              "langd": "1:15",
+              "beskrivning": "Film: när det ändå är trögt"
+            }
+          },
+          "strategi": {
+            "titel": "Sänk ribban",
+            "steg": [
+              "Märk att det är trögt, utan att skälla på dig själv.",
+              "Fråga: kan jag göra en ännu mindre del?",
+              "Eller: kan jag göra det enklare, till exempel slarvigare?",
+              "Om inget går: flytta det till i morgon. Det räknas också som ett beslut."
+            ],
+            "tips": "Du har gått igenom hela programmet. Du kan göra om delarna när du vill."
+          },
+          "exempel": {
+            "hem": "Diska tre saker i stället för allt.",
+            "ekonomi": "Titta bara på räkningen, betala i morgon.",
+            "arbete": "Skriv en mening i stället för en sida.",
+            "relationer": "Skicka ett kort ”hej” i stället för ett långt meddelande.",
+            "halsa": "Gå till brevlådan i stället för en promenad."
+          },
+          "ovning": {
+            "text": "Välj en sak och gör en mindre variant av den.",
+            "dagsplan": "Göra en mindre variant av en sak"
+          },
           "granskning": {
-            "princip": "Gradering: sänka kraven och anpassa svårighetsgraden",
-            "status": "Planerad"
+            "princip": "Gradering av aktivitet",
+            "notis": "Att anpassa aktivitetens krav efter dagsform (gradering) är en grundläggande princip inom arbetsterapi.",
+            "status": "Ej granskad"
           }
         }
       ]
@@ -1532,10 +1671,43 @@ body[data-view="session"] #toast,body[data-view="onboarding"] #toast,body[data-v
           "titel": "Hur ser din dag ut?",
           "min": 4,
           "minKort": 2,
-          "skriven": false,
+          "skriven": true,
+          "forklaring": {
+            "text": [
+              "Det är svårt att hitta balans om man inte ser hur dagen faktiskt ser ut. Ofta tar vissa saker mer tid och kraft än man tror.",
+              "När du skriver ner vad du gör under en dag får du en bild av helheten. Då blir det lättare att se vad som behöver ändras."
+            ],
+            "kort": "Skriv ner vad du gör under en dag. Då ser du helheten.",
+            "film": {
+              "langd": "1:20",
+              "beskrivning": "Film: hur ser din dag ut?"
+            }
+          },
+          "strategi": {
+            "titel": "Kartlägg en dag",
+            "steg": [
+              "Ta ett papper och skriv dagens timmar i en rad.",
+              "Skriv kort vad du gör, ungefär varannan timme.",
+              "Gör det i en dag. Det behöver inte vara exakt.",
+              "Titta på det på kvällen. Vad ser du?"
+            ],
+            "tips": "Det finns inga rätta svar. Det är bara en bild av hur det är."
+          },
+          "exempel": {
+            "hem": "Städning, tvätt och matlagning.",
+            "ekonomi": "Tid med räkningar och post.",
+            "arbete": "Jobb, möten och resor.",
+            "relationer": "Tid med andra.",
+            "halsa": "Sömn, vila och promenader."
+          },
+          "ovning": {
+            "text": "Skriv ner vad du gör idag, ungefär varannan timme.",
+            "dagsplan": "Skriva ner vad jag gör idag"
+          },
           "granskning": {
-            "princip": "Aktivitetsbalans: kartlägga dagens aktiviteter",
-            "status": "Planerad"
+            "princip": "Aktivitetsbalans: kartläggning",
+            "notis": "Att kartlägga dagens aktiviteter (aktivitetsdagbok) är en etablerad arbetsterapeutisk metod för att bedöma aktivitetsbalans.",
+            "status": "Ej granskad"
           }
         },
         {
@@ -1544,10 +1716,43 @@ body[data-view="session"] #toast,body[data-view="onboarding"] #toast,body[data-v
           "titel": "Vad ger och vad tar energi?",
           "min": 4,
           "minKort": 2,
-          "skriven": false,
+          "skriven": true,
+          "forklaring": {
+            "text": [
+              "Vissa saker tar energi, andra ger energi. Och det är olika för alla. Att träffa vänner kan ge energi för en person och ta för en annan.",
+              "När du vet vad som ger och tar för just dig, kan du planera så att det finns något som fyller på varje dag."
+            ],
+            "kort": "Ta reda på vad som ger och tar energi för just dig.",
+            "film": {
+              "langd": "1:15",
+              "beskrivning": "Film: vad ger och vad tar energi?"
+            }
+          },
+          "strategi": {
+            "titel": "Plus och minus",
+            "steg": [
+              "Titta på listan från förra gången, eller tänk på igår.",
+              "Sätt ett plus vid det som gav energi.",
+              "Sätt ett minus vid det som tog energi.",
+              "Välj ett plus att lägga in i morgon."
+            ],
+            "tips": "Vissa saker är både plus och minus. Det går bra att skriva båda."
+          },
+          "exempel": {
+            "hem": "Plus: laga favoritmaten. Minus: storstäda.",
+            "ekonomi": "Minus: räkningar. Plus: se att allt är betalt.",
+            "arbete": "Minus: långa möten. Plus: en lunchpromenad.",
+            "relationer": "Plus: fika med en vän. Minus: stora fester.",
+            "halsa": "Plus: vila i soffan. Minus: för lite sömn."
+          },
+          "ovning": {
+            "text": "Sätt plus och minus på det du gjorde igår.",
+            "dagsplan": "Sätta plus och minus på min dag"
+          },
           "granskning": {
             "princip": "Energikartläggning",
-            "status": "Planerad"
+            "notis": "Att identifiera energigivande och energikrävande aktiviteter är en central del av energibesparande strategier inom arbetsterapi.",
+            "status": "Ej granskad"
           }
         },
         {
@@ -1556,10 +1761,43 @@ body[data-view="session"] #toast,body[data-view="onboarding"] #toast,body[data-v
           "titel": "Lagom även på bra dagar",
           "min": 4,
           "minKort": 2,
-          "skriven": false,
+          "skriven": true,
+          "forklaring": {
+            "text": [
+              "På dagar med mycket energi är det lätt att göra allt på en gång. Det känns bra just då.",
+              "Men efter en för stor dag kommer ofta flera trötta dagar. Om du gör lagom även på bra dagar, blir energin jämnare över veckan."
+            ],
+            "kort": "Gör lagom även på bra dagar. Då blir energin jämnare över veckan.",
+            "film": {
+              "langd": "1:10",
+              "beskrivning": "Film: lagom även på bra dagar"
+            }
+          },
+          "strategi": {
+            "titel": "Spara lite till i morgon",
+            "steg": [
+              "På en bra dag: välj vad du vill hinna.",
+              "Stryk en sak, även om du känner att du orkar.",
+              "Planera in en paus mitt på dagen.",
+              "Märk hur du mår dagen efter."
+            ],
+            "tips": "Energiincheckningen på morgonen hjälper dig att se vilken sorts dag det är."
+          },
+          "exempel": {
+            "hem": "Städa ett rum, inte hela lägenheten.",
+            "ekonomi": "Gör en ekonomisak, inte alla.",
+            "arbete": "Avsluta jobbet i tid, även om det flyter.",
+            "relationer": "Träffa en person, inte tre.",
+            "halsa": "Gå en promenad, inte ett långt pass."
+          },
+          "ovning": {
+            "text": "Stryk en sak från en bra dag.",
+            "dagsplan": "Stryka en sak från dagen"
+          },
           "granskning": {
-            "princip": "Undvika att göra för mycket på dagar med mer energi",
-            "status": "Planerad"
+            "princip": "Aktivitetsbalans: undvika överaktivitet",
+            "notis": "Att undvika överaktivitet på dagar med mer energi (pacing) är en etablerad princip vid fatigue.",
+            "status": "Ej granskad"
           }
         },
         {
@@ -1568,10 +1806,43 @@ body[data-view="session"] #toast,body[data-view="onboarding"] #toast,body[data-v
           "titel": "Vila som räknas",
           "min": 4,
           "minKort": 2,
-          "skriven": false,
+          "skriven": true,
+          "forklaring": {
+            "text": [
+              "Att scrolla på mobilen känns som vila, men hjärnan får ofta inte vila då. Den tar in nytt hela tiden.",
+              "Vila som räknas ger hjärnan och kroppen en paus från intryck. Det kan vara att ligga ner, titta ut genom fönstret eller gå en lugn promenad."
+            ],
+            "kort": "Riktig vila ger en paus från intryck. Mobilen är sällan vila.",
+            "film": {
+              "langd": "1:10",
+              "beskrivning": "Film: vila som räknas"
+            }
+          },
+          "strategi": {
+            "titel": "Hitta din vila",
+            "steg": [
+              "Tänk på vad som får dig att känna dig lugn.",
+              "Välj något utan skärm.",
+              "Gör det i fem minuter idag.",
+              "Märk hur det kändes."
+            ],
+            "tips": "Du har gått igenom hela programmet. Du kan göra om delarna när du vill."
+          },
+          "exempel": {
+            "hem": "Ligg på soffan med slutna ögon.",
+            "ekonomi": "Drick en kopp te utan att göra något annat.",
+            "arbete": "Titta ut genom fönstret en stund.",
+            "relationer": "Sitt tyst tillsammans med någon.",
+            "halsa": "Gå en lugn runda utan hörlurar."
+          },
+          "ovning": {
+            "text": "Vila fem minuter utan skärm idag.",
+            "dagsplan": "Vila fem minuter utan skärm"
+          },
           "granskning": {
             "princip": "Återhämtande aktiviteter",
-            "status": "Planerad"
+            "notis": "Att skilja på återhämtande och intrycksfyllda aktiviteter är en del av energiplanering och återhämtning.",
+            "status": "Ej granskad"
           }
         }
       ]
@@ -2587,7 +2858,7 @@ function render(keep){
     $app.classList.remove('enter'); void $app.offsetWidth; $app.classList.add('enter');
   }
 }
-function go(view){ V = view; render(); }
+function go(view){ if (V && V.name === 'film') filmStop(); V = view; render(); }
 function push(view){ NAV.push(V); go(view); }
 function back(){ var v = NAV.pop() || { name: 'tab', tab: 'idag' }; v.planEdit = v.planFull = v.confirmReset = false; v.reflectFor = null; go(v); }
 
@@ -3078,10 +3349,63 @@ function vSettings(){
     '</div></main>';
 }
 
+/* =========================================================
+   FILM: animerad lektion med textremsa och uppläsning
+   (ersätts av riktiga videor i nästa version: fältet film.src)
+   ========================================================= */
+var FILM = { i: 0, slides: [], paused: true, timer: null };
+function filmSlides(s){
+  var out = [s.titel];
+  s.forklaring.text.join(' ').split(/(?<=[.?!])\s+/).forEach(function(t){ if (t) out.push(t); });
+  out.push('Strategin heter: ' + s.strategi.titel + '.');
+  return out;
+}
+function filmStop(){ clearTimeout(FILM.timer); FILM.paused = true; if (TTS.ok) window.speechSynthesis.cancel(); }
+function filmShow(){
+  var cap = document.getElementById('film-cap'), bar = document.getElementById('film-bar'), btn = document.getElementById('film-btn');
+  if (!cap) return;
+  cap.textContent = FILM.slides[FILM.i] || '';
+  cap.classList.remove('fade'); void cap.offsetWidth; cap.classList.add('fade');
+  bar.style.width = Math.round((FILM.i + 1) / FILM.slides.length * 100) + '%';
+  btn.textContent = FILM.paused ? (FILM.i >= FILM.slides.length - 1 && FILM.done ? 'Spela igen' : 'Spela') : 'Pausa';
+}
+function filmStep(){
+  if (FILM.paused) return;
+  filmShow();
+  var text = FILM.slides[FILM.i], next = function(){
+    if (FILM.paused) return;
+    if (FILM.i < FILM.slides.length - 1) { FILM.i++; filmStep(); } else { FILM.paused = true; FILM.done = true; filmShow(); }
+  };
+  clearTimeout(FILM.timer);
+  if (TTS.ok && S.settings.tts) {
+    var u = new SpeechSynthesisUtterance(text); u.lang = 'sv-SE'; u.rate = 0.92; if (TTS.voice) u.voice = TTS.voice;
+    u.onend = function(){ FILM.timer = setTimeout(next, 500); };
+    window.speechSynthesis.cancel(); window.speechSynthesis.speak(u);
+    FILM.timer = setTimeout(next, 1500 + text.split(' ').length * 550);
+  } else {
+    FILM.timer = setTimeout(next, 1800 + text.split(' ').length * 420);
+  }
+}
+function filmPlay(){ if (FILM.done) { FILM.i = 0; FILM.done = false; } FILM.paused = false; filmStep(); }
+function filmPause(){ filmStop(); filmShow(); }
+function vFilm(){
+  var s = SESS[V.sid], catId = s.typ === 'del' ? PROG[s.programId].kategori : s.kategori;
+  FILM.slides = filmSlides(s); FILM.i = 0; FILM.done = false; FILM.paused = true;
+  setTimeout(filmPlay, 400);
+  return '<div class="cat-' + catId + '" style="display:contents">' + topbar(backBtn('film-close'), '') +
+    '<main class="page flow"><div class="stack-lg">' +
+      '<p class="eyebrow">Film · ' + s.forklaring.film.langd + '</p><h1>' + s.titel + '</h1>' +
+      '<div class="film"><span class="film-ic">' + sico(catId, 'xl') + '</span><p id="film-cap" class="film-cap" aria-live="polite"></p>' +
+        '<div class="film-prog"><span id="film-bar"></span></div></div>' +
+      '<div class="row-end" style="justify-content:flex-start"><button class="btn btn-primary" id="film-btn" data-act="film-toggle" data-key="film-btn">Pausa</button><button class="btn btn-secondary" data-act="film-restart">Börja om</button></div>' +
+      '<p class="sub">Filmen läses upp om din enhet har en svensk röst. Texten syns alltid.</p>' +
+    '</div></main></div>';
+}
+
 var VIEWS = {
   onboarding: vOnboarding, checkin: vCheckin,
   tab: function(){ return V.tab === 'utforska' ? vUtforska() : V.tab === 'framsteg' ? vFramsteg() : vIdag(); },
-  session: vSession, done: vDone, coming: vComing, justnu: vJustNu, category: vCategory, program: vProgram,
+  session: vSession, done: vDone, coming: vComing, justnu: vJustNu, category: vCategory, program: vProgram, film: vFilm,
   more: vMore, help: vHelp, about: vAbout, settings: vSettings
 };
 
@@ -3147,6 +3471,7 @@ var ACT = {
   /* navigering */
   'tab': function(el){ NAV = []; go({ name: 'tab', tab: el.dataset.tab }); },
   'back': back,
+  'film-close': function(){ filmStop(); back(); },
   'open-more': function(){ push({ name: 'more' }); },
   'open-help': function(){ push({ name: 'help' }); },
   'open-about': function(){ push({ name: 'about' }); },
@@ -3164,7 +3489,9 @@ var ACT = {
   's-back': function(){ V.step = Math.max(0, V.step - 1); V.planFull = false; render(); },
   's-close': function(){ back(); },
   'listen': function(){ var s = SESS[V.sid]; TTS.toggle(sessionText(s, V.step, isShort())); },
-  'video': function(){ toast('Filmen är inte inspelad än. Texten nedanför säger samma sak.'); },
+  'video': function(){ push({ name: 'film', sid: V.sid }); },
+  'film-toggle': function(){ FILM.paused ? filmPlay() : filmPause(); },
+  'film-restart': function(){ FILM.i = 0; filmPlay(); },
   's-addplan': function(){
     var plan = planToday(), slots = slotsToday() + (plan.extra || 0);
     if (plan.items.length >= slots) { V.planFull = true; render(true); return; }

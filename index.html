@@ -389,7 +389,7 @@ button.card:active{transform:scale(.985)}
 .rail li{flex:none;scroll-snap-align:start;scroll-margin-left:16px}
 .rail li:first-child{margin-left:16px}
 .rail li:last-child{margin-right:16px}
-.poster{display:flex;flex-direction:column;justify-content:space-between;width:150px;height:190px;padding:16px 14px;border-radius:var(--r-lg);background:var(--base);color:var(--on);text-align:left}
+.poster{display:flex;flex-direction:column;justify-content:space-between;width:250px;height:200px;padding:16px 14px;border-radius:var(--r-lg);background:var(--base);color:var(--on);text-align:left}
 .p-foot{display:flex;flex-direction:column;gap:2px}
 .p-name{font-family:var(--font-head);font-weight:800;font-size:1.0625rem;line-height:1.2}
 .p-meta2{font-size:.9375rem;font-weight:700;opacity:.9}
@@ -397,6 +397,15 @@ button.card:active{transform:scale(.985)}
 .qbtn{display:flex;flex-direction:column;padding:14px 16px;border-radius:var(--r-md);background:var(--surface);text-align:left}
 .qbtn b{font-family:var(--font-head);font-weight:800}
 .qbtn span{color:var(--text-2)}
+.poster .p-name{font-size:1.375rem}
+.lite{display:flex;flex-direction:column;gap:6px;width:190px;min-height:132px;padding:14px 16px;border-radius:var(--r-md);background:var(--surface);border:2px solid var(--line);text-align:left;color:var(--text)}
+.lite .p-name{font-size:1.0625rem}
+.lite-tag{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;font-size:.9375rem;font-weight:700;color:var(--text-2)}
+.lite-tag::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--base)}
+.lite-meta{margin-top:auto;font-size:.9375rem;color:var(--text-2)}
+.jn-box{display:flex;flex-direction:column;gap:10px;padding:18px;border-radius:var(--r-lg);background:var(--surface-2)}
+.jn-pills{display:flex;flex-wrap:wrap;gap:8px}
+.jn-pill{min-height:48px;padding:0 18px;border-radius:999px;background:var(--surface);font-family:var(--font-head);font-weight:800}
 /* Toast */
 #toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:20;width:min(30rem,calc(100% - 32px));display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px 14px 20px;border-radius:var(--r-md);background:var(--toast-bg);color:var(--toast-text);font-weight:700;animation:toast-in var(--dur) var(--ease)}
 @keyframes toast-in{from{opacity:0;transform:translate(-50%,8px)}to{opacity:1;transform:translate(-50%,0)}}
@@ -3120,7 +3129,8 @@ function weekStrip(){
   }
   return '<ol class="week" aria-label="Den här veckan. Fyllda dagar har ett gjort pass.">' + out + '</ol>';
 }
-function poster(catId, act, id, title, meta, key){
+function poster(catId, act, id, title, meta, key, kind){
+  if (kind === 'lite') return '<li><button class="lite cat-' + catId + '" data-act="' + act + '" data-id="' + id + '" data-key="' + key + '"><span class="lite-tag">' + CAT[catId].titel + '</span><span class="p-name">' + title + '</span><span class="lite-meta">' + meta + '</span></button></li>';
   return '<li><button class="poster cat-' + catId + '" data-act="' + act + '" data-id="' + id + '" data-key="' + key + '">' + sico(catId, 'lg') +
     '<span class="p-foot"><span class="p-name">' + title + '</span><span class="p-meta2">' + meta + '</span></span></button></li>';
 }
@@ -3138,8 +3148,9 @@ function vIdag(){
         '<button class="qbtn" data-act="checkin-change" data-key="energy"><b>Energi</b><span>' + (e ? EDAG[e].titel : 'Välj') + '</span></button></div>' +
       shelf('h-prog', 'Program för dig', progs.map(function(p){ var st = progState(p.id), w = p.delar.filter(function(x){ return x.skriven; }).length;
         return poster(p.kategori, 'open-program', p.id, p.titel, st.done ? st.done + ' av ' + st.total + ' delar' : p.delar.length + ' delar' + (w < p.delar.length ? ' · ' + w + ' klar' : ''), 'pp-' + p.id); }).join('')) +
-      shelf('h-str', 'Korta strategier', strats.map(function(x){ return poster(x.kategori, 'open-session', x.id, x.titel, minutesFor(x) + ' min' + (d[x.id] ? ' · gjord' : ''), 'ps-' + x.id); }).join('')) +
-      shelf('h-jn', 'Just nu, när det är svårt', C.justNu.map(function(j){ return poster(j.kategori, 'open-justnu', j.id, j.titel, j.min + ' min', 'pj-' + j.id); }).join('')) +
+      shelf('h-str', 'Korta strategier', strats.map(function(x){ return poster(x.kategori, 'open-session', x.id, x.titel, minutesFor(x) + ' min' + (d[x.id] ? ' · gjord' : ''), 'ps-' + x.id, 'lite'); }).join('')) +
+      '<section class="jn-box" aria-labelledby="h-jn"><h2 id="h-jn">Svårt just nu?</h2><p class="sub">Korta övningar på 2–3 minuter.</p><div class="jn-pills">' +
+        C.justNu.map(function(j){ return '<button class="jn-pill" data-act="open-justnu" data-id="' + j.id + '" data-key="pj-' + j.id + '">' + j.titel + '</button>'; }).join('') + '</div></section>' +
     '</main>' + tabbar('idag');
 }
 function vDag(){

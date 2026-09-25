@@ -17,27 +17,29 @@
   color-scheme: light;
   --text-scale: 1;
 
-  --bg:#FBF7F1; --surface:#FFFDF9; --surface-2:#F4EDE3; --surface-3:#EAE0D2;
-  --line:#E5DBCE; --line-strong:#B9AB9A;
-  --text:#1F1B17; --text-2:#5C5249;
-  --btn:#1F1B17; --on-btn:#FFFDF9;
-  --focus:#1F1B17;
-  --toast-bg:#1F1B17; --toast-text:#FFFDF9;
+  --bg:#FAF7F5; --surface:#FFFDFC; --surface-2:#F1ECEA; --surface-3:#E6DFDD;
+  --line:#E6DFDB; --line-strong:#ADA4A8;
+  --text:#1E1A22; --text-2:#57505B;
+  --btn:#1E1A22; --on-btn:#FFFDFC;
+  --focus:#1E1A22;
+  --toast-bg:#1E1A22; --toast-text:#FFFDFC;
+  --on-dark:#1E1A22;   /* text på ljusa kategorikort (solgul, persika) i båda teman */
 
   /* illustrationens fasta färger */
-  --il-w:#FFF8EF; --face:#2A1F1A; --leaf:#6FA27B; --sun:#FFD867; --cheek:#EE8F80; --cloud:#D8CEC1;
+  --il-w:#FFFAF5; --face:#241C22; --leaf:#5E9E6E; --sun:#FFCB3D; --cheek:#EE8F80; --cloud:#D5D8E0;
   --s1:#F3C9A8; --s2:#C98C63; --s3:#8A5A3C;
-  --h1:#2B211C; --h2:#7A4526; --h3:#E3B24F;
+  --h1:#2B211C; --h2:#8A3F28; --h3:#E3B24F;
 
-  /* kategorier: bas (vit text ≥ 4,5:1) · t = ljus ton · k = djup ton · soft = UI-bakgrund */
-  --igang:#C44E3D;      --igang-t:#F8C8BB;      --igang-k:#7E2D22;      --igang-soft:#FBE6DF;
-  --planera:#7563BE;    --planera-t:#DAD2F6;    --planera-k:#3E3270;    --planera-soft:#EEEAFB;
-  --tid:#8F6A00;        --tid-t:#FFD867;        --tid-k:#4F3A00;        --tid-soft:#FFF3CC;
-  --minne:#2E78B5;      --minne-t:#BFE0F7;      --minne-k:#16426A;      --minne-soft:#E3F1FB;
-  --fokus:#AD6134;      --fokus-t:#FFD3B3;      --fokus-k:#633114;      --fokus-soft:#FFEBDC;
-  --kanslor:#AB5673;    --kanslor-t:#F4C9D6;    --kanslor-k:#62283D;    --kanslor-soft:#F9E6EC;
-  --forandring:#4F7A5E; --forandring-t:#CDE3D2; --forandring-k:#294433; --forandring-soft:#E6F1E8;
-  --balans:#27336B;     --balans-t:#B9C3EA;     --balans-k:#121A3D;     --balans-soft:#E4E8F7;
+  /* kategorier: bas · t = ljus ton · k = djup ton · soft = UI-bakgrund
+     vit text på bas ≥ 4,7:1, utom solgul och persika som har mörk text (≥ 8,9:1) */
+  --igang:#CC4535;      --igang-t:#FFC9BF;      --igang-k:#6B1F2E;      --igang-soft:#FDE7E3;
+  --planera:#7258C9;    --planera-t:#DCD3FA;    --planera-k:#33236E;    --planera-soft:#EFEBFC;
+  --tid:#FFCB3D;        --tid-t:#FFE58F;        --tid-k:#26306B;        --tid-soft:#FFF5D1;
+  --minne:#2A74BD;      --minne-t:#C2E0FA;      --minne-k:#133E6B;      --minne-soft:#E4F1FC;
+  --fokus:#FFA677;      --fokus-t:#FFD6BE;      --fokus-k:#4B2A5E;      --fokus-soft:#FFEDE2;
+  --kanslor:#B34872;    --kanslor-t:#F6C8DA;    --kanslor-k:#5E1D3A;    --kanslor-soft:#FAE6EE;
+  --forandring:#3A7A58; --forandring-t:#C9E6D3; --forandring-k:#1C3F2C; --forandring-soft:#E5F3EA;
+  --balans:#26356F;     --balans-t:#B9C4EE;     --balans-k:#111A40;     --balans-soft:#E5E9F8;
 
   --r-lg:20px; --r-md:16px; --r-sm:12px;
   --ease:cubic-bezier(.22,.8,.3,1); --dur:280ms;
@@ -47,49 +49,49 @@
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     color-scheme: dark;
-    --bg:#1C1714; --surface:#27201B; --surface-2:#312822; --surface-3:#3D332B;
-    --line:#3E342C; --line-strong:#76685A;
-    --text:#F4ECE3; --text-2:#C9BCAE;
-    --btn:#F4ECE3; --on-btn:#1C1714; --focus:#F4ECE3;
-    --toast-bg:#F4ECE3; --toast-text:#1C1714;
-    --il-w:#F1E6D8; --leaf:#5F8B69; --sun:#E6C25F; --cloud:#6E6257;
-    --igang:#A84A3E;      --igang-t:#E3AFA2;      --igang-k:#5E241C;      --igang-soft:#3A2521;
-    --planera:#625596;    --planera-t:#BDB3E0;    --planera-k:#2E2656;    --planera-soft:#2E2A40;
-    --tid:#7A5D14;        --tid-t:#E6C25F;        --tid-k:#3B2C05;        --tid-soft:#372E17;
-    --minne:#2E6696;      --minne-t:#A5C8E0;      --minne-k:#123452;      --minne-soft:#1F2E3B;
-    --fokus:#8F5431;      --fokus-t:#E8BC9C;      --fokus-k:#4A250F;      --fokus-soft:#3A2A1F;
-    --kanslor:#8C4D63;    --kanslor-t:#DDB0BF;    --kanslor-k:#4A1F2E;    --kanslor-soft:#3A2530;
-    --forandring:#476B51; --forandring-t:#B4CDB9; --forandring-k:#1F3527; --forandring-soft:#243328;
-    --balans:#3A4A86;     --balans-t:#A0AAD6;     --balans-k:#161D40;     --balans-soft:#232842;
+    --bg:#19161E; --surface:#231F29; --surface-2:#2C2733; --surface-3:#383240;
+    --line:#3A3441; --line-strong:#6F6778;
+    --text:#F3EEF2; --text-2:#C4BBC7;
+    --btn:#F3EEF2; --on-btn:#19161E; --focus:#F3EEF2;
+    --toast-bg:#F3EEF2; --toast-text:#19161E;
+    --il-w:#F2ECEF; --leaf:#5F9A70; --sun:#F0C94A; --cloud:#6C6676;
+    --igang:#B54236;      --igang-t:#E6A99F;      --igang-k:#4A1420;      --igang-soft:#35202A;
+    --planera:#6550B0;    --planera-t:#BEB2E6;    --planera-k:#2A1D5C;    --planera-soft:#2A2542;
+    --tid:#E3B43A;        --tid-t:#F0D27A;        --tid-k:#26306B;        --tid-soft:#2B2B40;
+    --minne:#2766A6;      --minne-t:#A9CBE8;      --minne-k:#10345A;      --minne-soft:#1E2A3C;
+    --fokus:#E88D5F;      --fokus-t:#F2BFA0;      --fokus-k:#4B2A5E;      --fokus-soft:#362636;
+    --kanslor:#9C4468;    --kanslor-t:#E2AFC3;    --kanslor-k:#4E1831;    --kanslor-soft:#352030;
+    --forandring:#376F51; --forandring-t:#AFD2BC; --forandring-k:#173524; --forandring-soft:#1F3029;
+    --balans:#34458A;     --balans-t:#A3AEDC;     --balans-k:#111A40;     --balans-soft:#232844;
   }
 }
 :root[data-theme="dark"]{
   color-scheme: dark;
-  --bg:#1C1714; --surface:#27201B; --surface-2:#312822; --surface-3:#3D332B;
-  --line:#3E342C; --line-strong:#76685A;
-  --text:#F4ECE3; --text-2:#C9BCAE;
-  --btn:#F4ECE3; --on-btn:#1C1714; --focus:#F4ECE3;
-  --toast-bg:#F4ECE3; --toast-text:#1C1714;
-  --il-w:#F1E6D8; --leaf:#5F8B69; --sun:#E6C25F; --cloud:#6E6257;
-  --igang:#A84A3E;      --igang-t:#E3AFA2;      --igang-k:#5E241C;      --igang-soft:#3A2521;
-  --planera:#625596;    --planera-t:#BDB3E0;    --planera-k:#2E2656;    --planera-soft:#2E2A40;
-  --tid:#7A5D14;        --tid-t:#E6C25F;        --tid-k:#3B2C05;        --tid-soft:#372E17;
-  --minne:#2E6696;      --minne-t:#A5C8E0;      --minne-k:#123452;      --minne-soft:#1F2E3B;
-  --fokus:#8F5431;      --fokus-t:#E8BC9C;      --fokus-k:#4A250F;      --fokus-soft:#3A2A1F;
-  --kanslor:#8C4D63;    --kanslor-t:#DDB0BF;    --kanslor-k:#4A1F2E;    --kanslor-soft:#3A2530;
-  --forandring:#476B51; --forandring-t:#B4CDB9; --forandring-k:#1F3527; --forandring-soft:#243328;
-  --balans:#3A4A86;     --balans-t:#A0AAD6;     --balans-k:#161D40;     --balans-soft:#232842;
+  --bg:#19161E; --surface:#231F29; --surface-2:#2C2733; --surface-3:#383240;
+  --line:#3A3441; --line-strong:#6F6778;
+  --text:#F3EEF2; --text-2:#C4BBC7;
+  --btn:#F3EEF2; --on-btn:#19161E; --focus:#F3EEF2;
+  --toast-bg:#F3EEF2; --toast-text:#19161E;
+  --il-w:#F2ECEF; --leaf:#5F9A70; --sun:#F0C94A; --cloud:#6C6676;
+  --igang:#B54236;      --igang-t:#E6A99F;      --igang-k:#4A1420;      --igang-soft:#35202A;
+  --planera:#6550B0;    --planera-t:#BEB2E6;    --planera-k:#2A1D5C;    --planera-soft:#2A2542;
+  --tid:#E3B43A;        --tid-t:#F0D27A;        --tid-k:#26306B;        --tid-soft:#2B2B40;
+  --minne:#2766A6;      --minne-t:#A9CBE8;      --minne-k:#10345A;      --minne-soft:#1E2A3C;
+  --fokus:#E88D5F;      --fokus-t:#F2BFA0;      --fokus-k:#4B2A5E;      --fokus-soft:#362636;
+  --kanslor:#9C4468;    --kanslor-t:#E2AFC3;    --kanslor-k:#4E1831;    --kanslor-soft:#352030;
+  --forandring:#376F51; --forandring-t:#AFD2BC; --forandring-k:#173524; --forandring-soft:#1F3029;
+  --balans:#34458A;     --balans-t:#A3AEDC;     --balans-k:#111A40;     --balans-soft:#232844;
 }
 
-/* kategoriomfång: sätter --base/--tint/--ink/--soft/--acc för kort och illustrationer */
-.cat-igang{--base:var(--igang);--tint:var(--igang-t);--ink:var(--igang-k);--soft:var(--igang-soft);--acc:var(--minne-t)}
-.cat-planera{--base:var(--planera);--tint:var(--planera-t);--ink:var(--planera-k);--soft:var(--planera-soft);--acc:var(--tid-t)}
-.cat-tid{--base:var(--tid);--tint:var(--tid-t);--ink:var(--tid-k);--soft:var(--tid-soft);--acc:var(--fokus-t)}
-.cat-minne{--base:var(--minne);--tint:var(--minne-t);--ink:var(--minne-k);--soft:var(--minne-soft);--acc:var(--fokus-t)}
-.cat-fokus{--base:var(--fokus);--tint:var(--fokus-t);--ink:var(--fokus-k);--soft:var(--fokus-soft);--acc:var(--planera-t)}
-.cat-kanslor{--base:var(--kanslor);--tint:var(--kanslor-t);--ink:var(--kanslor-k);--soft:var(--kanslor-soft);--acc:var(--forandring-t)}
-.cat-forandring{--base:var(--forandring);--tint:var(--forandring-t);--ink:var(--forandring-k);--soft:var(--forandring-soft);--acc:var(--igang-t)}
-.cat-balans{--base:var(--balans);--tint:var(--balans-t);--ink:var(--balans-k);--soft:var(--balans-soft);--acc:var(--fokus-t)}
+/* kategoriomfång: sätter --base/--on/--tint/--ink/--soft/--acc för kort och illustrationer */
+.cat-igang{--base:var(--igang);--on:#fff;--tint:var(--igang-t);--ink:var(--igang-k);--soft:var(--igang-soft);--acc:var(--minne-t)}
+.cat-planera{--base:var(--planera);--on:#fff;--tint:var(--planera-t);--ink:var(--planera-k);--soft:var(--planera-soft);--acc:var(--tid-t)}
+.cat-tid{--base:var(--tid);--on:var(--on-dark);--tint:var(--tid-t);--ink:var(--tid-k);--soft:var(--tid-soft);--acc:var(--minne-t)}
+.cat-minne{--base:var(--minne);--on:#fff;--tint:var(--minne-t);--ink:var(--minne-k);--soft:var(--minne-soft);--acc:var(--fokus-t)}
+.cat-fokus{--base:var(--fokus);--on:var(--on-dark);--tint:var(--fokus-t);--ink:var(--fokus-k);--soft:var(--fokus-soft);--acc:var(--planera-t)}
+.cat-kanslor{--base:var(--kanslor);--on:#fff;--tint:var(--kanslor-t);--ink:var(--kanslor-k);--soft:var(--kanslor-soft);--acc:var(--forandring-t)}
+.cat-forandring{--base:var(--forandring);--on:#fff;--tint:var(--forandring-t);--ink:var(--forandring-k);--soft:var(--forandring-soft);--acc:var(--igang-t)}
+.cat-balans{--base:var(--balans);--on:#fff;--tint:var(--balans-t);--ink:var(--balans-k);--soft:var(--balans-soft);--acc:var(--fokus-t)}
 
 /* illustrationsklasser: fyllning (f-) och linje (s-) */
 .il{display:block;overflow:visible}
@@ -159,21 +161,19 @@ a{color:inherit}
 .btn-primary{background:var(--btn);color:var(--on-btn)}
 .btn-secondary{background:var(--surface-2);color:var(--text)}
 .btn-wide{width:100%}
-.btn-text{display:inline-flex;align-items:center;gap:6px;min-height:48px;padding:0 12px;border-radius:999px;font-family:var(--font-head);font-weight:800;font-size:1.0625rem;color:var(--text);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px;text-decoration-color:var(--line-strong)}
+.btn-text{display:inline-flex;align-items:center;min-height:48px;padding:0 12px;border-radius:999px;font-family:var(--font-head);font-weight:800;font-size:1.0625rem;color:var(--text);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px;text-decoration-color:var(--line-strong)}
 .btn-icon{display:inline-grid;place-items:center;width:48px;height:48px;border-radius:999px;color:var(--text)}
 .btn-icon:hover{background:var(--surface-2)}
-.btn-icon svg,.btn-text svg,.btn svg{width:24px;height:24px;flex:none}
-.btn-back{display:inline-flex;align-items:center;gap:4px;min-height:48px;padding:0 14px 0 6px;border-radius:999px;font-family:var(--font-head);font-weight:800}
-.btn-back svg{width:24px;height:24px}
+.btn-back{display:inline-flex;align-items:center;gap:4px;min-height:48px;padding:0 14px;border-radius:999px;font-family:var(--font-head);font-weight:800}
 .btn-back:hover{background:var(--surface-2)}
 .btn-round{display:grid;place-items:center;width:60px;height:60px;border-radius:999px;background:var(--btn);color:var(--on-btn);flex:none;transition:transform var(--dur) var(--ease)}
 .btn-round:active{transform:scale(.94)}
-.btn-round svg{width:26px;height:26px}
+.btn-round .arrow{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:1.75rem;font-weight:700;line-height:1;margin-top:-3px}
 .btn-round[aria-disabled="true"]{opacity:.45}
 
 /* ordmärke */
 .logo{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-head);font-weight:900;font-size:1.25rem;letter-spacing:-.01em}
-.logo svg{width:30px;height:24px}
+.btn-pill{display:inline-flex;align-items:center;min-height:48px;padding:0 20px;border-radius:999px;background:var(--surface-2);font-family:var(--font-head);font-weight:800;font-size:1.0625rem}
 
 /* flödesfot: stegindikator + nästa */
 .flowbar{position:sticky;bottom:0;display:flex;align-items:center;gap:16px;padding:12px 16px calc(14px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line)}
@@ -191,14 +191,10 @@ a{color:inherit}
 .choice .c-title{font-weight:700}
 .choice .c-desc{color:var(--text-2);font-size:1rem}
 .choice .dot{width:16px;height:16px;border-radius:999px;background:var(--base);flex:none}
-.choice .c-icon{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--surface-2);flex:none;color:var(--text)}
-.choice[aria-pressed="true"] .c-icon{background:var(--surface)}
-.choice .c-icon svg{width:26px;height:26px}
 .choice .mark{display:grid;place-items:center;width:30px;height:30px;border-radius:999px;border:2px solid var(--line-strong);flex:none;font-family:var(--font-head);font-weight:900;font-size:1rem}
 .choice[aria-pressed="true"] .mark{background:var(--text);border-color:var(--text);color:var(--bg)}
-.choice .mark svg{width:18px;height:18px}
+.choice[aria-pressed="true"] .mark:empty{box-shadow:inset 0 0 0 6px var(--soft,var(--surface-2))}
 .hint{min-height:1.6em;color:var(--text);font-weight:700}
-.wave svg{width:44px;height:30px}
 
 .field{display:flex;flex-direction:column;gap:8px}
 .field label{font-weight:700}
@@ -209,19 +205,18 @@ a{color:inherit}
 /* =========================================================
    Kategorikort
    ========================================================= */
-.card{position:relative;display:flex;flex-direction:column;width:100%;margin-top:24px;border-radius:var(--r-lg);background:var(--base);color:#fff;text-align:left;overflow:visible;transition:transform var(--dur) var(--ease)}
+.card{position:relative;display:flex;flex-direction:column;width:100%;margin-top:24px;border-radius:var(--r-lg);background:var(--base);color:var(--on);text-align:left;overflow:visible;transition:transform var(--dur) var(--ease)}
 button.card:active{transform:scale(.985)}
 .card-illu{display:flex;justify-content:flex-end;height:168px;padding-right:8px;margin-top:-24px;pointer-events:none}
 .card-illu .il{height:100%;width:auto;max-width:100%}
 .card-body{display:flex;flex-direction:column;gap:4px;padding:6px 18px 18px}
-.card-meta{font-size:1rem;font-weight:700;color:#fff}
-.card-title{font-family:var(--font-head);font-weight:800;font-size:1.375rem;line-height:1.2;color:#fff;text-wrap:balance}
-.card-under{font-size:1rem;color:#fff}
+.card-meta{font-size:1rem;font-weight:700;color:var(--on)}
+.card-title{font-family:var(--font-head);font-weight:800;font-size:1.375rem;line-height:1.2;color:var(--on);text-wrap:balance}
+.card-under{font-size:1rem;color:var(--on)}
 .card-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px}
 .pill{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:2px 12px;border-radius:999px;background:var(--ink);color:#fff;font-size:1rem;font-weight:700}
-.pill svg{width:18px;height:18px}
-.play-dot{display:grid;place-items:center;width:52px;height:52px;border-radius:999px;background:#fff;color:var(--ink);flex:none}
-.play-dot svg{width:24px;height:24px;margin-left:3px}
+.play-dot{display:grid;place-items:center;width:52px;height:52px;border-radius:999px;background:var(--on);flex:none}
+.play-dot::before,.v-play::before{content:"";width:0;height:0;margin-left:4px;border-style:solid;border-width:9px 0 9px 15px;border-color:transparent transparent transparent var(--base)}
 
 /* Idag: energirad */
 .energy-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 6px 8px 16px;border-radius:var(--r-md);background:var(--surface-2)}
@@ -236,30 +231,29 @@ button.card:active{transform:scale(.985)}
 
 /* Just nu */
 .jn-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-.jn-row{display:flex;align-items:center;gap:14px;width:100%;min-height:72px;padding:8px 12px 8px 8px;border-radius:var(--r-md);background:var(--surface);border:2px solid var(--line)}
+.jn-row{display:flex;align-items:center;gap:14px;width:100%;min-height:72px;padding:8px 14px 8px 8px;border-radius:var(--r-md);background:var(--surface);border:2px solid var(--line)}
 .jn-row:hover{border-color:var(--line-strong)}
-.jn-tile{display:grid;place-items:center;width:56px;height:56px;border-radius:14px;background:var(--base);flex:none}
-.jn-tile svg{width:34px;height:34px}
+.jn-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;width:56px;height:56px;border-radius:14px;background:var(--base);color:var(--on);font-family:var(--font-head);line-height:1;flex:none}
+.jn-tile b{font-size:1.375rem;font-weight:900}
+.jn-tile small{font-size:.9375rem;font-weight:800}
 .jn-text{flex:1;display:flex;flex-direction:column}
 .jn-title{font-family:var(--font-head);font-weight:800;font-size:1.125rem;line-height:1.25}
 .jn-meta{color:var(--text-2);font-size:1rem}
-.chev{width:22px;height:22px;color:var(--text-2);flex:none}
 .e-tile{display:grid;place-items:end center;width:76px;height:64px;border-radius:14px;background:var(--base);overflow:hidden;flex:none}
 .e-tile svg{width:76px;height:auto}
 
 /* Dagsplan */
 .plan{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-.plan-item{display:flex;align-items:center;gap:8px;min-height:64px;padding:6px 4px 6px 8px;border-radius:var(--r-md);background:var(--surface);border:2px solid var(--line);transition:background-color var(--dur) var(--ease)}
+.plan-item{display:flex;align-items:center;gap:8px;min-height:64px;padding:6px 6px 6px 8px;border-radius:var(--r-md);background:var(--surface);border:2px solid var(--line);transition:background-color var(--dur) var(--ease)}
 .plan-item.is-done{background:var(--surface-2);border-color:transparent}
 .check{display:grid;place-items:center;width:48px;height:48px;border-radius:999px;flex:none}
-.check span{display:grid;place-items:center;width:32px;height:32px;border-radius:999px;border:2.5px solid var(--line-strong);color:transparent;transition:background-color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
-.check svg{width:20px;height:20px;stroke-width:3}
-.check[aria-pressed="true"] span{background:var(--forandring);border-color:var(--forandring);color:#fff}
+.check span{position:relative;display:block;width:32px;height:32px;border-radius:999px;border:2.5px solid var(--line-strong);transition:background-color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
+.check[aria-pressed="true"] span{background:var(--forandring);border-color:var(--forandring)}
+.check[aria-pressed="true"] span::after{content:"";position:absolute;left:50%;top:46%;width:7px;height:13px;border:solid #fff;border-width:0 3px 3px 0;transform:translate(-50%,-50%) rotate(45deg)}
 .plan-text{flex:1;display:flex;flex-direction:column;line-height:1.35}
 .is-done .plan-text .pt{color:var(--text-2)}
 .plan-src{font-size:1rem;color:var(--text-2)}
-.plan-empty{display:flex;align-items:center;gap:12px;width:100%;min-height:64px;padding:8px 16px;border-radius:var(--r-md);border:2px dashed var(--line-strong);color:var(--text);font-weight:700}
-.plan-empty svg{width:24px;height:24px}
+.plan-empty{display:flex;align-items:center;width:100%;min-height:64px;padding:8px 18px;border-radius:var(--r-md);border:2px dashed var(--line-strong);color:var(--text);font-weight:700}
 .plan-editor{padding:16px;border-radius:var(--r-md);background:var(--surface);border:2px solid var(--text);display:flex;flex-direction:column;gap:14px}
 .ideas{display:flex;flex-wrap:wrap;gap:8px}
 .idea{min-height:44px;padding:6px 14px;border-radius:999px;background:var(--surface-2);font-size:1rem;font-weight:700}
@@ -270,13 +264,13 @@ button.card:active{transform:scale(.985)}
 .empty .il{width:88px;flex:none;padding:6px;border-radius:14px;background:var(--soft)}
 /* Utforska */
 .explore{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:10px;row-gap:34px;padding-top:14px}
-.gcard{display:flex;flex-direction:column;width:100%;min-height:100%;border-radius:var(--r-lg);background:var(--base);color:#fff;text-align:left;transition:transform var(--dur) var(--ease)}
+.gcard{display:flex;flex-direction:column;width:100%;min-height:100%;border-radius:var(--r-lg);background:var(--base);color:var(--on);text-align:left;transition:transform var(--dur) var(--ease)}
 .gcard:active{transform:scale(.97)}
 .g-illu{display:flex;justify-content:center;height:122px;margin-top:-22px;padding-inline:4px;pointer-events:none}
 .g-illu .il{height:100%;width:auto;max-width:100%}
 .g-body{display:flex;flex-direction:column;align-items:flex-start;gap:2px;margin-top:auto;padding:8px 12px 14px}
-.g-title{font-family:var(--font-head);font-weight:800;font-size:1.125rem;line-height:1.2;color:#fff;hyphens:manual;overflow-wrap:break-word}
-.g-under{font-size:1rem;line-height:1.35;color:#fff;hyphens:manual;overflow-wrap:break-word}
+.g-title{font-family:var(--font-head);font-weight:800;font-size:1.125rem;line-height:1.2;color:var(--on);hyphens:manual;overflow-wrap:break-word}
+.g-under{font-size:1rem;line-height:1.35;color:var(--on);hyphens:manual;overflow-wrap:break-word}
 .g-pill{margin-bottom:6px;min-height:28px;font-size:.9375rem}
 
 /* Kategori- och programsidor */
@@ -295,66 +289,54 @@ button.card:active{transform:scale(.985)}
 .part .p-title{font-size:1.0625rem}
 .part.is-next{border-color:var(--text)}
 .part .num{display:grid;place-items:center;width:40px;height:40px;border-radius:999px;background:var(--surface-2);font-family:var(--font-head);font-weight:900;flex:none}
-.part .num svg{width:20px;height:20px;stroke-width:3}
-.part.is-done .num{background:var(--base);color:#fff}
+.part.is-done .num{background:var(--base);color:var(--on)}
 .part.is-next .num{background:var(--text);color:var(--bg)}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
 .tag{display:inline-flex;align-items:center;min-height:28px;padding:0 10px;border-radius:999px;background:var(--surface-2);font-size:1rem;line-height:1.2}
-.st-tile{color:#fff}
-.st-tile svg{width:26px;height:26px;margin-left:3px}
+
 
 /* Dagsplan: reflektion efter en övning */
 .plan-reflect{display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:var(--r-md);background:var(--surface-2)}
 .mini-choices{display:flex;flex-wrap:wrap;gap:8px}
-.mini-choice{display:inline-flex;align-items:center;gap:6px;min-height:48px;padding:0 16px 0 8px;border-radius:999px;background:var(--surface);border:2px solid var(--line);font-family:var(--font-head);font-weight:800}
-.mini-choice .weather svg{width:30px;height:30px}
+.mini-choice{display:inline-flex;align-items:center;min-height:48px;padding:0 18px;border-radius:999px;background:var(--surface);border:2px solid var(--line);font-family:var(--font-head);font-weight:800}
 .all-done{display:flex;flex-direction:column;gap:6px;align-items:flex-start;padding:16px 18px;border-radius:var(--r-md);background:var(--forandring-soft)}
 
 /* Bottenmeny */
 .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:5;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
 .tabbar-in{max-width:34rem;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr)}
-.tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:64px;font-family:var(--font-head);font-weight:800;font-size:.9375rem;color:var(--text-2)}
-.tab .tab-ic{display:grid;place-items:center;width:56px;height:30px;border-radius:999px;transition:background-color var(--dur) var(--ease)}
-.tab svg{width:24px;height:24px}
+.tab{display:flex;align-items:center;justify-content:center;min-height:64px;font-family:var(--font-head);font-weight:800;font-size:1.0625rem;color:var(--text-2)}
+.tab .tab-lab{display:inline-flex;align-items:center;min-height:42px;padding:0 18px;border-radius:999px;transition:background-color var(--dur) var(--ease)}
 .tab[aria-current="page"]{color:var(--text)}
-.tab[aria-current="page"] .tab-ic{background:var(--surface-3)}
+.tab[aria-current="page"] .tab-lab{background:var(--surface-3)}
 
 /* Session */
-.video{position:relative;display:block;width:100%;aspect-ratio:16/10;max-width:100%;border-radius:var(--r-lg);background:var(--base);overflow:hidden;color:#fff}
+.video{position:relative;display:block;width:100%;aspect-ratio:16/10;max-width:100%;border-radius:var(--r-lg);background:var(--base);overflow:hidden;color:var(--on)}
 .video .il{position:absolute;inset:8% 4% 0 auto;height:92%;width:auto}
-.video .v-play{position:absolute;left:18px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:68px;height:68px;border-radius:999px;background:#fff;color:var(--ink)}
-.video .v-play svg{width:30px;height:30px;margin-left:4px}
+.video .v-play{position:absolute;left:18px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:68px;height:68px;border-radius:999px;background:var(--on)}
+.video .v-play::before{border-width:12px 0 12px 20px;margin-left:6px}
 .video .v-len{position:absolute;left:14px;bottom:14px}
 .prose{display:flex;flex-direction:column;gap:14px;max-width:38rem}
-.listen{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 18px 0 14px;border-radius:999px;background:var(--surface-2);font-family:var(--font-head);font-weight:800}
-.listen svg{width:22px;height:22px}
+.listen{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 20px;border-radius:999px;background:var(--surface-2);font-family:var(--font-head);font-weight:800}
 .listen[aria-pressed="true"]{background:var(--btn);color:var(--on-btn)}
 .steps{list-style:none;margin:0;padding:0;counter-reset:s;display:flex;flex-direction:column;gap:12px}
 .steps li{counter-increment:s;display:flex;gap:14px;align-items:flex-start}
-.steps li::before{content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:999px;background:var(--base);color:#fff;font-family:var(--font-head);font-weight:900;flex:none;margin-top:-2px}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:999px;background:var(--base);color:var(--on);font-family:var(--font-head);font-weight:900;flex:none;margin-top:-2px}
 .tip{padding:14px 16px;border-radius:var(--r-md);background:var(--soft)}
 .examples{display:flex;flex-direction:column;gap:10px}
-.example{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:var(--r-md);background:var(--surface);border:2px solid var(--line)}
-.example svg{width:24px;height:24px;flex:none;margin-top:2px}
+.example{display:block;padding:12px 16px;border-radius:var(--r-md);background:var(--surface);border:2px solid var(--line)}
 .example b{display:block;font-family:var(--font-head);font-weight:800}
 .chip{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:2px 12px;border-radius:999px;background:var(--surface-2);font-size:1rem;font-weight:700}
-.chip svg{width:20px;height:20px}
 .prose .chip{align-self:flex-start}
 .chip-dev{background:transparent;border:2px dashed var(--line-strong);color:var(--text-2)}
-.weather svg{width:34px;height:34px}
 
 /* Sammanfattning */
 .sum-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
-.sum-list li{display:flex;gap:14px;align-items:flex-start}
-.sum-list .c-icon{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--surface-2);flex:none}
-.sum-list svg{width:24px;height:24px}
+.sum-list li{display:block;padding:12px 16px;border-radius:var(--r-md);background:var(--surface-2)}
 .sum-list b{display:block;font-family:var(--font-head);font-weight:800}
 
 /* Menysidor */
 .menu-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-.menu-row{display:flex;align-items:center;gap:14px;width:100%;min-height:68px;padding:10px 14px;border-radius:var(--r-md);background:var(--surface);border:2px solid var(--line);font-family:var(--font-head);font-weight:800;font-size:1.125rem}
-.menu-row .c-icon{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--surface-2);flex:none}
-.menu-row .c-icon svg{width:24px;height:24px}
+.menu-row{display:flex;align-items:center;width:100%;min-height:68px;padding:10px 18px;border-radius:var(--r-md);background:var(--surface);border:2px solid var(--line);font-family:var(--font-head);font-weight:800;font-size:1.125rem}
 .menu-row .m-text{flex:1;display:flex;flex-direction:column}
 .menu-row small{font-family:var(--font-body);font-weight:400;font-size:1rem;color:var(--text-2)}
 .help-card{display:flex;flex-direction:column;gap:6px;padding:18px;border-radius:var(--r-md);background:var(--surface);border:2px solid var(--line)}
@@ -366,8 +348,7 @@ button.card:active{transform:scale(.985)}
 .illu-block .il{width:100%;max-width:240px;height:auto}
 .illu-block.sm{align-self:center;width:96px;padding:8px 6px 0;border-radius:14px;flex:none}
 .confirm{display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:var(--r-md);border:2px solid var(--text);background:var(--surface)}
-.goal-box{display:flex;gap:14px;align-items:flex-start;padding:18px;border-radius:var(--r-lg);background:var(--surface);border:2px solid var(--line)}
-.goal-box svg{width:28px;height:28px;flex:none}
+.goal-box{display:block;padding:18px;border-radius:var(--r-lg);background:var(--surface);border:2px solid var(--line)}
 
 /* Toast */
 #toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:20;width:min(30rem,calc(100% - 32px));display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px 14px 20px;border-radius:var(--r-md);background:var(--toast-bg);color:var(--toast-text);font-weight:700;animation:enter var(--dur) var(--ease)}
@@ -394,7 +375,7 @@ body[data-view="session"] #toast,body[data-view="onboarding"] #toast,body[data-v
 <script type="application/json" id="innehall">
 {
   "_om": "Innehåll för Småsteg. Allt är skrivet för att granskas av legitimerad arbetsterapeut innan användning. Poster med skriven:false har bara titel och planerad princip. Fältet livsomraden på strategier är etiketter; exempel finns för alla fem livsområden så att de kan anpassas efter användaren.",
-  "version": "0.2.0 (steg 2)",
+  "version": "0.2.1 (steg 2, ny färgskala)",
   "granskningsstatus": "Ej granskat av arbetsterapeut",
   "kategorier": [
     {
@@ -498,7 +479,6 @@ body[data-view="session"] #toast,body[data-view="onboarding"] #toast,body[data-v
     {
       "id": "hem",
       "titel": "Hemmet",
-      "ikon": "home",
       "dagsplanForslag": [
         "Diska en liten stund",
         "Plocka undan på ett ställe",
@@ -508,7 +488,6 @@ body[data-view="session"] #toast,body[data-view="onboarding"] #toast,body[data-v
     {
       "id": "ekonomi",
       "titel": "Ekonomi",
-      "ikon": "coins",
       "dagsplanForslag": [
         "Titta på en räkning",
         "Kolla saldot",
@@ -518,7 +497,6 @@ body[data-view="session"] #toast,body[data-view="onboarding"] #toast,body[data-v
     {
       "id": "arbete",
       "titel": "Arbete och studier",
-      "ikon": "work",
       "dagsplanForslag": [
         "Svara på ett mejl",
         "Läsa en sida",
@@ -528,7 +506,6 @@ body[data-view="session"] #toast,body[data-view="onboarding"] #toast,body[data-v
     {
       "id": "relationer",
       "titel": "Relationer",
-      "ikon": "people",
       "dagsplanForslag": [
         "Skicka ett sms till någon",
         "Ringa någon en kort stund",
@@ -538,7 +515,6 @@ body[data-view="session"] #toast,body[data-view="onboarding"] #toast,body[data-v
     {
       "id": "halsa",
       "titel": "Hälsa",
-      "ikon": "leaf",
       "dagsplanForslag": [
         "Gå en kort promenad",
         "Äta något",
@@ -2487,53 +2463,9 @@ function planToday(){
   return S.plans[k];
 }
 
-/* =========================================================
-   Ikoner (UI, linjebaserade 24×24)
-   ========================================================= */
-function ic(body, extra){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"' + (extra || '') + '>' + body + '</svg>'; }
-var ICON = {
-  arrow: ic('<path d="M5 12h14M13 6l6 6-6 6"/>'),
-  back: ic('<path d="M15 5l-7 7 7 7"/>'),
-  chevR: ic('<path d="M9 5l7 7-7 7"/>', ' class="chev"'),
-  close: ic('<path d="M6 6l12 12M18 6L6 18"/>'),
-  play: ic('<path d="M8 5.6v12.8a1 1 0 0 0 1.5.86l10-6.4a1 1 0 0 0 0-1.72l-10-6.4A1 1 0 0 0 8 5.6z" fill="currentColor" stroke="none"/>'),
-  plus: ic('<path d="M12 5v14M5 12h14"/>'),
-  check: ic('<path d="M5 12.5l4.5 4.5L19 7.5"/>'),
-  speaker: ic('<path d="M4 9.5v5h4l5 4v-13l-5 4H4z" fill="currentColor"/><path d="M16.5 9a4 4 0 0 1 0 6M19 6.5a7.5 7.5 0 0 1 0 11"/>'),
-  stop: ic('<rect x="6" y="6" width="12" height="12" rx="2.5" fill="currentColor" stroke="none"/>'),
-  user: ic('<circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/>'),
-  clock: ic('<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>'),
-  sun: ic('<circle cx="12" cy="12" r="4.2"/><path d="M12 2.8v2M12 19.2v2M2.8 12h2M19.2 12h2M5.5 5.5l1.4 1.4M17.1 17.1l1.4 1.4M5.5 18.5l1.4-1.4M17.1 6.9l1.4-1.4"/>'),
-  grid: ic('<rect x="3.5" y="3.5" width="7" height="7" rx="2.2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2.2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2.2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2.2"/>'),
-  sprout: ic('<path d="M12 21v-8"/><path d="M12 13c0-4-3-6.5-7.5-6.5 0 4 3 6.5 7.5 6.5z"/><path d="M12 11c0-3.5 2.5-6 6.5-6 0 3.5-2.5 6-6.5 6z"/>'),
-  home: ic('<path d="M4 11l8-6.5 8 6.5V19a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 19z"/><path d="M10 20.5v-5h4v5"/>'),
-  coins: ic('<ellipse cx="12" cy="7" rx="7" ry="3"/><path d="M5 7v5c0 1.7 3.1 3 7 3s7-1.3 7-3V7"/><path d="M5 12v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5"/>'),
-  work: ic('<rect x="3.5" y="7.5" width="17" height="12" rx="2.5"/><path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5M3.5 13h17"/>'),
-  people: ic('<circle cx="9" cy="9" r="3.2"/><circle cx="16.8" cy="10" r="2.6"/><path d="M3.5 19.5a5.5 5.5 0 0 1 11 0M14.5 19.5a4 4 0 0 1 6.5-3"/>'),
-  leaf: ic('<path d="M5 19c0-8 5-13.5 14-14 0 9-5.5 14-14 14z"/><path d="M5 19l7-7"/>'),
-  target: ic('<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/>'),
-  help: ic('<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.5"/><path d="M6 6l3.5 3.5M14.5 14.5L18 18M18 6l-3.5 3.5M9.5 14.5L6 18"/>'),
-  sliders: ic('<path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2.2"/><circle cx="10" cy="17" r="2.2"/>'),
-  info: ic('<circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5M12 7.8v.1"/>'),
-  phone: ic('<path d="M6.5 4h3l1.5 4-2 1.5a11 11 0 0 0 5.5 5.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 4.5 6a2 2 0 0 1 2-2z"/>'),
-  ext: ic('<path d="M14 4h6v6M20 4l-8.5 8.5M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10"/>'),
-  battery: ic('<path d="M12 3v3M8 21h8M9 6h6a2 2 0 0 1 2 2v9H7V8a2 2 0 0 1 2-2z"/>')
-};
-function waveIcon(kind){
-  var d = kind === 'jamn' ? 'M4 16H44' : kind === 'varierar' ? 'M4 16C9 3 15 3 19 16S29 29 33 16 40 5 44 11' : 'M4 25H44';
-  var ghost = kind === 'lag' ? '<path d="M4 12H44" stroke-dasharray="2 5" stroke-width="2" opacity=".5"/>' : '';
-  return '<span class="wave"><svg viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true">' + ghost + '<path d="' + d + '"/></svg></span>';
-}
-function weatherIcon(kind){
-  var sun = '<circle cx="14" cy="14" r="7" class="f-sun"/>';
-  var cloud = '<path d="M11 28h15a6 6 0 0 0 0-12 8 8 0 0 0-15 2 5 5 0 0 0 0 10z" class="f-cloud"/>';
-  var drops = '<path d="M13 31l-1.5 3M19 31l-1.5 3M25 31l-1.5 3" class="ln" stroke="var(--minne)" stroke-width="2.4"/>';
-  var inner = kind === 'bra' ? '<g transform="translate(4 4)">' + sun + '</g>' : kind === 'sadar' ? sun + '<g transform="translate(4 0)">' + cloud + '</g>' : '<g transform="translate(0 -3)">' + cloud + drops + '</g>';
-  return '<span class="weather"><svg class="il" viewBox="0 0 36 36" aria-hidden="true">' + inner + '</svg></span>';
-}
-function logo(){
-  return '<span class="logo"><svg viewBox="0 0 30 24" aria-hidden="true"><circle cx="5" cy="19" r="4" fill="var(--igang)"/><circle cx="14" cy="13.5" r="5" fill="var(--tid-t)"/><circle cx="24" cy="7" r="6" fill="var(--planera)"/></svg>Småsteg</span>';
-}
+/* Ordmärke (text, inga ikoner) */
+function logo(){ return '<span class="logo">Småsteg</span>'; }
+var ARROW = '<span class="arrow" aria-hidden="true">→</span>';
 
 /* =========================================================
    Illustrationer (inline-SVG, platta former utan konturer)
@@ -2612,11 +2544,11 @@ var SCENES = {
   /* Tiden: tittar på en stor klocka */
   tid: function(){
     return '<circle cx="62" cy="60" r="48" class="f-k"/><circle cx="62" cy="60" r="40" class="f-w"/>' +
-      '<circle cx="62" cy="28" r="4" class="f-t"/><circle cx="94" cy="60" r="4" class="f-t"/><circle cx="62" cy="92" r="4" class="f-t"/><circle cx="30" cy="60" r="4" class="f-t"/>' +
+      '<circle cx="62" cy="28" r="4" class="f-k"/><circle cx="94" cy="60" r="4" class="f-k"/><circle cx="62" cy="92" r="4" class="f-k"/><circle cx="30" cy="60" r="4" class="f-k"/>' +
       '<rect x="59" y="38" width="6" height="25" rx="3" transform="rotate(-55 62 60)" class="f-k"/>' +
       '<rect x="60" y="30" width="4" height="33" rx="2" transform="rotate(35 62 60)" class="f-k"/>' +
       '<circle cx="62" cy="60" r="5" class="f-b"/>' +
-      fig({ x: 148, y: 164, top: 't', legs: 'k', skin: 's3',
+      fig({ x: 148, y: 164, top: 'a', legs: 'k', skin: 's3',
         head: { skin: 's3', hair: 'h1', style: 'curly', look: [-3, -2] },
         armL: [-15, -86, -32, -76],
         armR: [24, -44, 26, -62] });
@@ -2636,11 +2568,11 @@ var SCENES = {
   /* Fokus: sitter vid datorn med hörlurar */
   fokus: function(){
     return '<path d="M170 118V72" class="ln s-k" stroke-width="4"/><path d="M154 78Q170 48 186 78Z" class="f-a"/>' +
-      '<rect x="24" y="96" width="16" height="22" rx="5" class="f-t"/><path d="M40 102q8 0 8 6t-8 6" class="ln s-t" stroke-width="4"/>' +
+      '<rect x="24" y="96" width="16" height="22" rx="5" class="f-w"/><path d="M40 102q8 0 8 6t-8 6" class="ln s-w" stroke-width="4"/>' +
       fig({ x: 80, y: 172, top: 'a', legs: 'k', skin: 's2', noLegs: true,
         head: { skin: 's2', hair: 'h2', style: 'short', look: [3, 3] },
         armL: null, armR: null,
-        front: '<path d="M-23 -110A23 23 0 0 1 23 -110" class="ln s-t" stroke-width="5"/><rect x="-28" y="-116" width="10" height="20" rx="5" class="f-t"/><rect x="18" y="-116" width="10" height="20" rx="5" class="f-t"/>' }) +
+        front: '<path d="M-23 -110A23 23 0 0 1 23 -110" class="ln s-k" stroke-width="5"/><rect x="-28" y="-116" width="10" height="20" rx="5" class="f-k"/><rect x="18" y="-116" width="10" height="20" rx="5" class="f-k"/>' }) +
       '<rect x="14" y="116" width="172" height="10" rx="5" class="f-k"/>' +
       '<rect x="28" y="124" width="8" height="40" rx="4" class="f-k"/><rect x="164" y="124" width="8" height="40" rx="4" class="f-k"/>' +
       '<rect x="98" y="80" width="56" height="36" rx="6" class="f-w"/><circle cx="126" cy="98" r="4" class="f-t"/>' +
@@ -2702,7 +2634,7 @@ var MINI = {
       front: '<rect x="-12" y="-66" width="24" height="22" rx="6" class="f-a"/>' });
   },
   mycket: function(){
-    return '<circle cx="94" cy="26" r="14" class="f-sun"/>' +
+    return '<circle cx="94" cy="26" r="14" class="f-w"/>' +
       fig({ x: 56, y: 100, s: .62, top: 'a', legs: 'k', skin: 's3',
         head: { skin: 's3', hair: 'h1', style: 'curly' },
         armL: [-34, -130, -36, -96], armR: [34, -130, 36, -96] });
@@ -2714,13 +2646,6 @@ var MINI = {
   }
 };
 function mini(id){ return '<svg class="il" viewBox="0 0 120 100" aria-hidden="true" focusable="false">' + MINI[id]() + '</svg>'; }
-
-/* symboler för Just nu */
-var JN_GLYPH = {
-  'jn-igang': '<svg class="il" viewBox="0 0 34 34" aria-hidden="true"><ellipse cx="11" cy="22" rx="4.6" ry="7" class="f-w" transform="rotate(-8 11 22)"/><ellipse cx="23" cy="12" rx="4.6" ry="7" class="f-w" transform="rotate(8 23 12)"/></svg>',
-  'jn-kaos': '<svg class="il" viewBox="0 0 34 34" aria-hidden="true"><path d="M4 20c3-9 9 2 6-4s-6-6 1-7 5 9 9 8 3-6 6-2l4 0" class="ln s-w" stroke-width="3"/><path d="M4 28h26" class="ln s-w" stroke-width="3"/></svg>',
-  'jn-slut': '<svg class="il" viewBox="0 0 34 34" aria-hidden="true"><circle cx="16" cy="18" r="11" class="f-w"/><circle cx="22" cy="13" r="9.5" class="f-b"/></svg>'
-};
 
 /* =========================================================
    Uppläsning (webbläsarens talsyntes, svenska)
@@ -2753,9 +2678,9 @@ function syncListen(){
   var b = document.querySelector('[data-act="listen"]');
   if (!b) return;
   b.setAttribute('aria-pressed', TTS.on ? 'true' : 'false');
-  b.innerHTML = (TTS.on ? ICON.stop + 'Sluta läsa' : ICON.speaker + 'Lyssna');
+  b.textContent = TTS.on ? 'Sluta läsa' : 'Lyssna';
 }
-function listenBtn(){ return TTS.ok && S.settings.tts ? '<button class="listen" data-act="listen" aria-pressed="false" data-key="listen">' + ICON.speaker + 'Lyssna</button>' : ''; }
+function listenBtn(){ return TTS.ok && S.settings.tts ? '<button class="listen" data-act="listen" aria-pressed="false" data-key="listen">Lyssna</button>' : ''; }
 
 /* =========================================================
    Toast (lugn bekräftelse)
@@ -2808,16 +2733,16 @@ function back(){ var v = NAV.pop() || { name: 'tab', tab: 'idag' }; v.planEdit =
 
 /* gemensamma delar */
 function topbar(left, right){ return '<header class="topbar"><div class="tb-left">' + (left || '') + '</div><div class="tb-right">' + (right || '') + '</div></header>'; }
-function backBtn(act){ return '<button class="btn-back" data-act="' + (act || 'back') + '" data-key="back">' + ICON.back + 'Tillbaka</button>'; }
-function profileBtn(){ return '<button class="btn-icon" data-act="open-more" data-key="more" aria-label="Mer: hjälp, inställningar och om appen">' + ICON.user + '</button>'; }
+function backBtn(act){ return '<button class="btn-back" data-act="' + (act || 'back') + '" data-key="back">Tillbaka</button>'; }
+function profileBtn(){ return '<button class="btn-pill" data-act="open-more" data-key="more" aria-label="Mer: hjälp, inställningar och om appen">Mer</button>'; }
 function stepbar(n, cur){
   var s = '';
   for (var i = 0; i < n; i++) s += '<span class="' + (i === cur ? 'on' : i < cur ? 'done' : '') + '"></span>';
   return '<div class="stepbar" role="img" aria-label="Steg ' + (cur + 1) + ' av ' + n + '">' + s + '</div>';
 }
 function tabbar(cur){
-  function t(id, label, icon){ return '<button class="tab" data-act="tab" data-tab="' + id + '"' + (cur === id ? ' aria-current="page"' : '') + '><span class="tab-ic">' + icon + '</span>' + label + '</button>'; }
-  return '<nav class="tabbar" aria-label="Huvudmeny"><div class="tabbar-in">' + t('idag', 'Idag', ICON.sun) + t('utforska', 'Utforska', ICON.grid) + t('framsteg', 'Framsteg', ICON.sprout) + '</div></nav>';
+  function t(id, label){ return '<button class="tab" data-act="tab" data-tab="' + id + '"' + (cur === id ? ' aria-current="page"' : '') + '><span class="tab-lab">' + label + '</span></button>'; }
+  return '<nav class="tabbar" aria-label="Huvudmeny"><div class="tabbar-in">' + t('idag', 'Idag') + t('utforska', 'Utforska') + t('framsteg', 'Framsteg') + '</div></nav>';
 }
 function catCard(catId, o){
   o = o || {};
@@ -2862,8 +2787,8 @@ function vOnboarding(){
       C.livsomraden.map(function(a){
         var on = P.lifeAreas.indexOf(a.id) > -1;
         return '<button class="choice" aria-pressed="' + on + '" data-act="ob-area" data-id="' + a.id + '" data-key="area-' + a.id + '">' +
-          '<span class="c-icon">' + ICON[a.ikon] + '</span><span class="c-text"><span class="c-title">' + a.titel + '</span></span>' +
-          '<span class="mark" aria-hidden="true">' + (on ? ICON.check : '') + '</span></button>';
+          '<span class="c-text"><span class="c-title">' + a.titel + '</span></span>' +
+          '<span class="mark" aria-hidden="true"></span></button>';
       }).join('') + '</div>';
   } else if (step === 2) {
     body = '<p class="eyebrow">Fråga 3 av 5</p>' +
@@ -2873,8 +2798,8 @@ function vOnboarding(){
       C.energiBas.map(function(e){
         var on = P.energyBaseline === e.id;
         return '<button class="choice" aria-pressed="' + on + '" data-act="ob-energy" data-id="' + e.id + '" data-key="eb-' + e.id + '">' +
-          '<span class="c-icon">' + waveIcon(e.id) + '</span><span class="c-text"><span class="c-title">' + e.titel + '</span><span class="c-desc">' + e.text + '</span></span>' +
-          '<span class="mark" aria-hidden="true">' + (on ? ICON.check : '') + '</span></button>';
+          '<span class="c-text"><span class="c-title">' + e.titel + '</span><span class="c-desc">' + e.text + '</span></span>' +
+          '<span class="mark" aria-hidden="true"></span></button>';
       }).join('') + '</div>';
   } else if (step === 3) {
     var sug = goalSuggestions(), g = P.goal, own = V.ownGoal || (g && g.typ === 'eget');
@@ -2885,10 +2810,10 @@ function vOnboarding(){
       sug.map(function(s, i){
         var on = !own && g && g.text === s;
         return '<button class="choice" aria-pressed="' + !!on + '" data-act="ob-goal" data-idx="' + i + '" data-key="goal-' + i + '">' +
-          '<span class="c-icon">' + ICON.target + '</span><span class="c-text"><span class="c-title">' + s + '</span></span>' +
-          '<span class="mark" aria-hidden="true">' + (on ? ICON.check : '') + '</span></button>';
+          '<span class="c-text"><span class="c-title">' + s + '</span></span>' +
+          '<span class="mark" aria-hidden="true"></span></button>';
       }).join('') +
-      '<button class="choice" aria-pressed="' + !!own + '" data-act="ob-goal-own" data-key="goal-own"><span class="c-icon">' + ICON.plus + '</span><span class="c-text"><span class="c-title">Skriv ett eget mål</span></span><span class="mark" aria-hidden="true">' + (own ? ICON.check : '') + '</span></button>' +
+      '<button class="choice" aria-pressed="' + !!own + '" data-act="ob-goal-own" data-key="goal-own"><span class="c-text"><span class="c-title">Skriv ett eget mål</span></span><span class="mark" aria-hidden="true"></span></button>' +
       '</div>' +
       (own ? '<div class="field"><label for="goal-input">Ditt mål, med en mening</label>' +
         '<input class="input" id="goal-input" type="text" maxlength="90" autocomplete="off" placeholder="Till exempel: hinna äta frukost" value="' + esc(g && g.typ === 'eget' ? g.text : '') + '" data-autofocus data-key="goal-input">' +
@@ -2900,17 +2825,17 @@ function vOnboarding(){
       '<h1>Så här börjar vi</h1>' +
       catCard(cat.id, { meta: 'Program · ' + prog.delar.length + ' delar · ' + (short ? 'under 3 min' : 'ca 4 min') + ' per gång', title: prog.titel, under: prog.undertitel }) +
       '<ul class="sum-list">' +
-        '<li><span class="c-icon">' + ICON.target + '</span><span><b>Ditt mål</b>' + (P.goal && P.goal.text ? esc(P.goal.text) : 'Inget mål än. Du kan lägga till ett senare.') + '</span></li>' +
-        '<li><span class="c-icon">' + ICON.home + '</span><span><b>Exemplen handlar om</b>' + (areas.length ? cap(listJoin(areas)) : 'Vardagen i stort') + '</span></li>' +
-        '<li><span class="c-icon">' + ICON.clock + '</span><span><b>Passens längd</b>' + (short ? 'Korta pass, under 3 minuter, eftersom din energi oftast är låg.' : 'Ungefär 4 minuter. På dagar med lite energi blir de kortare.') + '</span></li>' +
+        '<li><b>Ditt mål</b><span>' + (P.goal && P.goal.text ? esc(P.goal.text) : 'Inget mål än. Du kan lägga till ett senare.') + '</span></li>' +
+        '<li><b>Exemplen handlar om</b><span>' + (areas.length ? cap(listJoin(areas)) : 'Vardagen i stort') + '</span></li>' +
+        '<li><b>Passens längd</b><span>' + (short ? 'Korta pass, under 3 minuter, eftersom din energi oftast är låg.' : 'Ungefär 4 minuter. På dagar med lite energi blir de kortare.') + '</span></li>' +
       '</ul>' +
       '<p class="sub">Du kan pausa när du vill och fortsätta där du slutade. Allt sparas bara på den här enheten.</p>';
   }
   var left = step > 0 ? backBtn('ob-back') : logo();
   var right = step < 4 ? '<button class="btn-text" data-act="ob-skip" data-key="skip">Hoppa över</button>' : '';
   var nextBtn = step < 4
-    ? '<button class="btn-round" data-act="ob-next" data-key="next" aria-label="Nästa">' + ICON.arrow + '</button>'
-    : '<button class="btn btn-primary" data-act="ob-finish" data-key="finish">Sätt igång ' + ICON.arrow + '</button>';
+    ? '<button class="btn-round" data-act="ob-next" data-key="next" aria-label="Nästa">' + ARROW + '</button>'
+    : '<button class="btn btn-primary" data-act="ob-finish" data-key="finish">Sätt igång</button>';
   return topbar(left, right) +
     '<main class="page flow"><div class="stack-lg">' + body + '<p class="hint">' + (V.hint || '') + '</p></div></main>' +
     '<footer class="flowbar">' + stepbar(5, step) + nextBtn + '</footer>';
@@ -2970,23 +2895,23 @@ function stepSection(){
       act: 'start-session', key: 'stepcard',
       meta: 'Del ' + x.del + ' av ' + st.total + ' · ' + prog.titel,
       title: x.titel,
-      foot: '<span class="pill">' + ICON.clock + 'tar ' + minutesFor(x) + ' min' + (short ? ' · kort version' : '') + '</span><span class="play-dot">' + ICON.play + '</span>'
+      foot: '<span class="pill">tar ' + minutesFor(x) + ' min' + (short ? ' · kort version' : '') + '</span><span class="play-dot" aria-hidden="true"></span>'
     }) + link;
 }
 function stratRow(x){
   var done = doneIds()[x.id];
   return '<li><button class="jn-row" data-act="open-session" data-id="' + x.id + '" data-key="st-' + x.id + '">' +
-    '<span class="jn-tile st-tile cat-' + x.kategori + '">' + ICON.play + '</span>' +
-    '<span class="jn-text"><span class="jn-title">' + x.titel + '</span><span class="jn-meta">tar ' + minutesFor(x) + ' min' + (done ? ' · gjord' : '') + '</span>' +
-    '<span class="tags">' + x.livsomraden.map(function(a){ return '<span class="tag">' + AREA[a].titel + '</span>'; }).join('') + '</span></span>' + ICON.chevR + '</button></li>';
+    '<span class="jn-tile cat-' + x.kategori + '" aria-hidden="true"><b>' + minutesFor(x) + '</b><small>min</small></span>' +
+    '<span class="jn-text"><span class="jn-title">' + x.titel + '</span><span class="sr-only">, tar ' + minutesFor(x) + ' min</span>' + (done ? '<span class="jn-meta">Gjord</span>' : '') +
+    '<span class="tags">' + x.livsomraden.map(function(a){ return '<span class="tag">' + AREA[a].titel + '</span>'; }).join('') + '</span></span></button></li>';
 }
 function justNuSection(){
   var list = C.justNu.slice();
   if (energyToday() === 'lite') list.sort(function(a, b){ return (b.id === 'jn-slut') - (a.id === 'jn-slut'); });
   return '<ul class="jn-list">' + list.map(function(j){
     return '<li><button class="jn-row" data-act="open-justnu" data-id="' + j.id + '" data-key="jn-' + j.id + '">' +
-      '<span class="jn-tile cat-' + j.kategori + '">' + JN_GLYPH[j.id] + '</span>' +
-      '<span class="jn-text"><span class="jn-title">' + j.titel + '</span><span class="jn-meta">tar ' + j.min + ' min</span></span>' + ICON.chevR + '</button></li>';
+      '<span class="jn-tile cat-' + j.kategori + '" aria-hidden="true"><b>' + j.min + '</b><small>min</small></span>' +
+      '<span class="jn-text"><span class="jn-title">' + j.titel + '</span><span class="sr-only">, tar ' + j.min + ' min</span></span></button></li>';
   }).join('') + '</ul>';
 }
 function planIdeas(){
@@ -3011,12 +2936,12 @@ function planSection(){
   html += '<ul class="plan">';
   items.forEach(function(it){
     html += '<li class="plan-item' + (it.done ? ' is-done' : '') + '">' +
-      '<button class="check" data-act="plan-toggle" data-id="' + it.id + '" data-key="pt-' + it.id + '" aria-pressed="' + !!it.done + '" aria-label="Gjort: ' + esc(it.text) + '"><span>' + ICON.check + '</span></button>' +
+      '<button class="check" data-act="plan-toggle" data-id="' + it.id + '" data-key="pt-' + it.id + '" aria-pressed="' + !!it.done + '" aria-label="Gjort: ' + esc(it.text) + '"><span></span></button>' +
       '<span class="plan-text"><span class="pt">' + esc(it.text) + '</span>' + (it.src === 'session' ? '<span class="plan-src">' + (SESS[it.sessionId] && SESS[it.sessionId].typ === 'strategi' ? 'Från en strategi' : 'Från dagens steg') + '</span>' : '') + '</span>' +
-      '<button class="btn-icon" data-act="plan-remove" data-id="' + it.id + '" data-key="pr-' + it.id + '" aria-label="Ta bort: ' + esc(it.text) + '">' + ICON.close + '</button></li>';
+      '<button class="btn-text" data-act="plan-remove" data-id="' + it.id + '" data-key="pr-' + it.id + '" aria-label="Ta bort: ' + esc(it.text) + '">Ta bort</button></li>';
     if (V.reflectFor === it.id && it.done && !it.reflection) {
       html += '<li class="plan-reflect"><p><b>Hur gick övningen?</b></p><div class="mini-choices">' + C.reflektion.val.map(function(r){
-        return '<button class="mini-choice" data-act="plan-reflect" data-id="' + it.id + '" data-r="' + r.id + '" data-key="prf-' + r.id + '">' + weatherIcon(r.id) + r.kort + '</button>';
+        return '<button class="mini-choice" data-act="plan-reflect" data-id="' + it.id + '" data-r="' + r.id + '" data-key="prf-' + r.id + '">' + r.kort + '</button>';
       }).join('') + '</div></li>';
     }
   });
@@ -3028,7 +2953,7 @@ function planSection(){
         '<div class="row-end"><button type="button" class="btn btn-secondary" data-act="plan-cancel">Avbryt</button><button type="submit" class="btn btn-primary">Spara</button></div>' +
         '</form></li>';
     } else {
-      html += '<li><button class="plan-empty" data-act="plan-add" data-key="add-' + i + '">' + ICON.plus + 'Lägg till något</button></li>';
+      html += '<li><button class="plan-empty" data-act="plan-add" data-key="add-' + i + '">Lägg till något</button></li>';
     }
   }
   html += '</ul>';
@@ -3064,7 +2989,7 @@ function sessionText(s, step, short){
 function examplesFor(s){
   var areas = S.profile.lifeAreas.filter(function(a){ return s.exempel[a]; }).slice(0, 2);
   if (!areas.length) areas = ['hem'];
-  return areas.map(function(a){ return '<div class="example">' + ICON[AREA[a].ikon] + '<span><b>' + AREA[a].titel + '</b>' + s.exempel[a] + '</span></div>'; }).join('');
+  return areas.map(function(a){ return '<div class="example"><b>' + AREA[a].titel + '</b>' + s.exempel[a] + '</div>'; }).join('');
 }
 function vSession(){
   var s = SESS[V.sid], isDel = s.typ === 'del', prog = isDel ? PROG[s.programId] : null, cat = CAT[isDel ? prog.kategori : s.kategori];
@@ -3072,7 +2997,7 @@ function vSession(){
   var eyebrow = '<p class="eyebrow">' + (isDel ? prog.titel + ' · Del ' + s.del + ' av ' + prog.delar.length : 'Strategi · ' + cat.titel) + (short ? ' · Kort version' : '') + '</p>';
   if (step === 0) {
     body = eyebrow + '<h1>' + s.titel + '</h1>' +
-      (short ? '' : '<button class="video" data-act="video" data-key="video" aria-label="' + s.forklaring.film.beskrivning + ', ' + s.forklaring.film.langd + ' lång. Inte inspelad än.">' + scene(cat.id) + '<span class="v-play">' + ICON.play + '</span><span class="pill v-len">' + ICON.clock + s.forklaring.film.langd + '</span></button>') +
+      (short ? '' : '<button class="video" data-act="video" data-key="video" aria-label="' + s.forklaring.film.beskrivning + ', ' + s.forklaring.film.langd + ' lång. Inte inspelad än.">' + scene(cat.id) + '<span class="v-play" aria-hidden="true"></span><span class="pill v-len">Film · ' + s.forklaring.film.langd + '</span></button>') +
       '<div class="prose">' + listenBtn() + '<h2>Varför hjälper det?</h2>' +
       (short ? '<p>' + s.forklaring.kort + '</p>' : s.forklaring.text.map(function(p){ return '<p>' + p + '</p>'; }).join('')) + '</div>';
   } else if (step === 1) {
@@ -3085,19 +3010,19 @@ function vSession(){
     body = eyebrow + '<h1>Din övning idag</h1><div class="prose">' + listenBtn() +
       '<p class="tip" style="font-size:1.1875rem;font-weight:700">' + s.ovning.text + '</p>' +
       '<p>Lägg den i dagsplanen, så slipper du komma ihåg den.</p>' +
-      (added ? '<p class="chip">' + ICON.check + 'Finns i dagsplanen</p>' : '<button class="btn btn-secondary" data-act="s-addplan" data-key="addplan" style="align-self:flex-start">' + ICON.plus + 'Lägg i dagsplanen</button>') +
+      (added ? '<p class="chip">Finns i dagsplanen</p>' : '<button class="btn btn-secondary" data-act="s-addplan" data-key="addplan" style="align-self:flex-start">Lägg i dagsplanen</button>') +
       (V.planFull ? '<div class="confirm"><p>Dagsplanen har redan så många saker som din energi räcker till idag. Det är okej att vänta med övningen.</p><div class="row-end"><button class="btn btn-secondary" data-act="s-addplan-no">Vänta</button><button class="btn btn-primary" data-act="s-addplan-force">Lägg till ändå</button></div></div>' : '') +
       '<p class="sub">Du kan också göra den en annan dag. Det gör ingenting.</p></div>';
   } else {
     body = eyebrow + '<h1 id="q">' + C.reflektion.fraga + '</h1><p class="lead">Välj det som stämmer bäst. Det finns inga fel svar.</p>' +
       '<div class="choices" role="group" aria-labelledby="q">' + C.reflektion.val.map(function(r){
-        return '<button class="choice" aria-pressed="false" data-act="s-reflect" data-id="' + r.id + '" data-key="r-' + r.id + '"><span class="c-icon">' + weatherIcon(r.id) + '</span><span class="c-text"><span class="c-title">' + r.text + '</span></span></button>';
+        return '<button class="choice" aria-pressed="false" data-act="s-reflect" data-id="' + r.id + '" data-key="r-' + r.id + '"><span class="c-text"><span class="c-title">' + r.text + '</span></span></button>';
       }).join('') + '</div>';
   }
   return '<div class="cat-' + cat.id + '" style="display:contents">' +
     topbar(step > 0 ? backBtn('s-back') : '', '<button class="btn-text" data-act="s-close" data-key="close">Stäng</button>') +
     '<main class="page flow"><div class="stack-lg">' + body + '</div></main>' +
-    '<footer class="flowbar">' + stepbar(4, step) + (step < 3 ? '<button class="btn-round" data-act="s-next" data-key="next" aria-label="Nästa">' + ICON.arrow + '</button>' : '') + '</footer></div>';
+    '<footer class="flowbar">' + stepbar(4, step) + (step < 3 ? '<button class="btn-round" data-act="s-next" data-key="next" aria-label="Nästa">' + ARROW + '</button>' : '') + '</footer></div>';
 }
 function doneBackLabel(){
   var t = NAV[NAV.length - 1];
@@ -3121,7 +3046,7 @@ function vDone(){
       '<p style="font-size:1.1875rem">' + (r ? r.svar : '') + '</p>' +
       '<p class="sub">' + info + '</p>' +
     '</div></main>' +
-    '<footer class="flowbar"><span style="flex:1"></span><button class="btn btn-primary" data-act="back" data-key="done-back">' + doneBackLabel() + ' ' + ICON.arrow + '</button></footer>';
+    '<footer class="flowbar"><span style="flex:1"></span><button class="btn btn-primary" data-act="back" data-key="done-back">' + doneBackLabel() + '</button></footer>';
 }
 function vComing(){
   var s = SESS[V.sid], prog = PROG[s.programId], cat = CAT[prog.kategori];
@@ -3141,7 +3066,7 @@ function vJustNu(){
     '<main class="page flow"><div class="stack-lg">' +
       '<p class="eyebrow">Just nu · tar ' + j.min + ' min</p><h1>' + j.titel + '</h1>' +
       '<div class="placeholder cat-' + j.kategori + '"><span class="chip chip-dev">Byggs i steg 3</span><p>Här kommer en kort guidad övning för just den här stunden.</p></div>' +
-      '<button class="btn btn-secondary btn-wide" data-act="open-help" data-key="morehelp">' + ICON.help + 'Jag behöver mer hjälp än så här</button>' +
+      '<button class="btn btn-secondary btn-wide" data-act="open-help" data-key="morehelp">Jag behöver mer hjälp än så här</button>' +
     '</div></main>';
 }
 
@@ -3169,7 +3094,7 @@ function vCategory(){
       '<div class="stack">' + illuBlock(c.id) + '<h1 style="margin-top:8px">' + c.titel + '</h1><p class="sub">Förmåga: ' + c.formaga.toLowerCase() + '</p><p>' + c.beskrivning + '</p></div>' +
       '<section class="stack" aria-labelledby="h-prog"><h2 id="h-prog">Program</h2>' +
         '<button class="prog-card" data-act="open-program" data-id="' + p.id + '" data-key="prog">' +
-          '<span class="p-top"><span class="p-text"><span class="p-title">' + p.titel + '</span><span class="p-meta">' + st.total + ' delar · ' + (isShort() ? p.delar[0].minKort : 'ca ' + p.delar[0].min) + ' min per del</span></span>' + ICON.chevR + '</span>' +
+          '<span class="p-top"><span class="p-text"><span class="p-title">' + p.titel + '</span><span class="p-meta">' + st.total + ' delar · ' + (isShort() ? p.delar[0].minKort : 'ca ' + p.delar[0].min) + ' min per del</span></span></span>' +
           '<span class="segs" aria-hidden="true">' + segs + '</span><span class="p-status">' + status + '</span></button>' +
       '</section>' +
       '<section class="stack" aria-labelledby="h-strat"><h2 id="h-strat">Enskilda strategier</h2><p class="sub">Korta, fristående lektioner. Gör dem i vilken ordning du vill.</p>' +
@@ -3179,7 +3104,7 @@ function vCategory(){
 }
 function lenChoice(id, title, desc){
   var on = (S.settings.sessionLength || 'auto') === id;
-  return '<button class="choice" aria-pressed="' + on + '" data-act="set-length" data-id="' + id + '" data-key="len-' + id + '"><span class="c-text"><span class="c-title">' + title + '</span><span class="c-desc">' + desc + '</span></span><span class="mark" aria-hidden="true">' + (on ? ICON.check : '') + '</span></button>';
+  return '<button class="choice" aria-pressed="' + on + '" data-act="set-length" data-id="' + id + '" data-key="len-' + id + '"><span class="c-text"><span class="c-title">' + title + '</span><span class="c-desc">' + desc + '</span></span><span class="mark" aria-hidden="true"></span></button>';
 }
 function vProgram(){
   var p = PROG[V.id], c = CAT[p.kategori], st = progState(p.id), mine = S.program.id === p.id, paused = mine && S.program.paused, d = doneIds();
@@ -3187,13 +3112,13 @@ function vProgram(){
     var done = d[x.id], next = st.next && st.next.id === x.id;
     var meta = !x.skriven ? 'Inte skriven än' : (done ? 'Gjord · ' : next ? 'Nästa · ' : '') + 'tar ' + minutesFor(x) + ' min';
     return '<li><button class="part' + (done ? ' is-done' : '') + (next ? ' is-next' : '') + '" data-act="open-session" data-id="' + x.id + '" data-key="part-' + x.id + '">' +
-      '<span class="num" aria-hidden="true">' + (done ? ICON.check : x.del) + '</span>' +
-      '<span class="p-text"><span class="p-title"><span class="sr-only">Del ' + x.del + ': </span>' + x.titel + '</span><span class="p-meta">' + meta + '</span></span>' + ICON.chevR + '</button></li>';
+      '<span class="num" aria-hidden="true">' + x.del + '</span>' +
+      '<span class="p-text"><span class="p-title"><span class="sr-only">Del ' + x.del + ': </span>' + x.titel + '</span><span class="p-meta">' + meta + '</span></span></button></li>';
   }).join('');
   var primary = '';
-  if (!mine) primary = '<button class="btn btn-primary" data-act="prog-choose" data-id="' + p.id + '" data-key="choose">Börja med programmet ' + ICON.arrow + '</button>';
-  else if (paused) primary = '<button class="btn btn-primary" data-act="prog-resume" data-key="resume">Fortsätt programmet ' + ICON.arrow + '</button>';
-  else if (st.next) primary = '<button class="btn btn-primary" data-act="open-session" data-id="' + st.next.id + '" data-key="nextpart">' + (st.done ? 'Fortsätt med del ' + st.next.del : 'Börja med del 1') + ' ' + ICON.arrow + '</button>';
+  if (!mine) primary = '<button class="btn btn-primary" data-act="prog-choose" data-id="' + p.id + '" data-key="choose">Börja med programmet</button>';
+  else if (paused) primary = '<button class="btn btn-primary" data-act="prog-resume" data-key="resume">Fortsätt programmet</button>';
+  else if (st.next) primary = '<button class="btn btn-primary" data-act="open-session" data-id="' + st.next.id + '" data-key="nextpart">' + (st.done ? 'Fortsätt med del ' + st.next.del : 'Börja med del 1') + '</button>';
   return topbar(backBtn(), '') +
     '<main class="page flow cat-' + c.id + '">' +
       '<div class="stack">' + illuBlock(c.id) + '<p class="eyebrow" style="margin-top:8px">Program · ' + st.total + ' delar' + (paused ? ' · pausat' : '') + '</p><h1>' + p.titel + '</h1><p>' + p.undertitel + '</p></div>' +
@@ -3209,7 +3134,7 @@ function vFramsteg(){
   var g = S.profile.goal;
   return topbar('<h1>Framsteg</h1>', profileBtn()) +
     '<main class="page">' +
-      '<div class="goal-box">' + ICON.target + '<div class="stack" style="gap:4px"><p class="eyebrow">Ditt mål</p><p style="font-family:var(--font-head);font-weight:800;font-size:1.25rem">' + (g && g.text ? esc(g.text) : 'Inget mål än') + '</p></div></div>' +
+      '<div class="goal-box"><div class="stack" style="gap:4px"><p class="eyebrow">Ditt mål</p><p style="font-family:var(--font-head);font-weight:800;font-size:1.25rem">' + (g && g.text ? esc(g.text) : 'Inget mål än') + '</p></div></div>' +
       illuBlock('igang') + '<div class="placeholder cat-forandring"><span class="chip chip-dev">Byggs i steg 3</span><h2>Här ser du hur det går</h2><p>En gång i veckan får du svara på hur det går med ditt mål. Du ser också det du har gjort, utan poäng och utan jämförelser.</p></div>' +
     '</main>' + tabbar('framsteg');
 }
@@ -3218,12 +3143,12 @@ function vFramsteg(){
    MER, HJÄLP, OM, INSTÄLLNINGAR
    ========================================================= */
 function vMore(){
-  function row(act, icon, title, sub){ return '<li><button class="menu-row" data-act="' + act + '" data-key="' + act + '"><span class="c-icon">' + icon + '</span><span class="m-text">' + title + (sub ? '<small>' + sub + '</small>' : '') + '</span>' + ICON.chevR + '</button></li>'; }
+  function row(act, title, sub){ return '<li><button class="menu-row" data-act="' + act + '" data-key="' + act + '"><span class="m-text">' + title + (sub ? '<small>' + sub + '</small>' : '') + '</span></button></li>'; }
   return topbar(backBtn(), '') +
     '<main class="page flow"><div class="stack-lg"><h1>Mer</h1><ul class="menu-list">' +
-      row('open-help', ICON.help, 'Vart kan jag vända mig?', 'Hjälp och stöd utanför appen') +
-      row('open-settings', ICON.sliders, 'Inställningar', 'Text, uppläsning och dina svar') +
-      row('open-about', ICON.info, 'Om appen', 'Vad appen är och inte är') +
+      row('open-help', 'Vart kan jag vända mig?', 'Hjälp och stöd utanför appen') +
+      row('open-settings', 'Inställningar', 'Text, uppläsning och dina svar') +
+      row('open-about', 'Om appen', 'Vad appen är och inte är') +
     '</ul></div></main>';
 }
 function vHelp(){
@@ -3231,8 +3156,8 @@ function vHelp(){
     return '<div class="help-card' + (o.urgent ? ' urgent' : '') + '"><h2>' + o.title + '</h2>' + (o.num ? '<p class="help-num">' + o.num + '</p>' : '') + '<p>' + o.text + '</p>' +
       (o.actions ? '<div class="help-actions">' + o.actions + '</div>' : '') + '</div>';
   }
-  function tel(n, label){ return '<a class="btn btn-secondary" href="tel:' + n + '">' + ICON.phone + (label || 'Ring ' + n) + '</a>'; }
-  function web(url, label){ return '<a class="btn btn-secondary" href="https://' + url + '" target="_blank" rel="noopener">' + ICON.ext + label + '</a>'; }
+  function tel(n, label){ return '<a class="btn btn-secondary" href="tel:' + n + '">' + (label || 'Ring ' + n) + '</a>'; }
+  function web(url, label){ return '<a class="btn btn-secondary" href="https://' + url + '" target="_blank" rel="noopener">' + label + '</a>'; }
   return topbar(backBtn(), '') +
     '<main class="page flow"><div class="stack-lg">' +
       '<h1>Vart kan jag vända mig?</h1><p class="lead">Appen är ett stöd i vardagen. Ibland behövs mer hjälp än så, och det är helt okej att be om den.</p>' +

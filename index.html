@@ -267,7 +267,47 @@ button.card:active{transform:scale(.985)}
 .idea-wrap p{color:var(--text-2);font-size:1rem}
 .row-end{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap}
 .empty{display:flex;align-items:center;gap:16px;padding:4px 0 8px}
-.empty .il{width:88px;flex:none}
+.empty .il{width:88px;flex:none;padding:6px;border-radius:14px;background:var(--soft)}
+/* Utforska */
+.explore{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:10px;row-gap:34px;padding-top:14px}
+.gcard{display:flex;flex-direction:column;width:100%;min-height:100%;border-radius:var(--r-lg);background:var(--base);color:#fff;text-align:left;transition:transform var(--dur) var(--ease)}
+.gcard:active{transform:scale(.97)}
+.g-illu{display:flex;justify-content:center;height:122px;margin-top:-22px;padding-inline:4px;pointer-events:none}
+.g-illu .il{height:100%;width:auto;max-width:100%}
+.g-body{display:flex;flex-direction:column;align-items:flex-start;gap:2px;margin-top:auto;padding:8px 12px 14px}
+.g-title{font-family:var(--font-head);font-weight:800;font-size:1.125rem;line-height:1.2;color:#fff;hyphens:manual;overflow-wrap:break-word}
+.g-under{font-size:1rem;line-height:1.35;color:#fff;hyphens:manual;overflow-wrap:break-word}
+.g-pill{margin-bottom:6px;min-height:28px;font-size:.9375rem}
+
+/* Kategori- och programsidor */
+.prog-card{display:flex;flex-direction:column;gap:12px;width:100%;padding:16px;border-radius:var(--r-lg);background:var(--surface);border:2px solid var(--line);text-align:left}
+.prog-card:hover,.part:hover{border-color:var(--line-strong)}
+.p-top{display:flex;align-items:center;gap:12px}
+.p-text{flex:1;display:flex;flex-direction:column}
+.p-title{font-family:var(--font-head);font-weight:800;font-size:1.1875rem;line-height:1.25}
+.p-meta{color:var(--text-2);font-size:1rem}
+.p-status{font-weight:700}
+.segs{display:flex;gap:6px}
+.segs span{flex:1;height:6px;border-radius:6px;background:var(--line)}
+.segs span.on{background:var(--base)}
+.parts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.part{display:flex;align-items:center;gap:14px;width:100%;min-height:68px;padding:10px 12px 10px 10px;border-radius:var(--r-md);background:var(--surface);border:2px solid var(--line);text-align:left}
+.part .p-title{font-size:1.0625rem}
+.part.is-next{border-color:var(--text)}
+.part .num{display:grid;place-items:center;width:40px;height:40px;border-radius:999px;background:var(--surface-2);font-family:var(--font-head);font-weight:900;flex:none}
+.part .num svg{width:20px;height:20px;stroke-width:3}
+.part.is-done .num{background:var(--base);color:#fff}
+.part.is-next .num{background:var(--text);color:var(--bg)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.tag{display:inline-flex;align-items:center;min-height:28px;padding:0 10px;border-radius:999px;background:var(--surface-2);font-size:1rem;line-height:1.2}
+.st-tile{color:#fff}
+.st-tile svg{width:26px;height:26px;margin-left:3px}
+
+/* Dagsplan: reflektion efter en övning */
+.plan-reflect{display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:var(--r-md);background:var(--surface-2)}
+.mini-choices{display:flex;flex-wrap:wrap;gap:8px}
+.mini-choice{display:inline-flex;align-items:center;gap:6px;min-height:48px;padding:0 16px 0 8px;border-radius:999px;background:var(--surface);border:2px solid var(--line);font-family:var(--font-head);font-weight:800}
+.mini-choice .weather svg{width:30px;height:30px}
 .all-done{display:flex;flex-direction:column;gap:6px;align-items:flex-start;padding:16px 18px;border-radius:var(--r-md);background:var(--forandring-soft)}
 
 /* Bottenmeny */
@@ -341,7 +381,7 @@ body[data-view="session"] #toast,body[data-view="onboarding"] #toast,body[data-v
 </style>
 </head>
 <body>
-<div id="app" aria-live="off"></div>
+<div id="app" lang="sv" aria-live="off"></div>
 <div id="toast" role="status" aria-live="polite" hidden></div>
 <div id="sr" class="sr-only" aria-live="polite"></div>
 
@@ -353,305 +393,1989 @@ body[data-view="session"] #toast,body[data-view="onboarding"] #toast,body[data-v
      ========================================================= -->
 <script type="application/json" id="innehall">
 {
-  "_om": "Innehåll för Småsteg. Allt är skrivet för att granskas av legitimerad arbetsterapeut innan användning. Sessioner med skriven:false har bara titel och planerad princip.",
-  "version": "0.1.0 (steg 1)",
+  "_om": "Innehåll för Småsteg. Allt är skrivet för att granskas av legitimerad arbetsterapeut innan användning. Poster med skriven:false har bara titel och planerad princip. Fältet livsomraden på strategier är etiketter; exempel finns för alla fem livsområden så att de kan anpassas efter användaren.",
+  "version": "0.2.0 (steg 2)",
   "granskningsstatus": "Ej granskat av arbetsterapeut",
-
   "kategorier": [
-    { "id": "igang", "titel": "Komma igång", "formaga": "Igångsättning", "pastaende": "Jag kommer inte igång",
-      "mal": ["Komma igång med vardagssysslor utan att fastna så länge", "Börja på saker innan det blir bråttom"], "program": "p-igang" },
-    { "id": "planera", "titel": "Planera och prioritera", "formaga": "Planering", "pastaende": "Jag vet inte var jag ska börja",
-      "mal": ["Veta vad jag ska göra idag", "Få bättre överblick över veckan"], "program": "p-planera" },
-    { "id": "tid", "titel": "Hålla koll på tiden", "formaga": "Tidsuppfattning", "pastaende": "Tiden bara försvinner",
-      "mal": ["Komma i tid oftare", "Veta ungefär hur lång tid saker tar"], "program": "p-tid" },
-    { "id": "minne", "titel": "Komma ihåg", "formaga": "Arbetsminne", "pastaende": "Jag glömmer saker",
-      "mal": ["Glömma färre saker i vardagen", "Hålla koll på tider och viktiga papper"], "program": "p-minne" },
-    { "id": "fokus", "titel": "Behålla fokus", "formaga": "Uppmärksamhet och impulskontroll", "pastaende": "Jag tappar lätt fokus",
-      "mal": ["Kunna hålla fokus en stund i taget", "Göra klart det jag har börjat på"], "program": "p-fokus" },
-    { "id": "kanslor", "titel": "Hantera känslor och stress", "formaga": "Emotionsreglering", "pastaende": "Jag blir lätt stressad eller överväldigad",
-      "mal": ["Hitta lugnet när det blir för mycket", "Återhämta mig lite snabbare efter stress"], "program": "p-kanslor" },
-    { "id": "forandring", "titel": "Hantera förändringar", "formaga": "Flexibilitet", "pastaende": "Det är jobbigt när planer ändras",
-      "mal": ["Klara ändrade planer med mindre stress", "Känna mig tryggare inför nya saker"], "program": "p-forandring" },
-    { "id": "balans", "titel": "Balans och återhämtning", "formaga": "Aktivitetsbalans", "pastaende": "Energin tar slut för snabbt",
-      "mal": ["Orka hela dagen", "Hitta en bättre balans mellan att göra och att vila"], "program": "p-balans" }
+    {
+      "id": "igang",
+      "titel": "Komma igång",
+      "formaga": "Igångsättning",
+      "pastaende": "Jag kommer inte igång",
+      "mal": [
+        "Komma igång med vardagssysslor utan att fastna så länge",
+        "Börja på saker innan det blir bråttom"
+      ],
+      "program": "p-igang",
+      "beskrivning": "Knep för att ta första steget, även när det känns tungt."
+    },
+    {
+      "id": "planera",
+      "titel": "Planera och prioritera",
+      "formaga": "Planering",
+      "pastaende": "Jag vet inte var jag ska börja",
+      "mal": [
+        "Veta vad jag ska göra idag",
+        "Få bättre överblick över veckan"
+      ],
+      "program": "p-planera",
+      "beskrivning": "Få ordning på det som ska göras, och välj vad som är viktigast."
+    },
+    {
+      "id": "tid",
+      "titel": "Hålla koll på tiden",
+      "formaga": "Tidsuppfattning",
+      "pastaende": "Tiden bara försvinner",
+      "mal": [
+        "Komma i tid oftare",
+        "Veta ungefär hur lång tid saker tar"
+      ],
+      "program": "p-tid",
+      "beskrivning": "Gör tiden lättare att se, så att den inte bara försvinner."
+    },
+    {
+      "id": "minne",
+      "titel": "Komma ihåg",
+      "formaga": "Arbetsminne",
+      "pastaende": "Jag glömmer saker",
+      "mal": [
+        "Glömma färre saker i vardagen",
+        "Hålla koll på tider och viktiga papper"
+      ],
+      "program": "p-minne",
+      "beskrivning": "Låt saker, platser och listor komma ihåg åt dig."
+    },
+    {
+      "id": "fokus",
+      "titel": "Behålla fokus",
+      "formaga": "Uppmärksamhet och impulskontroll",
+      "pastaende": "Jag tappar lätt fokus",
+      "mal": [
+        "Kunna hålla fokus en stund i taget",
+        "Göra klart det jag har börjat på"
+      ],
+      "program": "p-fokus",
+      "beskrivning": "Gör det lättare att stanna kvar i en sak en stund."
+    },
+    {
+      "id": "kanslor",
+      "titel": "Hantera känslor och stress",
+      "formaga": "Emotionsreglering",
+      "pastaende": "Jag blir lätt stressad eller överväldigad",
+      "mal": [
+        "Hitta lugnet när det blir för mycket",
+        "Återhämta mig lite snabbare efter stress"
+      ],
+      "program": "p-kanslor",
+      "beskrivning": "Hitta lugnet när det blir för mycket."
+    },
+    {
+      "id": "forandring",
+      "titel": "Hantera förändringar",
+      "formaga": "Flexibilitet",
+      "pastaende": "Det är jobbigt när planer ändras",
+      "mal": [
+        "Klara ändrade planer med mindre stress",
+        "Känna mig tryggare inför nya saker"
+      ],
+      "program": "p-forandring",
+      "beskrivning": "Bli lite tryggare när planer och saker ändras."
+    },
+    {
+      "id": "balans",
+      "titel": "Balans och återhämtning",
+      "formaga": "Aktivitetsbalans",
+      "pastaende": "Energin tar slut för snabbt",
+      "mal": [
+        "Orka hela dagen",
+        "Hitta en bättre balans mellan att göra och att vila"
+      ],
+      "program": "p-balans",
+      "beskrivning": "Få energin att räcka, med både göra och vila."
+    }
   ],
-
   "livsomraden": [
-    { "id": "hem", "titel": "Hemmet", "ikon": "home", "dagsplanForslag": ["Diska en liten stund", "Plocka undan på ett ställe", "Sätta på en tvätt"] },
-    { "id": "ekonomi", "titel": "Ekonomi", "ikon": "coins", "dagsplanForslag": ["Titta på en räkning", "Kolla saldot", "Lägga ett kvitto på sin plats"] },
-    { "id": "arbete", "titel": "Arbete och studier", "ikon": "work", "dagsplanForslag": ["Svara på ett mejl", "Läsa en sida", "Skriva ner nästa steg i en uppgift"] },
-    { "id": "relationer", "titel": "Relationer", "ikon": "people", "dagsplanForslag": ["Skicka ett sms till någon", "Ringa någon en kort stund", "Bestämma en tid att ses"] },
-    { "id": "halsa", "titel": "Hälsa", "ikon": "leaf", "dagsplanForslag": ["Gå en kort promenad", "Äta något", "Dricka ett glas vatten"] }
+    {
+      "id": "hem",
+      "titel": "Hemmet",
+      "ikon": "home",
+      "dagsplanForslag": [
+        "Diska en liten stund",
+        "Plocka undan på ett ställe",
+        "Sätta på en tvätt"
+      ]
+    },
+    {
+      "id": "ekonomi",
+      "titel": "Ekonomi",
+      "ikon": "coins",
+      "dagsplanForslag": [
+        "Titta på en räkning",
+        "Kolla saldot",
+        "Lägga ett kvitto på sin plats"
+      ]
+    },
+    {
+      "id": "arbete",
+      "titel": "Arbete och studier",
+      "ikon": "work",
+      "dagsplanForslag": [
+        "Svara på ett mejl",
+        "Läsa en sida",
+        "Skriva ner nästa steg i en uppgift"
+      ]
+    },
+    {
+      "id": "relationer",
+      "titel": "Relationer",
+      "ikon": "people",
+      "dagsplanForslag": [
+        "Skicka ett sms till någon",
+        "Ringa någon en kort stund",
+        "Bestämma en tid att ses"
+      ]
+    },
+    {
+      "id": "halsa",
+      "titel": "Hälsa",
+      "ikon": "leaf",
+      "dagsplanForslag": [
+        "Gå en kort promenad",
+        "Äta något",
+        "Dricka ett glas vatten"
+      ]
+    }
   ],
-  "dagsplanForslagAllmant": ["Dricka ett glas vatten", "Gå ut en kort stund", "Plocka undan en sak"],
-
+  "dagsplanForslagAllmant": [
+    "Dricka ett glas vatten",
+    "Gå ut en kort stund",
+    "Plocka undan en sak"
+  ],
   "energiBas": [
-    { "id": "jamn", "titel": "Ganska jämn", "text": "Energin är ungefär likadan de flesta dagar." },
-    { "id": "varierar", "titel": "Varierar mycket", "text": "Vissa dagar går det bra, andra inte alls." },
-    { "id": "lag", "titel": "Oftast låg", "text": "Det mesta tar mycket kraft." }
+    {
+      "id": "jamn",
+      "titel": "Ganska jämn",
+      "text": "Energin är ungefär likadan de flesta dagar."
+    },
+    {
+      "id": "varierar",
+      "titel": "Varierar mycket",
+      "text": "Vissa dagar går det bra, andra inte alls."
+    },
+    {
+      "id": "lag",
+      "titel": "Oftast låg",
+      "text": "Det mesta tar mycket kraft."
+    }
   ],
-
   "energiIdag": [
-    { "id": "lite", "titel": "Lite", "text": "Vi håller det kort. En sak i dagsplanen.", "platser": 1 },
-    { "id": "mitt", "titel": "Mittemellan", "text": "Lagom tempo. Två saker i dagsplanen.", "platser": 2 },
-    { "id": "mycket", "titel": "Mycket", "text": "Du har mer att ge idag. Upp till tre saker.", "platser": 3 }
+    {
+      "id": "lite",
+      "titel": "Lite",
+      "text": "Vi håller det kort. En sak i dagsplanen.",
+      "platser": 1
+    },
+    {
+      "id": "mitt",
+      "titel": "Mittemellan",
+      "text": "Lagom tempo. Två saker i dagsplanen.",
+      "platser": 2
+    },
+    {
+      "id": "mycket",
+      "titel": "Mycket",
+      "text": "Du har mer att ge idag. Upp till tre saker.",
+      "platser": 3
+    }
   ],
-
   "reflektion": {
     "fraga": "Hur gick det?",
     "val": [
-      { "id": "bra", "text": "Det kändes bra", "svar": "Vad fint att höra. Ta med dig den känslan till nästa gång." },
-      { "id": "sadar", "text": "Det gick sådär", "svar": "Det är helt okej. Att prova är det viktiga. Resten kommer med tiden." },
-      { "id": "svart", "text": "Det var svårt idag", "svar": "Tack för att du provade ändå. Svåra dagar hör till. När energin är låg blir passen kortare av sig själva." }
+      {
+        "id": "bra",
+        "text": "Det kändes bra",
+        "svar": "Vad fint att höra. Ta med dig den känslan till nästa gång.",
+        "kort": "Bra",
+        "svarKort": "Vad fint att höra."
+      },
+      {
+        "id": "sadar",
+        "text": "Det gick sådär",
+        "svar": "Det är helt okej. Att prova är det viktiga. Resten kommer med tiden.",
+        "kort": "Sådär",
+        "svarKort": "Helt okej. Du provade."
+      },
+      {
+        "id": "svart",
+        "text": "Det var svårt idag",
+        "svar": "Tack för att du provade ändå. Svåra dagar hör till. När energin är låg blir passen kortare av sig själva.",
+        "kort": "Svårt",
+        "svarKort": "Tack för att du provade. Svåra dagar hör till."
+      }
     ]
   },
-
   "justNu": [
-    { "id": "jn-igang", "titel": "Jag kommer inte igång", "min": 2, "kategori": "igang", "skriven": false },
-    { "id": "jn-kaos", "titel": "Allt känns kaotiskt", "min": 3, "kategori": "planera", "skriven": false },
-    { "id": "jn-slut", "titel": "Jag är helt slut", "min": 2, "kategori": "balans", "skriven": false }
+    {
+      "id": "jn-igang",
+      "titel": "Jag kommer inte igång",
+      "min": 2,
+      "kategori": "igang",
+      "skriven": false
+    },
+    {
+      "id": "jn-kaos",
+      "titel": "Allt känns kaotiskt",
+      "min": 3,
+      "kategori": "planera",
+      "skriven": false
+    },
+    {
+      "id": "jn-slut",
+      "titel": "Jag är helt slut",
+      "min": 2,
+      "kategori": "balans",
+      "skriven": false
+    }
   ],
-
   "program": [
     {
-      "id": "p-igang", "kategori": "igang", "titel": "Komma igång", "undertitel": "Små knep för att ta första steget.",
+      "id": "p-igang",
+      "kategori": "igang",
+      "titel": "Komma igång",
+      "undertitel": "Små knep för att ta första steget.",
       "delar": [
-        { "id": "igang-1", "del": 1, "titel": "Det minsta första steget", "min": 4, "minKort": 2, "skriven": true,
+        {
+          "id": "igang-1",
+          "del": 1,
+          "titel": "Det minsta första steget",
+          "min": 4,
+          "minKort": 2,
+          "skriven": true,
           "forklaring": {
-            "text": ["Ofta är det inte själva uppgiften som är svårast. Det svåra är att börja. Hjärnan ser hela berget på en gång, och då är det lätt att fastna.",
-                     "Om du gör första steget riktigt litet, blir tröskeln lägre. När du väl har börjat är det ofta lättare att fortsätta. Och gör du bara det första steget, så räknas det också."],
+            "text": [
+              "Ofta är det inte själva uppgiften som är svårast. Det svåra är att börja. Hjärnan ser hela berget på en gång, och då är det lätt att fastna.",
+              "Om du gör första steget riktigt litet, blir tröskeln lägre. När du väl har börjat är det ofta lättare att fortsätta. Och gör du bara det första steget, så räknas det också."
+            ],
             "kort": "Att börja är ofta det svåraste. Gör första steget så litet att det nästan känns för lätt.",
-            "film": { "langd": "1:10", "beskrivning": "Film: därför är det svårt att börja" } },
-          "strategi": { "titel": "Hitta det minsta steget",
-            "steg": ["Välj en sak som du har skjutit upp.", "Fråga dig: vad är det allra första jag gör med händerna?", "Gör steget ännu mindre, tills det tar under två minuter.", "Gör bara det. Sen får du välja om du fortsätter."],
-            "tips": "Det är helt okej att stanna efter första steget. Du har ändå kommit igång." },
+            "film": {
+              "langd": "1:10",
+              "beskrivning": "Film: därför är det svårt att börja"
+            }
+          },
+          "strategi": {
+            "titel": "Hitta det minsta steget",
+            "steg": [
+              "Välj en sak som du har skjutit upp.",
+              "Fråga dig: vad är det allra första jag gör med händerna?",
+              "Gör steget ännu mindre, tills det tar under två minuter.",
+              "Gör bara det. Sen får du välja om du fortsätter."
+            ],
+            "tips": "Det är helt okej att stanna efter första steget. Du har ändå kommit igång."
+          },
           "exempel": {
             "hem": "Inte ”städa köket”, utan ”ställ en tallrik i diskmaskinen”.",
             "ekonomi": "Inte ”betala räkningarna”, utan ”öppna bankappen”.",
             "arbete": "Inte ”skriva rapporten”, utan ”öppna dokumentet och skriv rubriken”.",
             "relationer": "Inte ”höra av mig till Kim”, utan ”öppna chatten med Kim”.",
-            "halsa": "Inte ”träna”, utan ”ta på dig skorna”." },
-          "ovning": { "text": "Välj en sak idag och gör bara det minsta första steget.", "dagsplan": "Göra det minsta första steget på en sak" },
-          "granskning": { "princip": "Uppgiftsanalys och gradering av aktivitet", "notis": "Aktiviteten bryts ned i delmoment, och första delmomentet görs så litet att det blir genomförbart. Bygger på uppgiftsanalys och gradering, grundbegrepp inom arbetsterapi.", "status": "Ej granskad" } },
-        { "id": "igang-2", "del": 2, "titel": "Gör starten lätt", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Miljöanpassning: förbereda material och plats i förväg", "status": "Planerad" } },
-        { "id": "igang-3", "del": 3, "titel": "En tydlig startsignal", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Externt stöd: yttre signal (t.ex. larm) som påminnelse om start", "status": "Planerad" } },
-        { "id": "igang-4", "del": 4, "titel": "Koppla till något du redan gör", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Rutiner och vanor: koppla ny aktivitet till befintlig rutin", "status": "Planerad" } },
-        { "id": "igang-5", "del": 5, "titel": "När det ändå är trögt", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Gradering: sänka kraven och anpassa svårighetsgraden", "status": "Planerad" } }
+            "halsa": "Inte ”träna”, utan ”ta på dig skorna”."
+          },
+          "ovning": {
+            "text": "Välj en sak idag och gör bara det minsta första steget.",
+            "dagsplan": "Göra det minsta första steget på en sak"
+          },
+          "granskning": {
+            "princip": "Uppgiftsanalys och gradering av aktivitet",
+            "notis": "Aktiviteten bryts ned i delmoment, och första delmomentet görs så litet att det blir genomförbart. Bygger på uppgiftsanalys och gradering, grundbegrepp inom arbetsterapi.",
+            "status": "Ej granskad"
+          }
+        },
+        {
+          "id": "igang-2",
+          "del": 2,
+          "titel": "Gör starten lätt",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Miljöanpassning: förbereda material och plats i förväg",
+            "status": "Planerad"
+          }
+        },
+        {
+          "id": "igang-3",
+          "del": 3,
+          "titel": "En tydlig startsignal",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Externt stöd: yttre signal (t.ex. larm) som påminnelse om start",
+            "status": "Planerad"
+          }
+        },
+        {
+          "id": "igang-4",
+          "del": 4,
+          "titel": "Koppla till något du redan gör",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Rutiner och vanor: koppla ny aktivitet till befintlig rutin",
+            "status": "Planerad"
+          }
+        },
+        {
+          "id": "igang-5",
+          "del": 5,
+          "titel": "När det ändå är trögt",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Gradering: sänka kraven och anpassa svårighetsgraden",
+            "status": "Planerad"
+          }
+        }
       ]
     },
     {
-      "id": "p-planera", "kategori": "planera", "titel": "Planera och prioritera", "undertitel": "Fem korta steg mot en dag som går att överblicka.",
+      "id": "p-planera",
+      "kategori": "planera",
+      "titel": "Planera och prioritera",
+      "undertitel": "Fem korta steg mot en dag som går att överblicka.",
       "delar": [
-        { "id": "planera-1", "del": 1, "titel": "Få ut allt ur huvudet", "min": 4, "minKort": 2, "skriven": true,
+        {
+          "id": "planera-1",
+          "del": 1,
+          "titel": "Få ut allt ur huvudet",
+          "min": 4,
+          "minKort": 2,
+          "skriven": true,
           "forklaring": {
-            "text": ["Hjärnan är bra på att tänka, men sämre på att förvara. När många saker snurrar samtidigt blir det svårt att veta var man ska börja.",
-                     "När du skriver ner allt behöver hjärnan inte hålla i det längre. Då blir det lättare att se vad som finns, och att välja."],
+            "text": [
+              "Hjärnan är bra på att tänka, men sämre på att förvara. När många saker snurrar samtidigt blir det svårt att veta var man ska börja.",
+              "När du skriver ner allt behöver hjärnan inte hålla i det längre. Då blir det lättare att se vad som finns, och att välja."
+            ],
             "kort": "När du skriver ner det som snurrar slipper hjärnan hålla i allt. Då blir det lättare att välja.",
-            "film": { "langd": "1:20", "beskrivning": "Film: så tömmer du huvudet på ett papper" } },
-          "strategi": { "titel": "Töm huvudet på papper",
-            "steg": ["Ta ett papper, eller öppna anteckningar i mobilen.", "Skriv ner allt du tänker att du behöver göra. Stort och smått, i vilken ordning som helst.", "Sluta när det känns tomt, eller efter fem minuter."],
-            "tips": "Du behöver inte sortera något nu. Det gör vi i nästa del." },
+            "film": {
+              "langd": "1:20",
+              "beskrivning": "Film: så tömmer du huvudet på ett papper"
+            }
+          },
+          "strategi": {
+            "titel": "Töm huvudet på papper",
+            "steg": [
+              "Ta ett papper, eller öppna anteckningar i mobilen.",
+              "Skriv ner allt du tänker att du behöver göra. Stort och smått, i vilken ordning som helst.",
+              "Sluta när det känns tomt, eller efter fem minuter."
+            ],
+            "tips": "Du behöver inte sortera något nu. Det gör vi i nästa del."
+          },
           "exempel": {
             "hem": "Handla mjölk, byta lakan, laga lampan i hallen.",
             "ekonomi": "Betala elräkningen, kolla vad abonnemanget kostar.",
             "arbete": "Svara Sara, läsa kapitel 3, boka ett möte.",
             "relationer": "Ringa mamma, svara på inbjudan till fredag.",
-            "halsa": "Hämta ut medicinen, boka tid hos tandläkaren." },
-          "ovning": { "text": "Någon gång idag: skriv ner allt som snurrar. Det räcker med fem minuter.", "dagsplan": "Skriva ner allt som snurrar (5 min)" },
-          "granskning": { "princip": "Externt minnesstöd", "notis": "Att skriva ner uppgifter avlastar arbetsminnet. Vanlig kompensatorisk strategi inom arbetsterapi vid nedsatta exekutiva funktioner.", "status": "Ej granskad" } },
-        { "id": "planera-2", "del": 2, "titel": "Välj det viktigaste", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Prioritering: begränsa antalet uppgifter och sortera efter vikt", "status": "Planerad (steg 2)" } },
-        { "id": "planera-3", "del": 3, "titel": "Dela upp en stor sak", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Uppgiftsanalys: bryta ned en aktivitet i delmoment", "status": "Planerad (steg 2)" } },
-        { "id": "planera-4", "del": 4, "titel": "Ge saken en plats i dagen", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Tidsplanering med kalender eller visuellt schema", "status": "Planerad (steg 2)" } },
-        { "id": "planera-5", "del": 5, "titel": "Planera efter din energi", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Energiplanering och aktivitetsbalans", "status": "Planerad (steg 2)" } }
+            "halsa": "Hämta ut medicinen, boka tid hos tandläkaren."
+          },
+          "ovning": {
+            "text": "Någon gång idag: skriv ner allt som snurrar. Det räcker med fem minuter.",
+            "dagsplan": "Skriva ner allt som snurrar (5 min)"
+          },
+          "granskning": {
+            "princip": "Externt minnesstöd",
+            "notis": "Att skriva ner uppgifter avlastar arbetsminnet. Vanlig kompensatorisk strategi inom arbetsterapi vid nedsatta exekutiva funktioner.",
+            "status": "Ej granskad"
+          }
+        },
+        {
+          "id": "planera-2",
+          "del": 2,
+          "titel": "Välj det viktigaste",
+          "min": 4,
+          "minKort": 2,
+          "skriven": true,
+          "forklaring": {
+            "text": [
+              "När allt står på en lista kan det kännas som att allt är lika viktigt. Men allt behöver inte göras idag.",
+              "Om du väljer ut några få saker blir dagen lättare att överblicka. Resten försvinner inte. Det väntar på listan tills det är dags."
+            ],
+            "kort": "Allt behöver inte göras idag. Välj ut några få saker, resten får vänta på listan.",
+            "film": {
+              "langd": "1:15",
+              "beskrivning": "Film: allt behöver inte göras idag"
+            }
+          },
+          "strategi": {
+            "titel": "Välj högst tre saker",
+            "steg": [
+              "Titta på listan från förra gången, eller skriv en ny.",
+              "Fråga dig vid varje sak: vad händer om det inte blir gjort idag?",
+              "Välj ut högst tre saker som behöver göras idag.",
+              "Resten får vänta på listan. Den finns kvar."
+            ],
+            "tips": "Tre är ett tak, inte ett mål. På en trög dag räcker det gott med en sak."
+          },
+          "exempel": {
+            "hem": "Byta lakan kan vänta. Handla mat behöver göras idag.",
+            "ekonomi": "Räkningen som ska vara betald i morgon går före att jämföra abonnemang.",
+            "arbete": "Mejlet som måste skickas idag går före att städa inkorgen.",
+            "relationer": "Svara på inbjudan till fredag nu. Ring mamma i helgen.",
+            "halsa": "Hämta ut medicinen idag. Tandläkaren kan bokas nästa vecka."
+          },
+          "ovning": {
+            "text": "Välj högst tre saker från din lista och lägg dem i dagsplanen.",
+            "dagsplan": "Välja högst tre saker för idag"
+          },
+          "granskning": {
+            "princip": "Prioritering: begränsa antalet uppgifter",
+            "notis": "Att välja ut ett fåtal uppgifter och skjuta upp resten minskar belastningen på planering och arbetsminne. Vanlig strategi inom arbetsterapi och i stöd vid ADHD.",
+            "status": "Ej granskad"
+          }
+        },
+        {
+          "id": "planera-3",
+          "del": 3,
+          "titel": "Dela upp en stor sak",
+          "min": 4,
+          "minKort": 2,
+          "skriven": true,
+          "forklaring": {
+            "text": [
+              "Vissa saker känns så stora att det är svårt att veta var man ska börja. ”Städa lägenheten” eller ”söka jobb” är egentligen många saker på en gång.",
+              "När du delar upp en stor sak i små delar blir varje del lättare att förstå och att börja med. Du ser också hur långt du har kommit."
+            ],
+            "kort": "En stor sak är ofta många små. Dela upp den, så blir varje del lättare att börja med.",
+            "film": {
+              "langd": "1:20",
+              "beskrivning": "Film: så blir en stor sak mindre"
+            }
+          },
+          "strategi": {
+            "titel": "Dela upp i delar",
+            "steg": [
+              "Välj en stor sak från din lista.",
+              "Skriv ner vad som behöver hända, en del per rad.",
+              "Är en del fortfarande stor? Dela upp den igen.",
+              "Varje del ska gå att göra på en gång, gärna på under 15 minuter."
+            ],
+            "tips": "Stryk varje del när den är gjord. Då syns det att du kommer framåt."
+          },
+          "exempel": {
+            "hem": "”Städa” blir: plocka undan i hallen, torka köksbänken, dammsuga vardagsrummet.",
+            "ekonomi": "”Deklarera” blir: logga in, läsa igenom, ändra det som är fel, skicka in.",
+            "arbete": "”Skriva rapporten” blir: göra en disposition, skriva inledningen, läsa igenom.",
+            "relationer": "”Ordna kalas” blir: bestämma datum, skicka inbjudan, handla.",
+            "halsa": "”Börja träna” blir: välja en aktivitet, hitta en tid, packa väskan."
+          },
+          "ovning": {
+            "text": "Välj en stor sak och dela upp den i små delar.",
+            "dagsplan": "Dela upp en stor sak i delar"
+          },
+          "granskning": {
+            "princip": "Uppgiftsanalys",
+            "notis": "Att bryta ned en aktivitet i delmoment är ett grundläggande arbetsterapeutiskt verktyg för att göra aktiviteter genomförbara.",
+            "status": "Ej granskad"
+          }
+        },
+        {
+          "id": "planera-4",
+          "del": 4,
+          "titel": "Ge saken en plats i dagen",
+          "min": 4,
+          "minKort": 2,
+          "skriven": true,
+          "forklaring": {
+            "text": [
+              "En sak som bara står på en lista kan lätt glida vidare, dag efter dag. Det är lätt att tänka ”jag gör det sen”, och sen kommer aldrig.",
+              "När du bestämmer när du ska göra något blir det mer verkligt. En tid i kalendern fungerar som en påminnelse och gör det lättare att komma igång."
+            ],
+            "kort": "Bestäm när du ska göra saken och skriv in tiden. Då blir den lättare att komma ihåg och att börja med.",
+            "film": {
+              "langd": "1:10",
+              "beskrivning": "Film: från lista till kalender"
+            }
+          },
+          "strategi": {
+            "titel": "Skriv in en tid",
+            "steg": [
+              "Välj en sak från din lista.",
+              "Bestäm en tid idag eller i morgon. Välj en tid när du brukar ha ork.",
+              "Skriv in den i kalendern eller mobilen, gärna med ett larm.",
+              "Räkna med lite extra tid. Det mesta tar längre tid än man tror."
+            ],
+            "tips": "Om tiden inte passar när den kommer är det okej att flytta den. Flytta hellre än att stryka."
+          },
+          "exempel": {
+            "hem": "Tvätta på torsdag klockan 18, direkt efter middagen.",
+            "ekonomi": "Betala räkningarna på lönedagen, klockan 10.",
+            "arbete": "Läsa kapitel 3 på tisdag mellan 9 och 9.30.",
+            "relationer": "Ringa mamma på söndag klockan 11.",
+            "halsa": "Promenad efter lunch varje vardag."
+          },
+          "ovning": {
+            "text": "Ge en sak från din lista en tid i kalendern.",
+            "dagsplan": "Skriva in en sak i kalendern"
+          },
+          "granskning": {
+            "princip": "Tidsplanering med kalender och schema",
+            "notis": "Att schemalägga aktiviteter i kalender eller visuellt schema är ett vanligt kompensatoriskt stöd för planering och tidsuppfattning vid kognitiva svårigheter.",
+            "status": "Ej granskad"
+          }
+        },
+        {
+          "id": "planera-5",
+          "del": 5,
+          "titel": "Planera efter din energi",
+          "min": 4,
+          "minKort": 2,
+          "skriven": true,
+          "forklaring": {
+            "text": [
+              "Olika saker tar olika mycket energi. Och energin är inte densamma hela dagen, eller varje dag.",
+              "Om du vet när du brukar ha mest ork kan du lägga det tunga då. Det lätta kan du spara till när energin är lägre. Då räcker den ofta längre."
+            ],
+            "kort": "Lägg det tunga när du har mest ork, och det lätta när energin är lägre.",
+            "film": {
+              "langd": "1:20",
+              "beskrivning": "Film: planera med energin"
+            }
+          },
+          "strategi": {
+            "titel": "Matcha saker med din energi",
+            "steg": [
+              "Tänk efter: när på dagen brukar du ha mest ork?",
+              "Titta på din lista. Vilka saker är tunga, och vilka är lätta?",
+              "Lägg en tung sak när du brukar ha ork. Lägg lätta saker runt omkring.",
+              "Planera in en paus efter det tunga."
+            ],
+            "tips": "Energiincheckningen på morgonen hjälper dig. På en dag med lite energi räcker det med en lätt sak."
+          },
+          "exempel": {
+            "hem": "Storstäda på förmiddagen, vika tvätt på kvällen.",
+            "ekonomi": "Gå igenom räkningarna när du är pigg, inte sent på kvällen.",
+            "arbete": "Svåra uppgifter före lunch, mejl efter.",
+            "relationer": "Träffa många en dag när du har ork, och vila dagen efter.",
+            "halsa": "Träna när du brukar ha energi, och vila en stund efteråt."
+          },
+          "ovning": {
+            "text": "Hitta din bästa tid på dagen och lägg en tung sak där.",
+            "dagsplan": "Lägga en tung sak på min bästa tid"
+          },
+          "granskning": {
+            "princip": "Energiplanering och aktivitetsbalans",
+            "notis": "Att fördela krävande och mindre krävande aktiviteter efter energinivå och planera pauser är centrala delar av energibesparande strategier och aktivitetsbalans inom arbetsterapi.",
+            "status": "Ej granskad"
+          }
+        }
       ]
     },
     {
-      "id": "p-tid", "kategori": "tid", "titel": "Hålla koll på tiden", "undertitel": "Gör tiden lättare att se och känna.",
+      "id": "p-tid",
+      "kategori": "tid",
+      "titel": "Hålla koll på tiden",
+      "undertitel": "Gör tiden lättare att se och känna.",
       "delar": [
-        { "id": "tid-1", "del": 1, "titel": "Gör tiden synlig", "min": 4, "minKort": 2, "skriven": true,
+        {
+          "id": "tid-1",
+          "del": 1,
+          "titel": "Gör tiden synlig",
+          "min": 4,
+          "minKort": 2,
+          "skriven": true,
           "forklaring": {
-            "text": ["Tid är osynlig. För många känns tio minuter och en timme nästan likadant, särskilt när man är uppslukad av något.",
-                     "När du kan se tiden, till exempel på en timer som räknar ner, behöver du inte känna den. Du ser den i stället."],
+            "text": [
+              "Tid är osynlig. För många känns tio minuter och en timme nästan likadant, särskilt när man är uppslukad av något.",
+              "När du kan se tiden, till exempel på en timer som räknar ner, behöver du inte känna den. Du ser den i stället."
+            ],
             "kort": "Tid är osynlig. En timer som räknar ner gör den lättare att se.",
-            "film": { "langd": "1:05", "beskrivning": "Film: varför tiden försvinner" } },
-          "strategi": { "titel": "Använd en timer som syns",
-            "steg": ["Välj en sak du ska göra idag.", "Ställ en timer på den tid du vill lägga, till exempel 15 minuter.", "Ställ timern där du ser den, och titta på den då och då.", "När den ringer: stanna och bestäm vad du gör sen."],
-            "tips": "Det finns timers som visar tiden som en färgad yta som krymper. Många tycker att de är lättare att läsa av än siffror." },
+            "film": {
+              "langd": "1:05",
+              "beskrivning": "Film: varför tiden försvinner"
+            }
+          },
+          "strategi": {
+            "titel": "Använd en timer som syns",
+            "steg": [
+              "Välj en sak du ska göra idag.",
+              "Ställ en timer på den tid du vill lägga, till exempel 15 minuter.",
+              "Ställ timern där du ser den, och titta på den då och då.",
+              "När den ringer: stanna och bestäm vad du gör sen."
+            ],
+            "tips": "Det finns timers som visar tiden som en färgad yta som krymper. Många tycker att de är lättare att läsa av än siffror."
+          },
           "exempel": {
             "hem": "Städa badrummet i 15 minuter. Sen är du klar, även om det inte är perfekt.",
             "ekonomi": "Gå igenom räkningarna i 10 minuter.",
             "arbete": "Plugga i 20 minuter, sen paus.",
             "relationer": "Ställ en timer för när det är dags att gå hemifrån för att träffa någon.",
-            "halsa": "Ställ en timer för när det är dags att äta lunch." },
-          "ovning": { "text": "Använd en timer för en sak idag.", "dagsplan": "Använda en timer för en sak" },
-          "granskning": { "princip": "Externt tidsstöd", "notis": "Tidshjälpmedel, t.ex. timer eller visuell timer, används som kompensation vid nedsatt tidsuppfattning. Vanligt kognitivt hjälpmedel inom arbetsterapi.", "status": "Ej granskad" } },
-        { "id": "tid-2", "del": 2, "titel": "Hur lång tid tar det?", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Tidsuppskattning med återkoppling: jämföra gissad och verklig tid", "status": "Planerad" } },
-        { "id": "tid-3", "del": 3, "titel": "Räkna baklänges från en tid", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Tidsplanering bakåt från en fast tidpunkt", "status": "Planerad" } },
-        { "id": "tid-4", "del": 4, "titel": "Luft mellan sakerna", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Planera marginaler mellan aktiviteter", "status": "Planerad" } },
-        { "id": "tid-5", "del": 5, "titel": "Larm som hjälper", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Externt stöd: påminnelser och larm", "status": "Planerad" } }
+            "halsa": "Ställ en timer för när det är dags att äta lunch."
+          },
+          "ovning": {
+            "text": "Använd en timer för en sak idag.",
+            "dagsplan": "Använda en timer för en sak"
+          },
+          "granskning": {
+            "princip": "Externt tidsstöd",
+            "notis": "Tidshjälpmedel, t.ex. timer eller visuell timer, används som kompensation vid nedsatt tidsuppfattning. Vanligt kognitivt hjälpmedel inom arbetsterapi.",
+            "status": "Ej granskad"
+          }
+        },
+        {
+          "id": "tid-2",
+          "del": 2,
+          "titel": "Dela dagen i block",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Tidsstrukturering: dela dagen i tydliga block",
+            "status": "Planerad"
+          }
+        },
+        {
+          "id": "tid-3",
+          "del": 3,
+          "titel": "Räkna baklänges från en tid",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Tidsplanering bakåt från en fast tidpunkt",
+            "status": "Planerad"
+          }
+        },
+        {
+          "id": "tid-4",
+          "del": 4,
+          "titel": "Luft mellan sakerna",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Planera marginaler mellan aktiviteter",
+            "status": "Planerad"
+          }
+        },
+        {
+          "id": "tid-5",
+          "del": 5,
+          "titel": "Larm som hjälper",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Externt stöd: påminnelser och larm",
+            "status": "Planerad"
+          }
+        }
       ]
     },
     {
-      "id": "p-minne", "kategori": "minne", "titel": "Komma ihåg", "undertitel": "Låt saker och platser minnas åt dig.",
+      "id": "p-minne",
+      "kategori": "minne",
+      "titel": "Komma ihåg",
+      "undertitel": "Låt saker och platser minnas åt dig.",
       "delar": [
-        { "id": "minne-1", "del": 1, "titel": "En fast plats för det viktiga", "min": 4, "minKort": 2, "skriven": true,
+        {
+          "id": "minne-1",
+          "del": 1,
+          "titel": "En fast plats för det viktiga",
+          "min": 4,
+          "minKort": 2,
+          "skriven": true,
           "forklaring": {
-            "text": ["Arbetsminnet är som en liten ficka i huvudet. Det får inte plats så mycket där, och det som ligger där kan lätt ramla ur.",
-                     "Om nycklar, plånbok och mobil alltid har samma plats, behöver du inte komma ihåg var de är. Platsen kommer ihåg åt dig."],
+            "text": [
+              "Arbetsminnet är som en liten ficka i huvudet. Det får inte plats så mycket där, och det som ligger där kan lätt ramla ur.",
+              "Om nycklar, plånbok och mobil alltid har samma plats, behöver du inte komma ihåg var de är. Platsen kommer ihåg åt dig."
+            ],
             "kort": "Ge viktiga saker en fast plats. Då behöver du inte komma ihåg var de är.",
-            "film": { "langd": "1:00", "beskrivning": "Film: därför hjälper fasta platser" } },
-          "strategi": { "titel": "Bestäm en fast plats",
-            "steg": ["Välj en sak som du ofta letar efter, till exempel nycklarna.", "Bestäm en plats nära dörren, som en krok eller en skål.", "Lägg saken där varje gång du kommer hem.", "Gör platsen tydlig de första veckorna, till exempel med en lapp."],
-            "tips": "Det tar ett tag innan det blir en vana. Glömmer du någon gång, lägg bara tillbaka saken när du hittar den." },
+            "film": {
+              "langd": "1:00",
+              "beskrivning": "Film: därför hjälper fasta platser"
+            }
+          },
+          "strategi": {
+            "titel": "Bestäm en fast plats",
+            "steg": [
+              "Välj en sak som du ofta letar efter, till exempel nycklarna.",
+              "Bestäm en plats nära dörren, som en krok eller en skål.",
+              "Lägg saken där varje gång du kommer hem.",
+              "Gör platsen tydlig de första veckorna, till exempel med en lapp."
+            ],
+            "tips": "Det tar ett tag innan det blir en vana. Glömmer du någon gång, lägg bara tillbaka saken när du hittar den."
+          },
           "exempel": {
             "hem": "Nycklarna på kroken vid dörren.",
             "ekonomi": "Kvitton och räkningar i en och samma låda.",
             "arbete": "Laddaren och passerkortet i väskans framficka.",
             "relationer": "Kort och presenter du ska ge bort i en påse vid dörren.",
-            "halsa": "Medicinen bredvid tandborsten." },
-          "ovning": { "text": "Välj en sak och ge den en fast plats idag.", "dagsplan": "Ge en sak en fast plats" },
-          "granskning": { "princip": "Strukturering av miljön: fasta platser", "notis": "Fasta platser för föremål minskar kraven på minne och sökande. Vanlig strategi för miljöanpassning vid minnessvårigheter, t.ex. efter förvärvad hjärnskada och vid ADHD.", "status": "Ej granskad" } },
-        { "id": "minne-2", "del": 2, "titel": "Skriv ner direkt", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Externt minnesstöd: anteckna direkt, på ett och samma ställe", "status": "Planerad" } },
-        { "id": "minne-3", "del": 3, "titel": "En kalender för allt", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Externt minnesstöd: en samlad kalender", "status": "Planerad" } },
-        { "id": "minne-4", "del": 4, "titel": "Checklistor för det som återkommer", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Checklistor som kognitivt stöd", "status": "Planerad" } },
-        { "id": "minne-5", "del": 5, "titel": "Påminnelser vid rätt tillfälle", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Externt stöd: påminnelse kopplad till tid eller plats", "status": "Planerad" } }
+            "halsa": "Medicinen bredvid tandborsten."
+          },
+          "ovning": {
+            "text": "Välj en sak och ge den en fast plats idag.",
+            "dagsplan": "Ge en sak en fast plats"
+          },
+          "granskning": {
+            "princip": "Strukturering av miljön: fasta platser",
+            "notis": "Fasta platser för föremål minskar kraven på minne och sökande. Vanlig strategi för miljöanpassning vid minnessvårigheter, t.ex. efter förvärvad hjärnskada och vid ADHD.",
+            "status": "Ej granskad"
+          }
+        },
+        {
+          "id": "minne-2",
+          "del": 2,
+          "titel": "Skriv ner direkt",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Externt minnesstöd: anteckna direkt, på ett och samma ställe",
+            "status": "Planerad"
+          }
+        },
+        {
+          "id": "minne-3",
+          "del": 3,
+          "titel": "En kalender för allt",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Externt minnesstöd: en samlad kalender",
+            "status": "Planerad"
+          }
+        },
+        {
+          "id": "minne-4",
+          "del": 4,
+          "titel": "Checklistor för det som återkommer",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Checklistor som kognitivt stöd",
+            "status": "Planerad"
+          }
+        },
+        {
+          "id": "minne-5",
+          "del": 5,
+          "titel": "Påminnelser vid rätt tillfälle",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Externt stöd: påminnelse kopplad till tid eller plats",
+            "status": "Planerad"
+          }
+        }
       ]
     },
     {
-      "id": "p-fokus", "kategori": "fokus", "titel": "Behålla fokus", "undertitel": "Gör det lättare att stanna kvar i en sak.",
+      "id": "p-fokus",
+      "kategori": "fokus",
+      "titel": "Behålla fokus",
+      "undertitel": "Gör det lättare att stanna kvar i en sak.",
       "delar": [
-        { "id": "fokus-1", "del": 1, "titel": "Minska det som stör", "min": 4, "minKort": 2, "skriven": true,
+        {
+          "id": "fokus-1",
+          "del": 1,
+          "titel": "Minska det som stör",
+          "min": 4,
+          "minKort": 2,
+          "skriven": true,
           "forklaring": {
-            "text": ["Uppmärksamheten dras lätt till det som låter, lyser eller rör sig. Det handlar inte om vilja. Så fungerar hjärnan, och för en del är dragningen extra stark.",
-                     "Det är lättare att ändra omgivningen än att kämpa emot. Varje sak som stör lite mindre ger fokus lite mer plats."],
+            "text": [
+              "Uppmärksamheten dras lätt till det som låter, lyser eller rör sig. Det handlar inte om vilja. Så fungerar hjärnan, och för en del är dragningen extra stark.",
+              "Det är lättare att ändra omgivningen än att kämpa emot. Varje sak som stör lite mindre ger fokus lite mer plats."
+            ],
             "kort": "Det är lättare att ändra omgivningen än att kämpa emot. Ta bort en sak som stör.",
-            "film": { "langd": "1:15", "beskrivning": "Film: därför tappar vi fokus" } },
-          "strategi": { "titel": "Ta bort en störning innan du börjar",
-            "steg": ["Välj en sak du ska göra.", "Titta dig omkring. Vad brukar dra i dig? Ofta är det mobilen.", "Lägg mobilen i ett annat rum, eller vänd den nedåt med ljudet av.", "Börja på uppgiften. Tappar du tråden är det okej. Gå bara tillbaka."],
-            "tips": "Du behöver inte ta bort allt. En enda störning mindre gör skillnad." },
+            "film": {
+              "langd": "1:15",
+              "beskrivning": "Film: därför tappar vi fokus"
+            }
+          },
+          "strategi": {
+            "titel": "Ta bort en störning innan du börjar",
+            "steg": [
+              "Välj en sak du ska göra.",
+              "Titta dig omkring. Vad brukar dra i dig? Ofta är det mobilen.",
+              "Lägg mobilen i ett annat rum, eller vänd den nedåt med ljudet av.",
+              "Börja på uppgiften. Tappar du tråden är det okej. Gå bara tillbaka."
+            ],
+            "tips": "Du behöver inte ta bort allt. En enda störning mindre gör skillnad."
+          },
           "exempel": {
             "hem": "Stäng av radion medan du lagar mat efter recept.",
             "ekonomi": "Stäng andra flikar när du ska göra en betalning.",
             "arbete": "Stäng mejlen medan du skriver.",
             "relationer": "Lägg undan mobilen när du pratar med någon du tycker om.",
-            "halsa": "Ha mobilen i ett annat rum när du ska sova." },
-          "ovning": { "text": "Ta bort en störning innan du gör en sak idag.", "dagsplan": "Ta bort en störning, sen göra en sak" },
-          "granskning": { "princip": "Miljöanpassning: minska yttre distraktioner", "notis": "Anpassning av den fysiska miljön för att minska distraktioner. Etablerad strategi vid uppmärksamhetssvårigheter.", "status": "Ej granskad" } },
-        { "id": "fokus-2", "del": 2, "titel": "Korta arbetspass", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Tidsavgränsade arbetspass med pauser", "status": "Planerad" } },
-        { "id": "fokus-3", "del": 3, "titel": "Parkera tankarna", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Externt minnesstöd: skriv ner avbrytande tankar till senare", "status": "Planerad" } },
-        { "id": "fokus-4", "del": 4, "titel": "En sak i taget", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Göra uppgifter i följd i stället för parallellt", "status": "Planerad" } },
-        { "id": "fokus-5", "del": 5, "titel": "Stanna upp innan du gör", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Impulskontroll: paus före handling (självinstruktion)", "status": "Planerad" } }
+            "halsa": "Ha mobilen i ett annat rum när du ska sova."
+          },
+          "ovning": {
+            "text": "Ta bort en störning innan du gör en sak idag.",
+            "dagsplan": "Ta bort en störning, sen göra en sak"
+          },
+          "granskning": {
+            "princip": "Miljöanpassning: minska yttre distraktioner",
+            "notis": "Anpassning av den fysiska miljön för att minska distraktioner. Etablerad strategi vid uppmärksamhetssvårigheter.",
+            "status": "Ej granskad"
+          }
+        },
+        {
+          "id": "fokus-2",
+          "del": 2,
+          "titel": "Korta arbetspass",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Tidsavgränsade arbetspass med pauser",
+            "status": "Planerad"
+          }
+        },
+        {
+          "id": "fokus-3",
+          "del": 3,
+          "titel": "Parkera tankarna",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Externt minnesstöd: skriv ner avbrytande tankar till senare",
+            "status": "Planerad"
+          }
+        },
+        {
+          "id": "fokus-4",
+          "del": 4,
+          "titel": "En sak i taget",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Göra uppgifter i följd i stället för parallellt",
+            "status": "Planerad"
+          }
+        },
+        {
+          "id": "fokus-5",
+          "del": 5,
+          "titel": "Stanna upp innan du gör",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Impulskontroll: paus före handling (självinstruktion)",
+            "status": "Planerad"
+          }
+        }
       ]
     },
     {
-      "id": "p-kanslor", "kategori": "kanslor", "titel": "Hantera känslor och stress", "undertitel": "Hitta lugnet lite oftare.",
+      "id": "p-kanslor",
+      "kategori": "kanslor",
+      "titel": "Hantera känslor och stress",
+      "undertitel": "Hitta lugnet lite oftare.",
       "delar": [
-        { "id": "kanslor-1", "del": 1, "titel": "Andas ut lite längre", "min": 4, "minKort": 2, "skriven": true,
+        {
+          "id": "kanslor-1",
+          "del": 1,
+          "titel": "Andas ut lite längre",
+          "min": 4,
+          "minKort": 2,
+          "skriven": true,
           "forklaring": {
-            "text": ["När du blir stressad gör kroppen sig redo att agera. Hjärtat slår fortare och andningen blir snabb och ytlig.",
-                     "Du kan inte alltid ändra det som händer runt dig. Men du kan påverka andningen. En lugn andning där du andas ut lite längre än du andas in kan hjälpa kroppen att varva ner."],
+            "text": [
+              "När du blir stressad gör kroppen sig redo att agera. Hjärtat slår fortare och andningen blir snabb och ytlig.",
+              "Du kan inte alltid ändra det som händer runt dig. Men du kan påverka andningen. En lugn andning där du andas ut lite längre än du andas in kan hjälpa kroppen att varva ner."
+            ],
             "kort": "Lugn andning, med lite längre utandning, kan hjälpa kroppen att varva ner.",
-            "film": { "langd": "1:30", "beskrivning": "Film: vad händer i kroppen vid stress?" } },
-          "strategi": { "titel": "Lugn andning",
-            "steg": ["Sitt eller stå bekvämt. Släpp ner axlarna.", "Andas in lugnt genom näsan medan du räknar till fyra.", "Andas ut långsamt medan du räknar till sex.", "Gör det fem gånger."],
-            "tips": "Känns det obekvämt eller yr, andas som vanligt i stället. Det finns inget rätt sätt." },
+            "film": {
+              "langd": "1:30",
+              "beskrivning": "Film: vad händer i kroppen vid stress?"
+            }
+          },
+          "strategi": {
+            "titel": "Lugn andning",
+            "steg": [
+              "Sitt eller stå bekvämt. Släpp ner axlarna.",
+              "Andas in lugnt genom näsan medan du räknar till fyra.",
+              "Andas ut långsamt medan du räknar till sex.",
+              "Gör det fem gånger."
+            ],
+            "tips": "Känns det obekvämt eller yr, andas som vanligt i stället. Det finns inget rätt sätt."
+          },
           "exempel": {
             "hem": "När det känns rörigt hemma, innan du börjar plocka.",
             "ekonomi": "Innan du öppnar ett brev som känns jobbigt.",
             "arbete": "Innan ett möte eller en uppgift som stressar.",
             "relationer": "När ett samtal börjar kännas jobbigt.",
-            "halsa": "I väntrummet innan en tid i vården." },
-          "ovning": { "text": "Prova lugn andning en gång idag, gärna innan något som känns stressigt.", "dagsplan": "Andas lugnt fem gånger" },
-          "granskning": { "princip": "Andningsövning med förlängd utandning", "notis": "Långsam andning med förlängd utandning används brett inom stresshantering för att minska kroppsligt stresspåslag.", "status": "Ej granskad" } },
-        { "id": "kanslor-2", "del": 2, "titel": "Sätt ord på känslan", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Känslomedvetenhet: känna igen och benämna känslor", "status": "Planerad" } },
-        { "id": "kanslor-3", "del": 3, "titel": "Dina tidiga signaler", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Känna igen tidiga tecken på stress", "status": "Planerad" } },
-        { "id": "kanslor-4", "del": 4, "titel": "En lugn plats", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Sensorisk anpassning och återhämtning", "status": "Planerad" } },
-        { "id": "kanslor-5", "del": 5, "titel": "En plan för svåra stunder", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Förberedd handlingsplan för svåra situationer", "status": "Planerad" } }
+            "halsa": "I väntrummet innan en tid i vården."
+          },
+          "ovning": {
+            "text": "Prova lugn andning en gång idag, gärna innan något som känns stressigt.",
+            "dagsplan": "Andas lugnt fem gånger"
+          },
+          "granskning": {
+            "princip": "Andningsövning med förlängd utandning",
+            "notis": "Långsam andning med förlängd utandning används brett inom stresshantering för att minska kroppsligt stresspåslag.",
+            "status": "Ej granskad"
+          }
+        },
+        {
+          "id": "kanslor-2",
+          "del": 2,
+          "titel": "Sätt ord på känslan",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Känslomedvetenhet: känna igen och benämna känslor",
+            "status": "Planerad"
+          }
+        },
+        {
+          "id": "kanslor-3",
+          "del": 3,
+          "titel": "Dina tidiga signaler",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Känna igen tidiga tecken på stress",
+            "status": "Planerad"
+          }
+        },
+        {
+          "id": "kanslor-4",
+          "del": 4,
+          "titel": "En lugn plats",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Sensorisk anpassning och återhämtning",
+            "status": "Planerad"
+          }
+        },
+        {
+          "id": "kanslor-5",
+          "del": 5,
+          "titel": "En plan för svåra stunder",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Förberedd handlingsplan för svåra situationer",
+            "status": "Planerad"
+          }
+        }
       ]
     },
     {
-      "id": "p-forandring", "kategori": "forandring", "titel": "Hantera förändringar", "undertitel": "Bli lite tryggare när saker ändras.",
+      "id": "p-forandring",
+      "kategori": "forandring",
+      "titel": "Hantera förändringar",
+      "undertitel": "Bli lite tryggare när saker ändras.",
       "delar": [
-        { "id": "forandring-1", "del": 1, "titel": "Om det händer, så gör jag …", "min": 4, "minKort": 2, "skriven": true,
+        {
+          "id": "forandring-1",
+          "del": 1,
+          "titel": "Om det händer, så gör jag …",
+          "min": 4,
+          "minKort": 2,
+          "skriven": true,
           "forklaring": {
-            "text": ["När något ändras plötsligt kan det kännas som att marken försvinner. Det är vanligt, särskilt om man mår bäst av att veta vad som ska hända.",
-                     "Du kan inte veta allt i förväg. Men du kan bestämma hur du vill göra om något ändras. Då finns planen redan där när det händer."],
+            "text": [
+              "När något ändras plötsligt kan det kännas som att marken försvinner. Det är vanligt, särskilt om man mår bäst av att veta vad som ska hända.",
+              "Du kan inte veta allt i förväg. Men du kan bestämma hur du vill göra om något ändras. Då finns planen redan där när det händer."
+            ],
             "kort": "Bestäm i förväg vad du gör om något ändras. Då finns planen redan där.",
-            "film": { "langd": "1:10", "beskrivning": "Film: varför förändringar tar så mycket kraft" } },
-          "strategi": { "titel": "Gör en om-så-plan",
-            "steg": ["Tänk på något idag som skulle kunna ändras.", "Skriv: ”Om det händer …”", "Fortsätt: ”… så gör jag …”", "Håll planen kort. En sak räcker."],
-            "tips": "Planen behöver inte vara perfekt. Det viktiga är att du har tänkt tanken en gång innan." },
+            "film": {
+              "langd": "1:10",
+              "beskrivning": "Film: varför förändringar tar så mycket kraft"
+            }
+          },
+          "strategi": {
+            "titel": "Gör en om-så-plan",
+            "steg": [
+              "Tänk på något idag som skulle kunna ändras.",
+              "Skriv: ”Om det händer …”",
+              "Fortsätt: ”… så gör jag …”",
+              "Håll planen kort. En sak räcker."
+            ],
+            "tips": "Planen behöver inte vara perfekt. Det viktiga är att du har tänkt tanken en gång innan."
+          },
           "exempel": {
             "hem": "Om det inte finns mjölk, så äter jag gröt med vatten i stället.",
             "ekonomi": "Om kortet inte fungerar i affären, så betalar jag med mobilen.",
             "arbete": "Om mötet flyttas, så använder jag tiden till att läsa mejl.",
             "relationer": "Om min vän ställer in, så går jag en promenad i stället.",
-            "halsa": "Om bussen är full, så väntar jag på nästa och skickar ett sms om att jag blir sen." },
-          "ovning": { "text": "Gör en om-så-plan för något idag.", "dagsplan": "Göra en om-så-plan" },
-          "granskning": { "princip": "Om-så-planer (implementeringsintentioner)", "notis": "Förutbestämda handlingsplaner i formen ”om X, så Y” är en välbeforskad strategi för målinriktat beteende. Används här för att öka förutsägbarheten vid förändringar.", "status": "Ej granskad" } },
-        { "id": "forandring-2", "del": 2, "titel": "Förbered dig på det nya", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Förberedelse och förutsägbarhet", "status": "Planerad" } },
-        { "id": "forandring-3", "del": 3, "titel": "Små förändringar i lagom takt", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Gradvis tillvänjning", "status": "Planerad" } },
-        { "id": "forandring-4", "del": 4, "titel": "När planen ändras", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Flexibel planering med reservplan", "status": "Planerad" } },
-        { "id": "forandring-5", "del": 5, "titel": "Efter en förändring", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Återhämtning efter påfrestning", "status": "Planerad" } }
+            "halsa": "Om bussen är full, så väntar jag på nästa och skickar ett sms om att jag blir sen."
+          },
+          "ovning": {
+            "text": "Gör en om-så-plan för något idag.",
+            "dagsplan": "Göra en om-så-plan"
+          },
+          "granskning": {
+            "princip": "Om-så-planer (implementeringsintentioner)",
+            "notis": "Förutbestämda handlingsplaner i formen ”om X, så Y” är en välbeforskad strategi för målinriktat beteende. Används här för att öka förutsägbarheten vid förändringar.",
+            "status": "Ej granskad"
+          }
+        },
+        {
+          "id": "forandring-2",
+          "del": 2,
+          "titel": "Ta reda på mer i förväg",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Förberedelse: information inför nya situationer",
+            "status": "Planerad"
+          }
+        },
+        {
+          "id": "forandring-3",
+          "del": 3,
+          "titel": "Små förändringar i lagom takt",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Gradvis tillvänjning",
+            "status": "Planerad"
+          }
+        },
+        {
+          "id": "forandring-4",
+          "del": 4,
+          "titel": "När planen ändras",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Flexibel planering med reservplan",
+            "status": "Planerad"
+          }
+        },
+        {
+          "id": "forandring-5",
+          "del": 5,
+          "titel": "Efter en förändring",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Återhämtning efter påfrestning",
+            "status": "Planerad"
+          }
+        }
       ]
     },
     {
-      "id": "p-balans", "kategori": "balans", "titel": "Balans och återhämtning", "undertitel": "Få energin att räcka lite längre.",
+      "id": "p-balans",
+      "kategori": "balans",
+      "titel": "Balans och återhämtning",
+      "undertitel": "Få energin att räcka lite längre.",
       "delar": [
-        { "id": "balans-1", "del": 1, "titel": "Pausa innan du behöver", "min": 4, "minKort": 2, "skriven": true,
+        {
+          "id": "balans-1",
+          "del": 1,
+          "titel": "Pausa innan du behöver",
+          "min": 4,
+          "minKort": 2,
+          "skriven": true,
           "forklaring": {
-            "text": ["Många vilar först när energin redan är slut. Då tar det ofta längre tid att hämta sig.",
-                     "Om du tar små pauser innan du är helt slut, räcker energin ofta längre. Pausen är en del av planen, inte en belöning som du måste förtjäna."],
+            "text": [
+              "Många vilar först när energin redan är slut. Då tar det ofta längre tid att hämta sig.",
+              "Om du tar små pauser innan du är helt slut, räcker energin ofta längre. Pausen är en del av planen, inte en belöning som du måste förtjäna."
+            ],
             "kort": "Pausa innan du är helt slut. Då räcker energin ofta längre.",
-            "film": { "langd": "1:20", "beskrivning": "Film: därför lönar det sig att pausa tidigt" } },
-          "strategi": { "titel": "Planera in en paus",
-            "steg": ["Välj en sak idag som brukar ta på krafterna.", "Bestäm en kort paus mitt i eller direkt efter, till exempel fem minuter.", "Vila på riktigt: sitt eller ligg, gärna utan mobil.", "Lägg märke till hur det känns efteråt."],
-            "tips": "En paus behöver inte vara lång för att räknas." },
+            "film": {
+              "langd": "1:20",
+              "beskrivning": "Film: därför lönar det sig att pausa tidigt"
+            }
+          },
+          "strategi": {
+            "titel": "Planera in en paus",
+            "steg": [
+              "Välj en sak idag som brukar ta på krafterna.",
+              "Bestäm en kort paus mitt i eller direkt efter, till exempel fem minuter.",
+              "Vila på riktigt: sitt eller ligg, gärna utan mobil.",
+              "Lägg märke till hur det känns efteråt."
+            ],
+            "tips": "En paus behöver inte vara lång för att räknas."
+          },
           "exempel": {
             "hem": "Dela upp städningen: ett rum, sen en paus.",
             "ekonomi": "En paus efter att du har gått igenom räkningarna.",
             "arbete": "Fem minuters paus varje timme.",
             "relationer": "En lugn stund ensam efter att du har träffat många.",
-            "halsa": "Sätt dig en stund efter att du har handlat." },
-          "ovning": { "text": "Lägg in en kort paus i din dag.", "dagsplan": "Ta en kort paus (5 min)" },
-          "granskning": { "princip": "Energiplanering och aktivitetsbalans", "notis": "Planerade pauser innan man blir uttröttad är en central del av energiplanering vid fatigue, t.ex. efter förvärvad hjärnskada och vid utmattning.", "status": "Ej granskad" } },
-        { "id": "balans-2", "del": 2, "titel": "Hur ser din dag ut?", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Aktivitetsbalans: kartlägga dagens aktiviteter", "status": "Planerad" } },
-        { "id": "balans-3", "del": 3, "titel": "Vad ger och vad tar energi?", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Energikartläggning", "status": "Planerad" } },
-        { "id": "balans-4", "del": 4, "titel": "Lagom även på bra dagar", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Undvika att göra för mycket på dagar med mer energi", "status": "Planerad" } },
-        { "id": "balans-5", "del": 5, "titel": "Vila som räknas", "min": 4, "minKort": 2, "skriven": false,
-          "granskning": { "princip": "Återhämtande aktiviteter", "status": "Planerad" } }
+            "halsa": "Sätt dig en stund efter att du har handlat."
+          },
+          "ovning": {
+            "text": "Lägg in en kort paus i din dag.",
+            "dagsplan": "Ta en kort paus (5 min)"
+          },
+          "granskning": {
+            "princip": "Energiplanering och aktivitetsbalans",
+            "notis": "Planerade pauser innan man blir uttröttad är en central del av energiplanering vid fatigue, t.ex. efter förvärvad hjärnskada och vid utmattning.",
+            "status": "Ej granskad"
+          }
+        },
+        {
+          "id": "balans-2",
+          "del": 2,
+          "titel": "Hur ser din dag ut?",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Aktivitetsbalans: kartlägga dagens aktiviteter",
+            "status": "Planerad"
+          }
+        },
+        {
+          "id": "balans-3",
+          "del": 3,
+          "titel": "Vad ger och vad tar energi?",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Energikartläggning",
+            "status": "Planerad"
+          }
+        },
+        {
+          "id": "balans-4",
+          "del": 4,
+          "titel": "Lagom även på bra dagar",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Undvika att göra för mycket på dagar med mer energi",
+            "status": "Planerad"
+          }
+        },
+        {
+          "id": "balans-5",
+          "del": 5,
+          "titel": "Vila som räknas",
+          "min": 4,
+          "minKort": 2,
+          "skriven": false,
+          "granskning": {
+            "princip": "Återhämtande aktiviteter",
+            "status": "Planerad"
+          }
+        }
       ]
+    }
+  ],
+  "strategier": [
+    {
+      "id": "s-igang-fem",
+      "kategori": "igang",
+      "livsomraden": [
+        "hem",
+        "arbete",
+        "ekonomi"
+      ],
+      "titel": "Bara fem minuter",
+      "min": 3,
+      "minKort": 2,
+      "skriven": true,
+      "forklaring": {
+        "text": [
+          "En uppgift utan slut kan kännas omöjlig att börja på. Hjärnan vet inte hur länge det ska hålla på, och då känns det tyngre.",
+          "Om du bestämmer att du bara ska hålla på i fem minuter blir starten mindre. När tiden är slut får du sluta. Ibland vill man fortsätta, men det är inget krav."
+        ],
+        "kort": "Bestäm att du bara ska hålla på i fem minuter. Sen får du sluta.",
+        "film": {
+          "langd": "0:50",
+          "beskrivning": "Film: därför hjälper en tydlig gräns"
+        }
+      },
+      "strategi": {
+        "titel": "Fem minuter, sen får du sluta",
+        "steg": [
+          "Välj en sak som du har skjutit upp.",
+          "Ställ en timer på fem minuter.",
+          "Gör saken tills timern ringer.",
+          "Bestäm sedan: sluta, eller fem minuter till."
+        ],
+        "tips": "Att sluta efter fem minuter räknas. Du har gjort det du bestämde."
+      },
+      "exempel": {
+        "hem": "Plocka i köket i fem minuter.",
+        "ekonomi": "Sortera posten i fem minuter.",
+        "arbete": "Skriv på texten i fem minuter, även om det blir dåligt.",
+        "relationer": "Svara på meddelanden i fem minuter.",
+        "halsa": "Gå ut och gå i fem minuter."
+      },
+      "ovning": {
+        "text": "Prova fem minuter på en sak idag.",
+        "dagsplan": "Fem minuter på en sak"
+      },
+      "granskning": {
+        "princip": "Gradering och tidsavgränsning",
+        "notis": "En kort och tydligt avgränsad insats sänker tröskeln för att påbörja en aktivitet. Bygger på gradering av aktivitet.",
+        "status": "Ej granskad"
+      }
+    },
+    {
+      "id": "s-igang-belonning",
+      "kategori": "igang",
+      "livsomraden": [
+        "hem",
+        "arbete",
+        "halsa"
+      ],
+      "titel": "Något trevligt efteråt",
+      "min": 3,
+      "minKort": 2,
+      "skriven": true,
+      "forklaring": {
+        "text": [
+          "Det är svårt att börja på något när belöningen känns långt borta. Hjärnan väljer gärna det som känns bra just nu.",
+          "Om du bestämmer något litet och trevligt som du gör efteråt, får uppgiften ett tydligt slut och något att se fram emot."
+        ],
+        "kort": "Bestäm något litet och trevligt som du gör när uppgiften är klar.",
+        "film": {
+          "langd": "0:55",
+          "beskrivning": "Film: varför belöningar hjälper"
+        }
+      },
+      "strategi": {
+        "titel": "Först det här, sen det där",
+        "steg": [
+          "Välj en sak du ska göra idag.",
+          "Bestäm något litet och trevligt som du gör efteråt, till exempel en kopp te eller en låt du gillar.",
+          "Säg det för dig själv: ”Först det här, sen det där.”",
+          "Gör uppgiften, och ta sedan din belöning."
+        ],
+        "tips": "Ta belöningen även om det inte blev perfekt. Du gjorde det."
+      },
+      "exempel": {
+        "hem": "Först diska, sen en kopp te i soffan.",
+        "ekonomi": "Först betala räkningen, sen ett avsnitt av en serie.",
+        "arbete": "Först skicka mejlet, sen en kort promenad.",
+        "relationer": "Först ringa samtalet, sen en fika.",
+        "halsa": "Först promenaden, sen din favoritmusik."
+      },
+      "ovning": {
+        "text": "Gör en sak idag med en liten belöning efteråt.",
+        "dagsplan": "Först en sak, sen något trevligt"
+      },
+      "granskning": {
+        "princip": "Positiv förstärkning",
+        "notis": "Att koppla en uppgift till en liten belöning efteråt bygger på positiv förstärkning, en väletablerad beteendeprincip som ofta används vid svårigheter med igångsättning.",
+        "status": "Ej granskad"
+      }
+    },
+    {
+      "id": "s-planera-kvall",
+      "kategori": "planera",
+      "livsomraden": [
+        "hem",
+        "arbete"
+      ],
+      "titel": "Planera morgondagen på kvällen",
+      "min": 3,
+      "minKort": 2,
+      "skriven": true,
+      "forklaring": {
+        "text": [
+          "Morgonen är ofta den stund då det är svårast att tänka klart. Mycket ska hända på en gång.",
+          "Om du bestämmer kvällen innan vad morgondagen ska innehålla, behöver du inte fundera när du vaknar. Planen väntar på dig."
+        ],
+        "kort": "Bestäm kvällen innan vad morgondagen ska innehålla. Då slipper du fundera när du vaknar.",
+        "film": {
+          "langd": "1:00",
+          "beskrivning": "Film: därför är kvällen en bra tid att planera"
+        }
+      },
+      "strategi": {
+        "titel": "Tre minuter på kvällen",
+        "steg": [
+          "Välj en fast stund på kvällen, till exempel efter tandborstningen.",
+          "Titta i kalendern: vad händer i morgon?",
+          "Skriv ner högst tre saker du vill göra.",
+          "Lägg lappen där du ser den på morgonen."
+        ],
+        "tips": "Planen är ett förslag till dig själv. Den får ändras."
+      },
+      "exempel": {
+        "hem": "Lappen på kylskåpet: handla, vattna blommorna.",
+        "ekonomi": "En påminnelse: betala hyran i morgon.",
+        "arbete": "Första saken i morgon: svara Ali.",
+        "relationer": "Skicka grattis till Maja.",
+        "halsa": "Ta med vattenflaskan."
+      },
+      "ovning": {
+        "text": "Skriv ner tre saker för i morgon, någon gång ikväll.",
+        "dagsplan": "Skriva ner tre saker för i morgon"
+      },
+      "granskning": {
+        "princip": "Planering i förväg och dagliga rutiner",
+        "notis": "Att planera nästa dag vid en fast tidpunkt skapar en rutin och avlastar planeringen när den är som svårast. Vanligt inslag i strukturstöd.",
+        "status": "Ej granskad"
+      }
+    },
+    {
+      "id": "s-planera-vecka",
+      "kategori": "planera",
+      "livsomraden": [
+        "hem",
+        "arbete",
+        "relationer"
+      ],
+      "titel": "Rita upp din vecka",
+      "min": 4,
+      "minKort": 2,
+      "skriven": true,
+      "forklaring": {
+        "text": [
+          "Det är svårt att planera en vecka som bara finns i huvudet. Man glömmer lätt vad som redan är bokat, eller hur mycket som ska hända samma dag.",
+          "När du ser hela veckan på en gång blir det lättare att se om en dag är för full och om det finns luft någonstans."
+        ],
+        "kort": "När du ser hela veckan på en gång blir det lättare att se om en dag är för full.",
+        "film": {
+          "langd": "1:05",
+          "beskrivning": "Film: se hela veckan på en gång"
+        }
+      },
+      "strategi": {
+        "titel": "Veckan på ett papper",
+        "steg": [
+          "Ta ett papper och dela det i sju rutor, en för varje dag.",
+          "Skriv in det som redan är bestämt, som tider och möten.",
+          "Titta: finns det en dag som är för full? Flytta något om det går.",
+          "Sätt upp papperet där du ser det, till exempel på kylskåpet."
+        ],
+        "tips": "Använd gärna färger, till exempel en färg för det som tar energi och en för vila."
+      },
+      "exempel": {
+        "hem": "Tvättstugan på tisdag, städning på lördag.",
+        "ekonomi": "Lönen den 25:e, räkningarna dagen efter.",
+        "arbete": "Möten, deadlines och när du pluggar.",
+        "relationer": "Middag hos Sam på fredag.",
+        "halsa": "Läkartid på onsdag, promenad varje dag."
+      },
+      "ovning": {
+        "text": "Rita upp den här veckan på ett papper.",
+        "dagsplan": "Rita upp veckan"
+      },
+      "granskning": {
+        "princip": "Visuellt schema och översikt",
+        "notis": "Visuella scheman och veckoöversikter är vanliga kognitiva stöd för planering och tidsuppfattning inom arbetsterapi.",
+        "status": "Ej granskad"
+      }
+    },
+    {
+      "id": "s-tid-gissa",
+      "kategori": "tid",
+      "livsomraden": [
+        "hem",
+        "arbete",
+        "halsa"
+      ],
+      "titel": "Gissa och ta tid",
+      "min": 3,
+      "minKort": 2,
+      "skriven": true,
+      "forklaring": {
+        "text": [
+          "Många gissar fel på hur lång tid saker tar. Ofta tror man att det går fortare än det gör, ibland tvärtom.",
+          "När du gissar först och sedan tar tid, får du veta hur det faktiskt är. Efter några gånger blir gissningarna bättre, och det blir lättare att planera."
+        ],
+        "kort": "Gissa hur lång tid något tar, och ta sedan tid. Då lär du dig hur lång tid saker faktiskt tar.",
+        "film": {
+          "langd": "0:55",
+          "beskrivning": "Film: därför gissar vi fel på tiden"
+        }
+      },
+      "strategi": {
+        "titel": "Gissa, ta tid, jämför",
+        "steg": [
+          "Välj en vardaglig sak, till exempel att duscha eller diska.",
+          "Gissa hur många minuter det tar. Skriv ner det.",
+          "Starta tidtagaruret i mobilen och gör saken.",
+          "Jämför med din gissning. Skriv ner den riktiga tiden."
+        ],
+        "tips": "Spara tiderna på ett ställe. Då har du en egen lista att planera efter."
+      },
+      "exempel": {
+        "hem": "Diska: gissat 10 minuter, tog 20.",
+        "ekonomi": "Betala räkningarna: gissat 5 minuter, tog 15.",
+        "arbete": "Läsa ett kapitel: gissat en timme, tog 40 minuter.",
+        "relationer": "Ta sig till en vän: gissat 15 minuter, tog 25.",
+        "halsa": "Göra sig klar på morgonen: gissat 20 minuter, tog 35."
+      },
+      "ovning": {
+        "text": "Gissa och ta tid på en sak idag.",
+        "dagsplan": "Gissa och ta tid på en sak"
+      },
+      "granskning": {
+        "princip": "Tidsuppskattning med återkoppling",
+        "notis": "Att jämföra uppskattad och faktisk tid ger återkoppling som kan förbättra tidsuppskattningen. Vanligt inslag i träning av tidsuppfattning.",
+        "status": "Ej granskad"
+      }
+    },
+    {
+      "id": "s-tid-forvarning",
+      "kategori": "tid",
+      "livsomraden": [
+        "arbete",
+        "hem",
+        "relationer"
+      ],
+      "titel": "En förvarning innan det är dags",
+      "min": 3,
+      "minKort": 2,
+      "skriven": true,
+      "forklaring": {
+        "text": [
+          "Det kan vara svårt att sluta med något mitt i, särskilt om man är uppslukad. När det plötsligt är dags att gå blir det lätt stress.",
+          "En förvarning några minuter innan ger hjärnan tid att ställa om. Då blir bytet mjukare."
+        ],
+        "kort": "Ställ ett larm några minuter innan du behöver sluta. Då hinner du ställa om.",
+        "film": {
+          "langd": "0:50",
+          "beskrivning": "Film: därför är det svårt att byta aktivitet"
+        }
+      },
+      "strategi": {
+        "titel": "Ställ ett förvarningslarm",
+        "steg": [
+          "Tänk på en tid idag när du behöver sluta med något, till exempel för att gå hemifrån.",
+          "Ställ ett larm tio minuter innan.",
+          "När larmet ringer: gör klart det du håller på med, men börja inte på något nytt.",
+          "Ställ gärna ett andra larm när det är dags på riktigt."
+        ],
+        "tips": "Ge larmet ett namn, till exempel ”Dags att runda av”. Då vet du direkt vad det gäller."
+      },
+      "exempel": {
+        "hem": "Ett larm tio minuter innan du ska börja laga middag.",
+        "ekonomi": "Ett larm tio minuter innan du ska handla, så att du hinner skriva en lista.",
+        "arbete": "Ett larm tio minuter innan ett möte.",
+        "relationer": "Ett larm innan du ska gå hemifrån för att träffa någon.",
+        "halsa": "Ett larm en halvtimme innan du ska sova."
+      },
+      "ovning": {
+        "text": "Använd ett förvarningslarm en gång idag.",
+        "dagsplan": "Ställa ett förvarningslarm"
+      },
+      "granskning": {
+        "princip": "Förvarning vid övergångar",
+        "notis": "Förvarning inför byte av aktivitet, med larm eller visuell timer, är ett vanligt stöd vid svårigheter med tidsuppfattning och flexibilitet, bland annat vid ADHD och autism.",
+        "status": "Ej granskad"
+      }
+    },
+    {
+      "id": "s-minne-fota",
+      "kategori": "minne",
+      "livsomraden": [
+        "hem",
+        "ekonomi",
+        "halsa"
+      ],
+      "titel": "Fota det du vill minnas",
+      "min": 3,
+      "minKort": 2,
+      "skriven": true,
+      "forklaring": {
+        "text": [
+          "Det är lätt att glömma saker man bara har sett en gång. Var bilen står, vad som behövs i kylen eller vad det stod på lappen.",
+          "Mobilen har en kamera som alltid finns till hands. En bild kan komma ihåg åt dig, och den tar bara några sekunder."
+        ],
+        "kort": "Ta en bild med mobilen på det du vill minnas. Bilden kommer ihåg åt dig.",
+        "film": {
+          "langd": "0:45",
+          "beskrivning": "Film: kameran som minneshjälp"
+        }
+      },
+      "strategi": {
+        "titel": "Ta en bild direkt",
+        "steg": [
+          "När du ser något du vill minnas, ta en bild med mobilen.",
+          "Om det går, skapa ett album som heter till exempel ”Kom ihåg”.",
+          "Titta i albumet när du behöver.",
+          "Radera bilden när du inte behöver den längre."
+        ],
+        "tips": "Du kan också fota en lapp du har skrivit. Då har du den alltid med dig."
+      },
+      "exempel": {
+        "hem": "Fota kylskåpet innan du går och handlar.",
+        "ekonomi": "Fota kvittot när du köper något dyrt.",
+        "arbete": "Fota whiteboarden efter mötet.",
+        "relationer": "Fota inbjudan med tid och adress.",
+        "halsa": "Fota lappen du fick med dig från vården."
+      },
+      "ovning": {
+        "text": "Ta en bild idag av något du vill minnas.",
+        "dagsplan": "Fota något jag vill minnas"
+      },
+      "granskning": {
+        "princip": "Externt minnesstöd: fotografering",
+        "notis": "Att använda mobilens kamera som minnesanteckning är en form av externt minnesstöd. Vanligt kompensatoriskt stöd vid minnessvårigheter.",
+        "status": "Ej granskad"
+      }
+    },
+    {
+      "id": "s-minne-hogt",
+      "kategori": "minne",
+      "livsomraden": [
+        "arbete",
+        "relationer",
+        "hem"
+      ],
+      "titel": "Säg det högt",
+      "min": 3,
+      "minKort": 2,
+      "skriven": true,
+      "forklaring": {
+        "text": [
+          "Ibland glömmer man något bara sekunder efter att man hört det, till exempel ett namn eller en tid. Det hann aldrig fastna.",
+          "Om du säger det högt eller upprepar det för dig själv, får hjärnan en chans till att spara det. Det hjälper ännu mer om du kopplar det till något du redan vet."
+        ],
+        "kort": "Säg det du vill minnas högt och upprepa det. Då får hjärnan en chans till att spara det.",
+        "film": {
+          "langd": "0:50",
+          "beskrivning": "Film: därför hjälper det att upprepa"
+        }
+      },
+      "strategi": {
+        "titel": "Säg det, upprepa det",
+        "steg": [
+          "När du får höra något viktigt, säg det högt eller tyst för dig själv.",
+          "Upprepa det en gång till efter en liten stund.",
+          "Koppla det gärna till något du redan vet: ”Tandläkaren klockan tre, samma tid som fikat.”",
+          "Skriv ner det så fort du kan, om det är viktigt."
+        ],
+        "tips": "Det är okej att be någon säga det en gång till. Många gör det."
+      },
+      "exempel": {
+        "hem": "Säg högt när du lägger ner nycklarna: ”Nycklarna ligger på hallbyrån.”",
+        "ekonomi": "Upprepa summan när du hör den: ”Fyrahundra kronor till den tjugonde.”",
+        "arbete": "Upprepa det du fick veta: ”Rapporten ska vara klar på fredag.”",
+        "relationer": "Säg namnet när du hälsar: ”Hej, Lina.”",
+        "halsa": "Upprepa tiden: ”Läkaren på torsdag klockan tio.”"
+      },
+      "ovning": {
+        "text": "Säg högt en sak du vill minnas idag.",
+        "dagsplan": "Säga något högt för att minnas det"
+      },
+      "granskning": {
+        "princip": "Inre minnesstrategi: upprepning och association",
+        "notis": "Verbal upprepning och att koppla ny information till något känt är etablerade inre minnesstrategier. Kombineras gärna med externt stöd.",
+        "status": "Ej granskad"
+      }
+    },
+    {
+      "id": "s-fokus-rorelse",
+      "kategori": "fokus",
+      "livsomraden": [
+        "arbete",
+        "hem",
+        "halsa"
+      ],
+      "titel": "En kort rörelsepaus",
+      "min": 3,
+      "minKort": 2,
+      "skriven": true,
+      "forklaring": {
+        "text": [
+          "Fokus är som en muskel som blir trött. Efter en stund blir det svårare att hålla kvar uppmärksamheten, hur mycket man än vill.",
+          "En kort paus där du rör på dig kan hjälpa hjärnan att återhämta sig. Sedan är det ofta lättare att fortsätta."
+        ],
+        "kort": "Rör på dig en kort stund när fokus börjar tryta. Sen är det ofta lättare att fortsätta.",
+        "film": {
+          "langd": "0:55",
+          "beskrivning": "Film: därför behöver fokus pauser"
+        }
+      },
+      "strategi": {
+        "titel": "Rör på dig i några minuter",
+        "steg": [
+          "Märk när du börjar tappa tråden, eller ställ en timer på 25 minuter.",
+          "Res dig upp.",
+          "Rör på dig i några minuter: gå en runda, sträck på dig eller hämta ett glas vatten.",
+          "Sätt dig igen och fortsätt där du var."
+        ],
+        "tips": "Skriv ner var du var innan pausen. Då är det lättare att komma tillbaka."
+      },
+      "exempel": {
+        "hem": "Gå en runda i lägenheten mellan två sysslor.",
+        "ekonomi": "Sträck på dig efter att du har gått igenom kontoutdraget.",
+        "arbete": "Gå och hämta vatten varje halvtimme.",
+        "relationer": "Ta en kort promenad efter ett långt samtal.",
+        "halsa": "Gör några enkla sträckningar vid skrivbordet."
+      },
+      "ovning": {
+        "text": "Ta en rörelsepaus idag när du märker att fokus tryter.",
+        "dagsplan": "Ta en rörelsepaus"
+      },
+      "granskning": {
+        "princip": "Pauser och fysisk aktivitet",
+        "notis": "Regelbundna pauser, gärna med rörelse, används för att motverka att uppmärksamheten tröttas ut. Vanlig rekommendation vid koncentrationssvårigheter.",
+        "status": "Ej granskad"
+      }
+    },
+    {
+      "id": "s-fokus-klart",
+      "kategori": "fokus",
+      "livsomraden": [
+        "arbete",
+        "hem",
+        "ekonomi"
+      ],
+      "titel": "Bestäm när det är klart",
+      "min": 3,
+      "minKort": 2,
+      "skriven": true,
+      "forklaring": {
+        "text": [
+          "Det är lätt att tappa fokus när man inte vet när en uppgift är klar. Då glider man lätt vidare till något annat.",
+          "Om du bestämmer i förväg hur det ser ut när du är klar, har du något tydligt att sikta på. Det blir lättare att hålla tråden, och att veta när du får sluta."
+        ],
+        "kort": "Bestäm i förväg hur det ser ut när du är klar. Då har du något tydligt att sikta på.",
+        "film": {
+          "langd": "0:50",
+          "beskrivning": "Film: ett tydligt mål håller kvar fokus"
+        }
+      },
+      "strategi": {
+        "titel": "”Jag är klar när …”",
+        "steg": [
+          "Välj en uppgift du ska göra.",
+          "Skriv en mening: ”Jag är klar när …”",
+          "Gör målet litet och tydligt, så att du kan se när du har nått det.",
+          "När du är klar: stanna, och bocka av."
+        ],
+        "tips": "”Klar” betyder inte perfekt. Det betyder att du har gjort det du bestämde."
+      },
+      "exempel": {
+        "hem": "Jag är klar när diskbänken är tom.",
+        "ekonomi": "Jag är klar när räkningen är betald.",
+        "arbete": "Jag är klar när jag har skrivit tre stycken.",
+        "relationer": "Jag är klar när jag har svarat på två meddelanden.",
+        "halsa": "Jag är klar när jag har gått till affären och tillbaka."
+      },
+      "ovning": {
+        "text": "Bestäm hur det ser ut när en uppgift är klar, innan du börjar.",
+        "dagsplan": "Skriva ”Jag är klar när …” för en uppgift"
+      },
+      "granskning": {
+        "princip": "Tydliga och avgränsade delmål",
+        "notis": "Att definiera ett konkret och avgränsat mål för en uppgift stödjer uppmärksamhet och uthållighet. Vanligt inslag i målsättning inom arbetsterapi.",
+        "status": "Ej granskad"
+      }
+    },
+    {
+      "id": "s-kanslor-spann",
+      "kategori": "kanslor",
+      "livsomraden": [
+        "arbete",
+        "halsa",
+        "relationer"
+      ],
+      "titel": "Spänn och släpp",
+      "min": 4,
+      "minKort": 2,
+      "skriven": true,
+      "forklaring": {
+        "text": [
+          "När du är stressad spänner sig musklerna ofta utan att du märker det. Axlarna åker upp och händerna knyts.",
+          "Om du spänner en muskel en kort stund och sedan släpper, märker du skillnaden mellan spänd och avslappnad. Det kan hjälpa kroppen att slappna av."
+        ],
+        "kort": "Spänn en muskel en kort stund och släpp. Då märker kroppen skillnaden och kan slappna av.",
+        "film": {
+          "langd": "1:10",
+          "beskrivning": "Film: kort avslappning för kroppen"
+        }
+      },
+      "strategi": {
+        "titel": "Spänn, håll, släpp",
+        "steg": [
+          "Sitt bekvämt.",
+          "Knyt händerna hårt och håll i fem sekunder.",
+          "Släpp, och känn efter hur det känns i händerna.",
+          "Gör samma sak med axlarna: dra upp dem mot öronen, håll, och släpp."
+        ],
+        "tips": "Spänn inte så att det gör ont. Har du ont någonstans, hoppa över den delen."
+      },
+      "exempel": {
+        "hem": "I sängen, innan du somnar.",
+        "ekonomi": "Efter att ha gjort något jobbigt med pengar.",
+        "arbete": "Vid skrivbordet efter ett stressigt möte.",
+        "relationer": "Efter ett svårt samtal.",
+        "halsa": "I väntrummet innan en tid."
+      },
+      "ovning": {
+        "text": "Prova spänn och släpp en gång idag.",
+        "dagsplan": "Spänna och släppa axlarna"
+      },
+      "granskning": {
+        "princip": "Progressiv muskelavslappning (förkortad)",
+        "notis": "Förkortad form av progressiv muskelavslappning, en väletablerad avslappningsmetod där muskelgrupper spänns och släpps.",
+        "status": "Ej granskad"
+      }
+    },
+    {
+      "id": "s-kanslor-promenad",
+      "kategori": "kanslor",
+      "livsomraden": [
+        "halsa",
+        "arbete",
+        "hem"
+      ],
+      "titel": "En kort promenad",
+      "min": 3,
+      "minKort": 2,
+      "skriven": true,
+      "forklaring": {
+        "text": [
+          "När det blir för mycket kan det kännas som att allt snurrar. Det är svårt att tänka klart när kroppen är i högsta beredskap.",
+          "Att röra på sig, till exempel en kort promenad, kan hjälpa kroppen att göra av med lite av stressen. Att byta miljö en stund kan också ge lite avstånd."
+        ],
+        "kort": "En kort promenad kan hjälpa kroppen att varva ner och ge lite avstånd.",
+        "film": {
+          "langd": "0:55",
+          "beskrivning": "Film: rörelse och stress"
+        }
+      },
+      "strategi": {
+        "titel": "Gå en kort runda",
+        "steg": [
+          "Ta på dig skorna.",
+          "Gå ut en kort runda. Fem eller tio minuter räcker.",
+          "Lägg märke till något du ser, hör eller känner på vägen.",
+          "När du kommer tillbaka: märk hur du känner dig nu."
+        ],
+        "tips": "Om du inte kan gå ut går det bra att gå några varv inomhus."
+      },
+      "exempel": {
+        "hem": "När det blir rörigt hemma, gå ut en sväng innan du tar tag i det.",
+        "ekonomi": "Efter ett jobbigt samtal med banken.",
+        "arbete": "På lunchen, i stället för att sitta kvar.",
+        "relationer": "Efter ett bråk, innan ni pratar igen.",
+        "halsa": "Varje dag vid samma tid, som en vana."
+      },
+      "ovning": {
+        "text": "Gå en kort promenad idag.",
+        "dagsplan": "Gå en kort promenad"
+      },
+      "granskning": {
+        "princip": "Fysisk aktivitet vid stress",
+        "notis": "Fysisk aktivitet, även i korta pass, rekommenderas brett för att minska stress och främja återhämtning.",
+        "status": "Ej granskad"
+      }
+    },
+    {
+      "id": "s-forandring-vanligt",
+      "kategori": "forandring",
+      "livsomraden": [
+        "hem",
+        "arbete",
+        "relationer"
+      ],
+      "titel": "Behåll en sak som vanligt",
+      "min": 3,
+      "minKort": 2,
+      "skriven": true,
+      "forklaring": {
+        "text": [
+          "När mycket ändras på en gång kan det kännas som att man tappar fotfästet. Det är vanligt och inget konstigt.",
+          "Om en sak får vara som vanligt blir den en fast punkt. Den kan ge lite trygghet när annat är nytt."
+        ],
+        "kort": "När mycket ändras, låt en sak vara som vanligt. Den blir en fast punkt.",
+        "film": {
+          "langd": "0:50",
+          "beskrivning": "Film: fasta punkter när allt ändras"
+        }
+      },
+      "strategi": {
+        "titel": "Välj en fast punkt",
+        "steg": [
+          "Tänk på vad som ändras just nu.",
+          "Välj en sak som kan vara som vanligt, till exempel frukosten eller en kvällspromenad.",
+          "Gör den saken på samma sätt och vid samma tid.",
+          "Påminn dig: ”Det här är som vanligt.”"
+        ],
+        "tips": "Den fasta punkten kan vara liten. Samma kaffekopp varje morgon räknas."
+      },
+      "exempel": {
+        "hem": "Samma frukost varje morgon under flytten.",
+        "ekonomi": "Betala räkningarna samma dag som vanligt, även när annat är nytt.",
+        "arbete": "Samma lunchtid, även på det nya jobbet.",
+        "relationer": "Ett fast samtal med en vän varje söndag.",
+        "halsa": "Samma kvällsrutin, även på semestern."
+      },
+      "ovning": {
+        "text": "Välj en fast punkt i din dag och gör den som vanligt.",
+        "dagsplan": "Göra min fasta punkt som vanligt"
+      },
+      "granskning": {
+        "princip": "Fasta rutiner som trygghet",
+        "notis": "Att behålla förutsägbara rutiner under förändring skapar struktur och trygghet. Vanlig strategi vid svårigheter med flexibilitet, bland annat vid autism.",
+        "status": "Ej granskad"
+      }
+    },
+    {
+      "id": "s-forandring-tanken",
+      "kategori": "forandring",
+      "livsomraden": [
+        "arbete",
+        "relationer",
+        "halsa"
+      ],
+      "titel": "Gå igenom det i tanken",
+      "min": 4,
+      "minKort": 2,
+      "skriven": true,
+      "forklaring": {
+        "text": [
+          "Något nytt kan kännas oroligt, eftersom man inte vet hur det kommer att bli. Hjärnan fyller gärna i med det värsta.",
+          "Om du går igenom det nya i tanken, steg för steg, blir det lite mer bekant. Då vet du ungefär vad som händer när det är dags."
+        ],
+        "kort": "Gå igenom det nya i tanken, steg för steg. Då blir det lite mer bekant.",
+        "film": {
+          "langd": "1:00",
+          "beskrivning": "Film: förbered dig i tanken"
+        }
+      },
+      "strategi": {
+        "titel": "Se det framför dig",
+        "steg": [
+          "Tänk på något nytt som ska hända, till exempel ett besök på en ny plats.",
+          "Gå igenom det steg för steg: hur tar du dig dit, vad händer först, vad händer sen?",
+          "Leta upp det som går: bilder på platsen, en karta eller vem du ska träffa.",
+          "Tänk ut en sak du kan göra om något blir annorlunda."
+        ],
+        "tips": "Det är helt okej att fråga i förväg hur det kommer att gå till."
+      },
+      "exempel": {
+        "hem": "Innan hantverkaren kommer: vad ska hända, och var vill du vara?",
+        "ekonomi": "Innan ett möte på banken: vilka papper ska med?",
+        "arbete": "Innan första dagen: hur tar du dig dit, och vem möter dig?",
+        "relationer": "Innan en fest: vem kommer, och hur länge vill du stanna?",
+        "halsa": "Innan ett läkarbesök: vad vill du fråga om?"
+      },
+      "ovning": {
+        "text": "Gå igenom något nytt i tanken innan det händer.",
+        "dagsplan": "Gå igenom något nytt i tanken"
+      },
+      "granskning": {
+        "princip": "Mental förberedelse och förutsägbarhet",
+        "notis": "Att i förväg gå igenom en ny situation steg för steg, gärna med bilder eller information, ökar förutsägbarheten. Vanligt stöd vid svårigheter med förändringar.",
+        "status": "Ej granskad"
+      }
+    },
+    {
+      "id": "s-balans-vaxla",
+      "kategori": "balans",
+      "livsomraden": [
+        "hem",
+        "arbete",
+        "halsa"
+      ],
+      "titel": "Växla mellan tungt och lätt",
+      "min": 3,
+      "minKort": 2,
+      "skriven": true,
+      "forklaring": {
+        "text": [
+          "Om du gör flera tunga saker i rad tar energin slut fort. Sen kan det ta lång tid att hämta sig.",
+          "Om du växlar mellan tunga och lätta saker får kroppen och hjärnan små andningspauser. Då räcker energin ofta längre."
+        ],
+        "kort": "Växla mellan tunga och lätta saker. Då räcker energin längre.",
+        "film": {
+          "langd": "0:55",
+          "beskrivning": "Film: tunga och lätta aktiviteter"
+        }
+      },
+      "strategi": {
+        "titel": "Varva din dag",
+        "steg": [
+          "Titta på det du ska göra idag.",
+          "Märk ut vad som är tungt och vad som är lätt för dig.",
+          "Lägg sakerna i en ordning där tungt och lätt varvas.",
+          "Lägg gärna en vilostund efter det tyngsta."
+        ],
+        "tips": "Vad som är tungt är olika för alla. Du bestämmer själv."
+      },
+      "exempel": {
+        "hem": "Dammsuga, sen vattna blommorna, sen tvätta.",
+        "ekonomi": "Gå igenom räkningarna, sen en lugn kopp kaffe.",
+        "arbete": "Ett svårt samtal, sen en enkel uppgift.",
+        "relationer": "En träff med många, sen en lugn kväll hemma.",
+        "halsa": "Handla, sen vila en stund innan du lagar mat."
+      },
+      "ovning": {
+        "text": "Varva tunga och lätta saker i din dag idag.",
+        "dagsplan": "Varva tungt och lätt"
+      },
+      "granskning": {
+        "princip": "Aktivitetsbalans och energiplanering",
+        "notis": "Att fördela och varva krävande och mindre krävande aktiviteter är en central princip i energibesparande strategier och aktivitetsbalans.",
+        "status": "Ej granskad"
+      }
+    },
+    {
+      "id": "s-balans-somn",
+      "kategori": "balans",
+      "livsomraden": [
+        "halsa",
+        "hem"
+      ],
+      "titel": "Varva ner före sömnen",
+      "min": 4,
+      "minKort": 2,
+      "skriven": true,
+      "forklaring": {
+        "text": [
+          "Det är svårt att somna om hjärnan fortfarande är i full fart. Skärmar, jobb och tankar håller den vaken.",
+          "En lugn stund innan du ska sova, som är likadan varje kväll, kan hjälpa kroppen att förstå att det är dags att vila. Sömnen är en viktig del av återhämtningen."
+        ],
+        "kort": "En lugn och likadan stund varje kväll hjälper kroppen att förstå att det är dags att sova.",
+        "film": {
+          "langd": "1:05",
+          "beskrivning": "Film: därför hjälper en kvällsrutin"
+        }
+      },
+      "strategi": {
+        "titel": "En kort kvällsrutin",
+        "steg": [
+          "Bestäm en tid när du börjar varva ner, till exempel en halvtimme innan du ska sova.",
+          "Lägg undan mobilen eller datorn då.",
+          "Gör något lugnt, till exempel läsa, lyssna på något lugnt eller duscha.",
+          "Gör samma sak i samma ordning varje kväll."
+        ],
+        "tips": "Om du inte kan somna efter en stund är det okej att gå upp och göra något lugnt, och sedan försöka igen."
+      },
+      "exempel": {
+        "hem": "Släck taklampan och tänd en lampa med svagt ljus.",
+        "ekonomi": "Skriv ner din oro om pengar på en lapp och lägg den åt sidan till i morgon.",
+        "arbete": "Skriv ner vad du ska göra i morgon, så att du kan släppa jobbet.",
+        "relationer": "Säg god natt till någon, och lägg sedan undan mobilen.",
+        "halsa": "Samma läggtid varje kväll, även på helger om det går."
+      },
+      "ovning": {
+        "text": "Prova en lugn kvällsrutin ikväll.",
+        "dagsplan": "Varva ner före sömnen"
+      },
+      "granskning": {
+        "princip": "Sömnvanor och regelbundna rutiner",
+        "notis": "Regelbundna kvällsrutiner och mindre skärmtid före sömn är etablerade råd för bättre sömn, som är en viktig del av återhämtningen.",
+        "status": "Ej granskad"
+      }
     }
   ]
 }
@@ -673,8 +2397,10 @@ C.energiBas.forEach(function(e){ EBAS[e.id] = e; });
 C.energiIdag.forEach(function(e){ EDAG[e.id] = e; });
 C.program.forEach(function(p){
   PROG[p.id] = p;
-  p.delar.forEach(function(d){ d.programId = p.id; SESS[d.id] = d; });
+  p.delar.forEach(function(d){ d.programId = p.id; d.typ = 'del'; SESS[d.id] = d; });
 });
+var STRAT = {};
+C.strategier.forEach(function(x){ x.typ = 'strategi'; STRAT[x.id] = x; SESS[x.id] = x; });
 
 /* =========================================================
    Lagring (bara lokalt på enheten)
@@ -692,7 +2418,7 @@ function defaultState(){
     checkinSkipped: null,     /* datum då incheckningen hoppades över */
     plans: {},                /* {'2026-09-25': {items:[], extra:0}} */
     goalRatings: [],          /* steg 3 */
-    settings: { textSize: 1, tts: true, theme: 'system', reducedMotion: false },
+    settings: { textSize: 1, tts: true, theme: 'system', reducedMotion: false, sessionLength: 'auto' },
     lastVisit: null
   };
 }
@@ -719,13 +2445,41 @@ function today(){ return dateKey(); }
 function daysBetween(a, b){ return Math.round((new Date(b + 'T12:00') - new Date(a + 'T12:00')) / 864e5); }
 function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 function uid(){ return Math.random().toString(36).slice(2, 9); }
+var SHY = { 'Emotionsreglering': 'Emotions\u00ADreglering', 'återhämtning': 'åter\u00ADhämtning', 'impulskontroll': 'impuls\u00ADkontroll',
+  'Uppmärksamhet': 'Upp\u00ADmärksamhet', 'Tidsuppfattning': 'Tids\u00ADuppfattning', 'Igångsättning': 'Igångs\u00ADättning',
+  'Aktivitetsbalans': 'Aktivitets\u00ADbalans', 'Arbetsminne': 'Arbets\u00ADminne', 'förändringar': 'för\u00ADändringar', 'prioritera': 'priori\u00ADtera' };
+function shy(t){ return t.replace(/[A-Za-zÅÄÖåäö]+/g, function(w){ return SHY[w] || w; }); }
 function cap(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
 function listJoin(arr){ if (arr.length < 2) return arr.join(''); return arr.slice(0, -1).join(', ') + ' och ' + arr[arr.length - 1]; }
 
 function currentProgram(){ return PROG[S.program.id] || PROG['p-planera']; }
 function programIdForProfile(){ var c = S.profile.challenges[0]; return c ? CAT[c].program : 'p-planera'; }
 function energyToday(){ return S.energy[today()] || null; }
-function isShort(){ return S.profile.energyBaseline === 'lag' || energyToday() === 'lite'; }
+function isShort(){ return S.settings.sessionLength === 'kort' || S.profile.energyBaseline === 'lag' || energyToday() === 'lite'; }
+function minutesFor(x){ return isShort() ? x.minKort : x.min; }
+/* programförlopp räknas fram ur det som är gjort, inte ur datum */
+function doneIds(){ var d = {}; S.completed.forEach(function(c){ d[c.sessionId] = true; }); return d; }
+function progState(pid){
+  var p = PROG[pid], d = doneIds(), done = 0, next = null;
+  p.delar.forEach(function(x){ if (d[x.id]) done++; else if (!next) next = x; });
+  return { done: done, total: p.delar.length, next: next };
+}
+/* strategier i en kategori, de som matchar användarens livsområden först */
+function catStrategies(catId){
+  var areas = S.profile.lifeAreas;
+  return C.strategier.filter(function(x){ return x.kategori === catId; })
+    .map(function(x, i){ return { x: x, i: i, m: x.livsomraden.some(function(a){ return areas.indexOf(a) > -1; }) ? 0 : 1 }; })
+    .sort(function(a, b){ return a.m - b.m || a.i - b.i; })
+    .map(function(o){ return o.x; });
+}
+function suggestedStrategy(){
+  var d = doneIds(), cats = S.profile.challenges.length ? S.profile.challenges : ['planera'];
+  for (var i = 0; i < cats.length; i++) {
+    var open = catStrategies(cats[i]).filter(function(x){ return !d[x.id]; });
+    if (open.length) return open[0];
+  }
+  return catStrategies(cats[0])[0];
+}
 function slotsToday(){ var e = energyToday(); return e ? EDAG[e].platser : 2; }
 function planToday(){
   var k = today();
@@ -1050,7 +2804,7 @@ function render(keep){
 }
 function go(view){ V = view; render(); }
 function push(view){ NAV.push(V); go(view); }
-function back(){ go(NAV.pop() || { name: 'tab', tab: 'idag' }); }
+function back(){ var v = NAV.pop() || { name: 'tab', tab: 'idag' }; v.planEdit = v.planFull = v.confirmReset = false; v.reflectFor = null; go(v); }
 
 /* gemensamma delar */
 function topbar(left, right){ return '<header class="topbar"><div class="tb-left">' + (left || '') + '</div><div class="tb-right">' + (right || '') + '</div></header>'; }
@@ -1196,22 +2950,35 @@ function todayIntro(){
   return 'Här är ditt nästa steg.';
 }
 function stepSection(){
-  var prog = currentProgram(), idx = S.program.index, cat = CAT[prog.kategori], total = prog.delar.length;
+  var prog = currentProgram(), cat = CAT[prog.kategori], st = progState(prog.id);
   var doneToday = S.completed.some(function(c){ return c.date === today() && c.programId === prog.id; });
-  if (idx >= total) {
-    return '<div class="soft-card cat-' + cat.id + '">' + illuBlock(cat.id, 'sm') + '<div class="stack"><h3>Du har gått igenom hela programmet</h3><p>Fint jobbat. Du kan gå tillbaka till det när du vill, eller hitta något nytt i Utforska.</p></div></div>';
+  var link = '<button class="btn-text" data-act="open-program" data-id="' + prog.id + '" data-key="prog-link" style="padding-left:0;margin-top:8px">Visa hela programmet</button>';
+  if (S.program.paused) {
+    var sg = suggestedStrategy();
+    return '<div class="soft-card cat-' + cat.id + '">' + illuBlock(cat.id, 'sm') + '<div class="stack"><h3>Programmet vilar</h3><p>Det gör ingenting. Du fortsätter där du slutade när du vill.</p><button class="btn-text" data-act="prog-resume" data-id="' + prog.id + '" data-key="resume" style="padding-left:0">Fortsätt programmet</button></div></div>' +
+      (sg ? '<p class="sub" style="margin:18px 0 10px">Under tiden kan du prova en kort strategi.</p><ul class="jn-list">' + stratRow(sg) + '</ul>' : '');
+  }
+  if (!st.next) {
+    return '<div class="soft-card cat-' + cat.id + '">' + illuBlock(cat.id, 'sm') + '<div class="stack"><h3>Du har gått igenom hela programmet</h3><p>Du kan göra om delar när du vill, eller hitta något nytt i Utforska.</p></div></div>' + link;
   }
   if (doneToday && !V.showNext) {
-    return '<div class="soft-card cat-' + cat.id + '">' + illuBlock(cat.id, 'sm') + '<div class="stack"><h3>Dagens steg är gjort</h3><p>Nästa del väntar tills i morgon, eller tills du vill.</p><button class="btn-text" data-act="show-next" data-key="show-next" style="padding-left:0">Visa nästa del ändå</button></div></div>';
+    return '<div class="soft-card cat-' + cat.id + '">' + illuBlock(cat.id, 'sm') + '<div class="stack"><h3>Dagens steg är gjort</h3><p>Nästa del väntar tills i morgon, eller tills du vill.</p><button class="btn-text" data-act="show-next" data-key="show-next" style="padding-left:0">Visa nästa del ändå</button></div></div>' + link;
   }
-  var s = prog.delar[idx], short = isShort(), min = short ? s.minKort : s.min;
+  var x = st.next, short = isShort();
   return '<p class="sub" style="margin:-8px 0 14px">' + todayIntro() + '</p>' +
     catCard(cat.id, {
       act: 'start-session', key: 'stepcard',
-      meta: 'Del ' + s.del + ' av ' + total + ' · ' + prog.titel,
-      title: s.titel,
-      foot: '<span class="pill">' + ICON.clock + 'tar ' + min + ' min' + (short ? ' · kort version' : '') + '</span><span class="play-dot">' + ICON.play + '</span>'
-    });
+      meta: 'Del ' + x.del + ' av ' + st.total + ' · ' + prog.titel,
+      title: x.titel,
+      foot: '<span class="pill">' + ICON.clock + 'tar ' + minutesFor(x) + ' min' + (short ? ' · kort version' : '') + '</span><span class="play-dot">' + ICON.play + '</span>'
+    }) + link;
+}
+function stratRow(x){
+  var done = doneIds()[x.id];
+  return '<li><button class="jn-row" data-act="open-session" data-id="' + x.id + '" data-key="st-' + x.id + '">' +
+    '<span class="jn-tile st-tile cat-' + x.kategori + '">' + ICON.play + '</span>' +
+    '<span class="jn-text"><span class="jn-title">' + x.titel + '</span><span class="jn-meta">tar ' + minutesFor(x) + ' min' + (done ? ' · gjord' : '') + '</span>' +
+    '<span class="tags">' + x.livsomraden.map(function(a){ return '<span class="tag">' + AREA[a].titel + '</span>'; }).join('') + '</span></span>' + ICON.chevR + '</button></li>';
 }
 function justNuSection(){
   var list = C.justNu.slice();
@@ -1245,8 +3012,13 @@ function planSection(){
   items.forEach(function(it){
     html += '<li class="plan-item' + (it.done ? ' is-done' : '') + '">' +
       '<button class="check" data-act="plan-toggle" data-id="' + it.id + '" data-key="pt-' + it.id + '" aria-pressed="' + !!it.done + '" aria-label="Gjort: ' + esc(it.text) + '"><span>' + ICON.check + '</span></button>' +
-      '<span class="plan-text"><span class="pt">' + esc(it.text) + '</span>' + (it.src === 'session' ? '<span class="plan-src">Från dagens steg</span>' : '') + '</span>' +
+      '<span class="plan-text"><span class="pt">' + esc(it.text) + '</span>' + (it.src === 'session' ? '<span class="plan-src">' + (SESS[it.sessionId] && SESS[it.sessionId].typ === 'strategi' ? 'Från en strategi' : 'Från dagens steg') + '</span>' : '') + '</span>' +
       '<button class="btn-icon" data-act="plan-remove" data-id="' + it.id + '" data-key="pr-' + it.id + '" aria-label="Ta bort: ' + esc(it.text) + '">' + ICON.close + '</button></li>';
+    if (V.reflectFor === it.id && it.done && !it.reflection) {
+      html += '<li class="plan-reflect"><p><b>Hur gick övningen?</b></p><div class="mini-choices">' + C.reflektion.val.map(function(r){
+        return '<button class="mini-choice" data-act="plan-reflect" data-id="' + it.id + '" data-r="' + r.id + '" data-key="prf-' + r.id + '">' + weatherIcon(r.id) + r.kort + '</button>';
+      }).join('') + '</div></li>';
+    }
   });
   for (var i = 0; i < empties; i++) {
     if (i === 0 && V.planEdit) {
@@ -1295,8 +3067,9 @@ function examplesFor(s){
   return areas.map(function(a){ return '<div class="example">' + ICON[AREA[a].ikon] + '<span><b>' + AREA[a].titel + '</b>' + s.exempel[a] + '</span></div>'; }).join('');
 }
 function vSession(){
-  var s = SESS[V.sid], prog = PROG[s.programId], cat = CAT[prog.kategori], step = V.step, short = isShort(), body = '';
-  var eyebrow = '<p class="eyebrow">' + prog.titel + ' · Del ' + s.del + ' av ' + prog.delar.length + (short ? ' · Kort version' : '') + '</p>';
+  var s = SESS[V.sid], isDel = s.typ === 'del', prog = isDel ? PROG[s.programId] : null, cat = CAT[isDel ? prog.kategori : s.kategori];
+  var step = V.step, short = isShort(), body = '';
+  var eyebrow = '<p class="eyebrow">' + (isDel ? prog.titel + ' · Del ' + s.del + ' av ' + prog.delar.length : 'Strategi · ' + cat.titel) + (short ? ' · Kort version' : '') + '</p>';
   if (step === 0) {
     body = eyebrow + '<h1>' + s.titel + '</h1>' +
       (short ? '' : '<button class="video" data-act="video" data-key="video" aria-label="' + s.forklaring.film.beskrivning + ', ' + s.forklaring.film.langd + ' lång. Inte inspelad än.">' + scene(cat.id) + '<span class="v-play">' + ICON.play + '</span><span class="pill v-len">' + ICON.clock + s.forklaring.film.langd + '</span></button>') +
@@ -1326,25 +3099,36 @@ function vSession(){
     '<main class="page flow"><div class="stack-lg">' + body + '</div></main>' +
     '<footer class="flowbar">' + stepbar(4, step) + (step < 3 ? '<button class="btn-round" data-act="s-next" data-key="next" aria-label="Nästa">' + ICON.arrow + '</button>' : '') + '</footer></div>';
 }
+function doneBackLabel(){
+  var t = NAV[NAV.length - 1];
+  if (!t || (t.name === 'tab' && t.tab === 'idag')) return 'Till Idag';
+  if (t.name === 'program') return 'Till programmet';
+  return 'Tillbaka';
+}
 function vDone(){
-  var s = SESS[V.sid], prog = PROG[s.programId], cat = CAT[prog.kategori];
+  var s = SESS[V.sid], isDel = s.typ === 'del', catId = isDel ? PROG[s.programId].kategori : s.kategori, info;
   var r = C.reflektion.val.filter(function(x){ return x.id === V.reflection; })[0];
-  var left = prog.delar.length - S.program.index;
+  if (isDel) {
+    var st = progState(s.programId);
+    info = 'Del ' + s.del + ' av ' + st.total + ' är gjord. ' + (st.next ? 'Nästa del finns här när du vill.' : 'Du har gjort alla delar i programmet.');
+  } else {
+    info = 'Du hittar strategin i Utforska om du vill göra den igen.';
+  }
   return topbar('', '') +
-    '<main class="page flow"><div class="stack-lg cat-' + cat.id + '">' +
-      illuBlock(cat.id) +
-      '<h1>Klart för idag</h1>' +
+    '<main class="page flow"><div class="stack-lg cat-' + catId + '">' +
+      illuBlock(catId) +
+      '<h1>' + (isDel ? 'Klart för idag' : 'Klart') + '</h1>' +
       '<p style="font-size:1.1875rem">' + (r ? r.svar : '') + '</p>' +
-      '<p class="sub">Del ' + s.del + ' av ' + prog.delar.length + ' är gjord. ' + (left > 0 ? 'Nästa del finns här när du vill.' : 'Det var sista delen.') + '</p>' +
+      '<p class="sub">' + info + '</p>' +
     '</div></main>' +
-    '<footer class="flowbar"><span style="flex:1"></span><button class="btn btn-primary" data-act="done-home" data-key="home">Till Idag ' + ICON.arrow + '</button></footer>';
+    '<footer class="flowbar"><span style="flex:1"></span><button class="btn btn-primary" data-act="back" data-key="done-back">' + doneBackLabel() + ' ' + ICON.arrow + '</button></footer>';
 }
 function vComing(){
   var s = SESS[V.sid], prog = PROG[s.programId], cat = CAT[prog.kategori];
   return topbar(backBtn(), '') +
     '<main class="page flow"><div class="stack-lg">' +
       '<p class="eyebrow">' + prog.titel + ' · Del ' + s.del + '</p><h1>' + s.titel + '</h1>' +
-      illuBlock(cat.id) + '<div class="placeholder cat-' + cat.id + '"><span class="chip chip-dev">' + (prog.id === 'p-planera' ? 'Skrivs i steg 2' : 'Inte skriven än') + '</span><p>Den här delen är inte skriven än. Den kommer att bygga på: ' + s.granskning.princip.toLowerCase() + '.</p></div>' +
+      illuBlock(cat.id) + '<div class="placeholder cat-' + cat.id + '"><span class="chip chip-dev">Inte skriven än</span><p>Den här delen är inte skriven än. Den kommer att bygga på: ' + s.granskning.princip.toLowerCase() + '.</p></div>' +
     '</div></main>';
 }
 
@@ -1365,8 +3149,61 @@ function vJustNu(){
    UTFORSKA och FRAMSTEG (platshållare)
    ========================================================= */
 function vUtforska(){
+  var mineCat = (PROG[S.program.id] || {}).kategori;
   return topbar('<h1>Utforska</h1>', profileBtn()) +
-    '<main class="page"><div class="stack-lg">' + illuBlock('minne') + '<div class="placeholder cat-minne"><span class="chip chip-dev">Byggs i steg 2</span><h2>Alla åtta områden samlas här</h2><p>Här kommer du kunna bläddra bland program och korta strategier, sorterade efter det du vill bli bättre på.</p></div></div></main>' + tabbar('utforska');
+    '<main class="page"><div class="stack-lg"><p class="lead">Åtta områden. Börja med det som känns viktigast just nu.</p>' +
+    '<div class="explore">' + C.kategorier.map(function(c){
+      return '<button class="gcard cat-' + c.id + '" data-act="open-cat" data-id="' + c.id + '" data-key="cat-' + c.id + '">' +
+        '<span class="g-illu">' + scene(c.id) + '</span>' +
+        '<span class="g-body">' + (mineCat === c.id && S.onboarded ? '<span class="pill g-pill">Ditt program</span>' : '') +
+        '<span class="g-title">' + shy(c.titel) + '</span><span class="g-under">' + shy(c.formaga) + '</span></span></button>';
+    }).join('') + '</div></div></main>' + tabbar('utforska');
+}
+function vCategory(){
+  var c = CAT[V.id], p = PROG[c.program], st = progState(p.id), mine = S.program.id === p.id, segs = '';
+  for (var i = 0; i < st.total; i++) segs += '<span class="' + (i < st.done ? 'on' : '') + '"></span>';
+  var status = mine ? (S.program.paused ? 'Ditt program · pausat' : 'Ditt program · ' + st.done + ' av ' + st.total + ' delar gjorda')
+    : (st.done ? st.done + ' av ' + st.total + ' delar gjorda' : 'Inte påbörjat');
+  return topbar(backBtn(), '') +
+    '<main class="page flow cat-' + c.id + '">' +
+      '<div class="stack">' + illuBlock(c.id) + '<h1 style="margin-top:8px">' + c.titel + '</h1><p class="sub">Förmåga: ' + c.formaga.toLowerCase() + '</p><p>' + c.beskrivning + '</p></div>' +
+      '<section class="stack" aria-labelledby="h-prog"><h2 id="h-prog">Program</h2>' +
+        '<button class="prog-card" data-act="open-program" data-id="' + p.id + '" data-key="prog">' +
+          '<span class="p-top"><span class="p-text"><span class="p-title">' + p.titel + '</span><span class="p-meta">' + st.total + ' delar · ' + (isShort() ? p.delar[0].minKort : 'ca ' + p.delar[0].min) + ' min per del</span></span>' + ICON.chevR + '</span>' +
+          '<span class="segs" aria-hidden="true">' + segs + '</span><span class="p-status">' + status + '</span></button>' +
+      '</section>' +
+      '<section class="stack" aria-labelledby="h-strat"><h2 id="h-strat">Enskilda strategier</h2><p class="sub">Korta, fristående lektioner. Gör dem i vilken ordning du vill.</p>' +
+        '<ul class="jn-list">' + catStrategies(c.id).map(stratRow).join('') + '</ul>' +
+      '</section>' +
+    '</main>';
+}
+function lenChoice(id, title, desc){
+  var on = (S.settings.sessionLength || 'auto') === id;
+  return '<button class="choice" aria-pressed="' + on + '" data-act="set-length" data-id="' + id + '" data-key="len-' + id + '"><span class="c-text"><span class="c-title">' + title + '</span><span class="c-desc">' + desc + '</span></span><span class="mark" aria-hidden="true">' + (on ? ICON.check : '') + '</span></button>';
+}
+function vProgram(){
+  var p = PROG[V.id], c = CAT[p.kategori], st = progState(p.id), mine = S.program.id === p.id, paused = mine && S.program.paused, d = doneIds();
+  var parts = p.delar.map(function(x){
+    var done = d[x.id], next = st.next && st.next.id === x.id;
+    var meta = !x.skriven ? 'Inte skriven än' : (done ? 'Gjord · ' : next ? 'Nästa · ' : '') + 'tar ' + minutesFor(x) + ' min';
+    return '<li><button class="part' + (done ? ' is-done' : '') + (next ? ' is-next' : '') + '" data-act="open-session" data-id="' + x.id + '" data-key="part-' + x.id + '">' +
+      '<span class="num" aria-hidden="true">' + (done ? ICON.check : x.del) + '</span>' +
+      '<span class="p-text"><span class="p-title"><span class="sr-only">Del ' + x.del + ': </span>' + x.titel + '</span><span class="p-meta">' + meta + '</span></span>' + ICON.chevR + '</button></li>';
+  }).join('');
+  var primary = '';
+  if (!mine) primary = '<button class="btn btn-primary" data-act="prog-choose" data-id="' + p.id + '" data-key="choose">Börja med programmet ' + ICON.arrow + '</button>';
+  else if (paused) primary = '<button class="btn btn-primary" data-act="prog-resume" data-key="resume">Fortsätt programmet ' + ICON.arrow + '</button>';
+  else if (st.next) primary = '<button class="btn btn-primary" data-act="open-session" data-id="' + st.next.id + '" data-key="nextpart">' + (st.done ? 'Fortsätt med del ' + st.next.del : 'Börja med del 1') + ' ' + ICON.arrow + '</button>';
+  return topbar(backBtn(), '') +
+    '<main class="page flow cat-' + c.id + '">' +
+      '<div class="stack">' + illuBlock(c.id) + '<p class="eyebrow" style="margin-top:8px">Program · ' + st.total + ' delar' + (paused ? ' · pausat' : '') + '</p><h1>' + p.titel + '</h1><p>' + p.undertitel + '</p></div>' +
+      '<section class="stack" aria-labelledby="h-parts"><h2 id="h-parts">Delar</h2><p class="sub">En del per dag räcker. Missar du en dag fortsätter du bara där du var.</p><ol class="parts">' + parts + '</ol></section>' +
+      (mine && !paused ? '<section class="stack" aria-labelledby="h-pause"><h2 id="h-pause">Behöver du en paus?</h2><p>Programmet väntar på dig, och du fortsätter där du slutade. Under tiden visar Idag en kort strategi.</p><button class="btn btn-secondary" data-act="prog-pause" data-key="pause" style="align-self:flex-start">Pausa programmet</button></section>' : '') +
+      '<section class="stack" aria-labelledby="h-len"><h2 id="h-len">Passens längd</h2>' +
+        (S.profile.energyBaseline === 'lag' ? '<p class="sub">Just nu är alla pass korta, eftersom du har sagt att din energi oftast är låg.</p>' : '') +
+        '<div class="choices" role="group" aria-labelledby="h-len">' + lenChoice('auto', 'Anpassa efter energin', 'Kortare på dagar med lite energi') + lenChoice('kort', 'Alltid korta', 'Under 3 minuter, utan film') + '</div>' +
+      '</section>' +
+    '</main>' + (primary ? '<footer class="flowbar"><span style="flex:1"></span>' + primary + '</footer>' : '');
 }
 function vFramsteg(){
   var g = S.profile.goal;
@@ -1430,7 +3267,7 @@ function vSettings(){
 var VIEWS = {
   onboarding: vOnboarding, checkin: vCheckin,
   tab: function(){ return V.tab === 'utforska' ? vUtforska() : V.tab === 'framsteg' ? vFramsteg() : vIdag(); },
-  session: vSession, done: vDone, coming: vComing, justnu: vJustNu,
+  session: vSession, done: vDone, coming: vComing, justnu: vJustNu, category: vCategory, program: vProgram,
   more: vMore, help: vHelp, about: vAbout, settings: vSettings
 };
 
@@ -1485,7 +3322,7 @@ var ACT = {
   'ob-skip': function(){ obStep(V.step + 1); },
   'ob-finish': function(){
     S.onboarded = true; S.obStep = 0;
-    S.program = { id: programIdForProfile(), index: 0, paused: false, started: today() };
+    S.program = { id: programIdForProfile(), paused: false, started: today() };
     save(); go(needsCheckin() ? { name: 'checkin' } : { name: 'tab', tab: 'idag' });
   },
   /* energi */
@@ -1504,7 +3341,7 @@ var ACT = {
   'show-next': function(){ V.showNext = true; render(true); },
   /* session */
   'start-session': function(){
-    var prog = currentProgram(), s = prog.delar[S.program.index];
+    var s = progState(currentProgram().id).next;
     if (!s) return;
     if (!s.skriven) { push({ name: 'coming', sid: s.id }); return; }
     push({ name: 'session', sid: s.id, step: 0 });
@@ -1529,11 +3366,25 @@ var ACT = {
   's-addplan-no': function(){ V.planFull = false; render(true); },
   's-reflect': function(el){
     var s = SESS[V.sid];
-    S.completed.push({ sessionId: s.id, programId: s.programId, date: today(), reflection: el.dataset.id });
-    if (S.program.id === s.programId) S.program.index = Math.max(S.program.index, s.del);
-    save(); NAV = []; go({ name: 'done', sid: s.id, reflection: el.dataset.id });
+    S.completed.push({ sessionId: s.id, programId: s.programId || null, typ: s.typ, date: today(), reflection: el.dataset.id });
+    save(); go({ name: 'done', sid: s.id, reflection: el.dataset.id });
   },
-  'done-home': function(){ go({ name: 'tab', tab: 'idag' }); },
+  /* utforska och program */
+  'open-cat': function(el){ push({ name: 'category', id: el.dataset.id }); },
+  'open-program': function(el){ push({ name: 'program', id: el.dataset.id }); },
+  'open-session': function(el){
+    var s = SESS[el.dataset.id];
+    if (!s) return;
+    push(s.skriven ? { name: 'session', sid: s.id, step: 0 } : { name: 'coming', sid: s.id });
+  },
+  'prog-choose': function(el){
+    var old = currentProgram(), id = el.dataset.id, kept = old.id !== id && progState(old.id).done > 0;
+    S.program = { id: id, paused: false, started: today() }; save(); render(true);
+    toast('Idag visar nu ' + PROG[id].titel.toLowerCase() + '.' + (kept ? ' Det du gjort i ' + old.titel.toLowerCase() + ' finns kvar.' : ''));
+  },
+  'prog-pause': function(){ S.program.paused = true; save(); render(true); toast('Programmet är pausat. Det väntar på dig.'); },
+  'prog-resume': function(){ S.program.paused = false; save(); render(true); toast('Programmet är igång igen.'); },
+  'set-length': function(el){ S.settings.sessionLength = el.dataset.id; save(); render(true); },
   /* dagsplan */
   'plan-add': function(){ V.planEdit = true; render('focus'); },
   'plan-cancel': function(){ V.planEdit = false; render(true); },
@@ -1541,8 +3392,10 @@ var ACT = {
   'plan-toggle': function(el){
     var it = planToday().items.filter(function(i){ return i.id === el.dataset.id; })[0];
     if (!it) return;
-    it.done = !it.done; save(); render(true);
-    if (it.done) toast(CALM[Math.floor(Math.random() * CALM.length)]);
+    it.done = !it.done;
+    V.reflectFor = it.done && it.src === 'session' && !it.reflection ? it.id : null;
+    save(); render(true);
+    if (it.done && !V.reflectFor) toast(CALM[Math.floor(Math.random() * CALM.length)]);
   },
   'plan-remove': function(el){
     var plan = planToday(), idx = -1;
@@ -1551,6 +3404,14 @@ var ACT = {
     var removed = plan.items.splice(idx, 1)[0];
     save(); render(true);
     toast('Borttagen.', { label: 'Ångra', fn: function(){ planToday().items.splice(idx, 0, removed); save(); render(true); } });
+  },
+  'plan-reflect': function(el){
+    var it = planToday().items.filter(function(i){ return i.id === el.dataset.id; })[0];
+    var r = C.reflektion.val.filter(function(x){ return x.id === el.dataset.r; })[0];
+    if (!it || !r) return;
+    it.reflection = r.id; V.reflectFor = null; save(); render(true);
+    var f = $app.querySelector('[data-key="pt-' + it.id + '"]'); if (f) f.focus({ preventScroll: true });
+    toast(r.svarKort);
   },
   'plan-extra': function(){ planToday().extra = (planToday().extra || 0) + 1; save(); V.planEdit = true; render('focus'); },
   /* återställ */

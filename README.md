@@ -10,8 +10,8 @@ Prototyp av en app för coachning i vardagens exekutiva förmågor, för vuxna m
 
 | Steg | Innehåll | Status |
 |---|---|---|
-| 1 | Designriktning, onboarding (5 frågor), Idag med energiincheckning och dagsplan, sessionsspelare | Klart för återkoppling |
-| 2 | Utforska (8 kategorier), komplett program ”Planera och prioritera” | Ej påbörjat |
+| 1 | Designriktning, onboarding (5 frågor), Idag med energiincheckning och dagsplan, sessionsspelare | Klart |
+| 2 | Utforska (8 kategorier), kategorisidor, programsida med paus och passlängd, komplett program ”Planera och prioritera”, 16 enskilda strategier | Klart för återkoppling |
 | 3 | Just nu-övningar, Framsteg, Vart kan jag vända mig?, Om appen, Inställningar | Platshållare finns |
 
 ## Struktur i `index.html`
@@ -19,7 +19,7 @@ Prototyp av en app för coachning i vardagens exekutiva förmågor, för vuxna m
 | Del | Var | Vad |
 |---|---|---|
 | Designtokens | `<style>`, `:root` | Färger (ljust och mörkt tema), typsnitt, radier, rörelse |
-| Innehåll | `<script type="application/json" id="innehall">` | Kategorier, livsområden, program, sessioner, Just nu, reflektion. Varje session har fältet `granskning` med den princip den bygger på. |
+| Innehåll | `<script type="application/json" id="innehall">` | Kategorier, livsområden, program, strategier, Just nu, reflektion. Varje session och strategi har fältet `granskning` med den princip den bygger på. Strategier har `livsomraden` som etiketter. |
 | Illustrationer | `SCENES`, `MINI` | Inline-SVG, en scen per kategori |
 | Lagring | `load()` / `save()` | `localStorage`, nyckeln `smasteg:v1`. Allt går via två funktioner så att synk kan läggas till senare. |
 | Vyer | `VIEWS` | En funktion per skärm |

@@ -53,60 +53,15 @@
   --font-head:"Nunito", ui-rounded, "Segoe UI", system-ui, sans-serif;
   --font-body:"Atkinson Hyperlegible", "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    color-scheme: dark;
-    --bg:#19161E; --surface:#231F29; --surface-2:#2C2733; --surface-3:#383240;
-    --line:#3A3441; --line-strong:#6F6778;
-    --text:#F3EEF2; --text-2:#C4BBC7;
-    --btn:#F3EEF2; --on-btn:#19161E; --focus:#F3EEF2;
-    --toast-bg:#F3EEF2; --toast-text:#19161E;
-    --sun:#F0C94A;
-    --igang-c:var(--igang-soft); --igang-i:var(--igang-t); --planera-c:var(--planera-soft); --planera-i:var(--planera-t);
-    --tid-c:var(--tid-soft); --tid-i:var(--tid-t); --tid-id:var(--tid-t); --minne-c:var(--minne-soft); --minne-i:var(--minne-t);
-    --fokus-c:var(--fokus-soft); --fokus-i:var(--fokus-t); --fokus-id:var(--fokus-t); --kanslor-c:var(--kanslor-soft); --kanslor-i:var(--kanslor-t);
-    --forandring-c:var(--forandring-soft); --forandring-i:var(--forandring-t); --balans-c:var(--balans-soft); --balans-i:var(--balans-t);
-    --igang:#B54236;      --igang-t:#E6A99F;      --igang-k:#4A1420;      --igang-soft:#35202A;
-    --planera:#6550B0;    --planera-t:#BEB2E6;    --planera-k:#2A1D5C;    --planera-soft:#2A2542;
-    --tid:#E3B43A;        --tid-t:#F0D27A;        --tid-k:#26306B;        --tid-soft:#2B2B40;
-    --minne:#2766A6;      --minne-t:#A9CBE8;      --minne-k:#10345A;      --minne-soft:#1E2A3C;
-    --fokus:#E88D5F;      --fokus-t:#F2BFA0;      --fokus-k:#4B2A5E;      --fokus-soft:#362636;
-    --kanslor:#9C4468;    --kanslor-t:#E2AFC3;    --kanslor-k:#4E1831;    --kanslor-soft:#352030;
-    --forandring:#376F51; --forandring-t:#AFD2BC; --forandring-k:#173524; --forandring-soft:#1F3029;
-    --balans:#34458A;     --balans-t:#A3AEDC;     --balans-k:#111A40;     --balans-soft:#232844;
-  }
-}
-:root[data-theme="dark"]{
-  color-scheme: dark;
-  --bg:#19161E; --surface:#231F29; --surface-2:#2C2733; --surface-3:#383240;
-  --line:#3A3441; --line-strong:#6F6778;
-  --text:#F3EEF2; --text-2:#C4BBC7;
-  --btn:#F3EEF2; --on-btn:#19161E; --focus:#F3EEF2;
-  --toast-bg:#F3EEF2; --toast-text:#19161E;
-  --sun:#F0C94A;
-  --igang-c:var(--igang-soft); --igang-i:var(--igang-t); --planera-c:var(--planera-soft); --planera-i:var(--planera-t);
-  --tid-c:var(--tid-soft); --tid-i:var(--tid-t); --tid-id:var(--tid-t); --minne-c:var(--minne-soft); --minne-i:var(--minne-t);
-  --fokus-c:var(--fokus-soft); --fokus-i:var(--fokus-t); --fokus-id:var(--fokus-t); --kanslor-c:var(--kanslor-soft); --kanslor-i:var(--kanslor-t);
-  --forandring-c:var(--forandring-soft); --forandring-i:var(--forandring-t); --balans-c:var(--balans-soft); --balans-i:var(--balans-t);
-  --igang:#B54236;      --igang-t:#E6A99F;      --igang-k:#4A1420;      --igang-soft:#35202A;
-  --planera:#6550B0;    --planera-t:#BEB2E6;    --planera-k:#2A1D5C;    --planera-soft:#2A2542;
-  --tid:#E3B43A;        --tid-t:#F0D27A;        --tid-k:#26306B;        --tid-soft:#2B2B40;
-  --minne:#2766A6;      --minne-t:#A9CBE8;      --minne-k:#10345A;      --minne-soft:#1E2A3C;
-  --fokus:#E88D5F;      --fokus-t:#F2BFA0;      --fokus-k:#4B2A5E;      --fokus-soft:#362636;
-  --kanslor:#9C4468;    --kanslor-t:#E2AFC3;    --kanslor-k:#4E1831;    --kanslor-soft:#352030;
-  --forandring:#376F51; --forandring-t:#AFD2BC; --forandring-k:#173524; --forandring-soft:#1F3029;
-  --balans:#34458A;     --balans-t:#A3AEDC;     --balans-k:#111A40;     --balans-soft:#232844;
-}
-
 /* kategoriomfång: sätter --base/--on/--tint/--ink/--soft/--acc för kort och illustrationer */
-.cat-igang{--base:var(--igang);--card:var(--igang-c);--i:var(--igang-i);--on:#fff;--tint:var(--igang-t);--ink:var(--igang-k);--soft:var(--igang-soft);--acc:var(--minne-t)}
-.cat-planera{--base:var(--planera);--card:var(--planera-c);--i:var(--planera-i);--on:#fff;--tint:var(--planera-t);--ink:var(--planera-k);--soft:var(--planera-soft);--acc:var(--tid-t)}
-.cat-tid{--base:var(--tid);--card:var(--tid-c);--i:var(--tid-i);--id:var(--tid-id);--on:var(--on-dark);--tint:var(--tid-t);--ink:var(--tid-k);--soft:var(--tid-soft);--acc:var(--minne-t)}
-.cat-minne{--base:var(--minne);--card:var(--minne-c);--i:var(--minne-i);--on:#fff;--tint:var(--minne-t);--ink:var(--minne-k);--soft:var(--minne-soft);--acc:var(--fokus-t)}
-.cat-fokus{--base:var(--fokus);--card:var(--fokus-c);--i:var(--fokus-i);--id:var(--fokus-id);--on:var(--on-dark);--tint:var(--fokus-t);--ink:var(--fokus-k);--soft:var(--fokus-soft);--acc:var(--planera-t)}
-.cat-kanslor{--base:var(--kanslor);--card:var(--kanslor-c);--i:var(--kanslor-i);--on:#fff;--tint:var(--kanslor-t);--ink:var(--kanslor-k);--soft:var(--kanslor-soft);--acc:var(--forandring-t)}
-.cat-forandring{--base:var(--forandring);--card:var(--forandring-c);--i:var(--forandring-i);--on:#fff;--tint:var(--forandring-t);--ink:var(--forandring-k);--soft:var(--forandring-soft);--acc:var(--igang-t)}
-.cat-balans{--base:var(--balans);--card:var(--balans-c);--i:var(--balans-i);--on:#fff;--tint:var(--balans-t);--ink:var(--balans-k);--soft:var(--balans-soft);--acc:var(--fokus-t)}
+.cat-igang{--base:var(--igang);--card:var(--base);--i:var(--on);--on:#fff;--tint:var(--igang-t);--ink:var(--igang-k);--soft:var(--igang-soft);--acc:var(--minne-t)}
+.cat-planera{--base:var(--planera);--card:var(--base);--i:var(--on);--on:#fff;--tint:var(--planera-t);--ink:var(--planera-k);--soft:var(--planera-soft);--acc:var(--tid-t)}
+.cat-tid{--base:var(--tid);--card:var(--base);--i:var(--on);--id:var(--tid-id);--on:var(--on-dark);--tint:var(--tid-t);--ink:var(--tid-k);--soft:var(--tid-soft);--acc:var(--minne-t)}
+.cat-minne{--base:var(--minne);--card:var(--base);--i:var(--on);--on:#fff;--tint:var(--minne-t);--ink:var(--minne-k);--soft:var(--minne-soft);--acc:var(--fokus-t)}
+.cat-fokus{--base:var(--fokus);--card:var(--base);--i:var(--on);--id:var(--fokus-id);--on:var(--on-dark);--tint:var(--fokus-t);--ink:var(--fokus-k);--soft:var(--fokus-soft);--acc:var(--planera-t)}
+.cat-kanslor{--base:var(--kanslor);--card:var(--base);--i:var(--on);--on:#fff;--tint:var(--kanslor-t);--ink:var(--kanslor-k);--soft:var(--kanslor-soft);--acc:var(--forandring-t)}
+.cat-forandring{--base:var(--forandring);--card:var(--base);--i:var(--on);--on:#fff;--tint:var(--forandring-t);--ink:var(--forandring-k);--soft:var(--forandring-soft);--acc:var(--igang-t)}
+.cat-balans{--base:var(--balans);--card:var(--base);--i:var(--on);--on:#fff;--tint:var(--balans-t);--ink:var(--balans-k);--soft:var(--balans-soft);--acc:var(--fokus-t)}
 
 /* Mjuka ikoner: byggda med CSS (inga svg). 1em = ikonens storlek. */
 .sico{position:relative;display:inline-block;width:1em;height:1em;font-size:56px;flex:none}
@@ -259,12 +214,12 @@ a{color:inherit}
 /* =========================================================
    Kategorikort
    ========================================================= */
-.card{position:relative;display:flex;flex-direction:column;gap:14px;width:100%;padding:18px;border-radius:var(--r-lg);background:var(--card);color:var(--text);text-align:left;transition:transform var(--dur) var(--ease)}
+.card{position:relative;display:flex;flex-direction:column;gap:14px;width:100%;padding:18px;border-radius:var(--r-lg);background:var(--card);color:var(--on);text-align:left;transition:transform var(--dur) var(--ease)}
 button.card:active{transform:scale(.985)}
 .card-body{display:flex;flex-direction:column;gap:4px}
-.card-meta{font-size:1rem;font-weight:700;color:var(--text-2)}
-.card-title{font-family:var(--font-head);font-weight:800;font-size:1.375rem;line-height:1.2;color:var(--text);text-wrap:balance}
-.card-under{font-size:1rem;color:var(--text-2)}
+.card-meta{font-size:1rem;font-weight:700;color:var(--on)}
+.card-title{font-family:var(--font-head);font-weight:800;font-size:1.375rem;line-height:1.2;color:var(--on);text-wrap:balance}
+.card-under{font-size:1rem;color:var(--on)}
 .card-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px}
 .pill{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:2px 12px;border-radius:999px;background:var(--surface);color:var(--text);font-size:1rem;font-weight:700}
 .play-dot{display:grid;place-items:center;width:52px;height:52px;border-radius:999px;background:var(--btn);flex:none}
@@ -278,14 +233,15 @@ button.card:active{transform:scale(.985)}
 .welcome{padding:16px 18px;border-radius:var(--r-md);background:var(--surface-2)}
 
 /* Idag: dagens steg klart */
-.soft-card{display:flex;gap:16px;align-items:center;padding:18px;border-radius:var(--r-lg);background:var(--card)}
+.soft-card{display:flex;gap:16px;align-items:center;padding:18px;border-radius:var(--r-lg);background:var(--soft)}
 .soft-card .stack{gap:6px}
+.soft-card .sico{--i:var(--base);--card:var(--soft)}
 
 /* Just nu */
 .jn-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
 .jn-row{display:flex;align-items:center;gap:14px;width:100%;min-height:72px;padding:8px 14px 8px 8px;border-radius:var(--r-md);background:var(--surface);border:2px solid var(--line)}
 .jn-row:hover{border-color:var(--line-strong)}
-.jn-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;width:56px;height:56px;border-radius:14px;background:var(--card);color:var(--text);font-family:var(--font-head);line-height:1;flex:none}
+.jn-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;width:56px;height:56px;border-radius:14px;background:var(--card);color:var(--on);font-family:var(--font-head);line-height:1;flex:none}
 .jn-tile b{font-size:1.375rem;font-weight:900}
 .jn-tile small{font-size:.9375rem;font-weight:800}
 .jn-text{flex:1;display:flex;flex-direction:column}
@@ -315,11 +271,11 @@ button.card:active{transform:scale(.985)}
 .empty .e-tile{width:72px;height:72px}
 /* Utforska */
 .explore{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.gcard{display:flex;flex-direction:column;justify-content:space-between;gap:18px;width:100%;min-height:180px;padding:16px 14px 14px;border-radius:var(--r-lg);background:var(--card);color:var(--text);text-align:left;transition:transform var(--dur) var(--ease)}
+.gcard{display:flex;flex-direction:column;justify-content:space-between;gap:18px;width:100%;min-height:180px;padding:16px 14px 14px;border-radius:var(--r-lg);background:var(--card);color:var(--on);text-align:left;transition:transform var(--dur) var(--ease)}
 .gcard:active{transform:scale(.97)}
 .g-body{display:flex;flex-direction:column;align-items:flex-start;gap:2px}
-.g-title{font-family:var(--font-head);font-weight:800;font-size:1.125rem;line-height:1.2;color:var(--text);hyphens:manual;overflow-wrap:break-word}
-.g-under{font-size:1rem;line-height:1.35;color:var(--text-2);hyphens:manual;overflow-wrap:break-word}
+.g-title{font-family:var(--font-head);font-weight:800;font-size:1.125rem;line-height:1.2;color:var(--on);hyphens:manual;overflow-wrap:break-word}
+.g-under{font-size:1rem;line-height:1.35;color:var(--on);hyphens:manual;overflow-wrap:break-word}
 .g-pill{margin-bottom:6px;min-height:28px;padding:2px 10px;white-space:nowrap;font-size:.9375rem;background:var(--btn);color:var(--on-btn)}
 
 /* Kategori- och programsidor */
@@ -359,7 +315,7 @@ button.card:active{transform:scale(.985)}
 .tab[aria-current="page"] .tab-lab{background:var(--surface-3)}
 
 /* Session */
-.video{position:relative;display:block;width:100%;aspect-ratio:16/10;max-width:100%;border-radius:var(--r-lg);background:var(--card);overflow:hidden;color:var(--text)}
+.video{position:relative;display:block;width:100%;aspect-ratio:16/10;max-width:100%;border-radius:var(--r-lg);background:var(--card);overflow:hidden;color:var(--on)}
 .video .sico{position:absolute;right:12%;top:50%;transform:translateY(-50%)}
 .video .sico-minne{transform:translateY(-50%) rotate(-35deg)}
 .video .v-play{position:absolute;left:18px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:68px;height:68px;border-radius:999px;background:var(--btn)}

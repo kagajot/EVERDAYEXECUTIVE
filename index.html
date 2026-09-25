@@ -1,0 +1,1597 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Småsteg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Nunito:wght@700;800;900&display=swap">
+<style>
+/* =========================================================
+   SMÅSTEG – designtokens
+   Ljust tema definieras på :root. Mörkt tema omdefinierar
+   bara tokens (systemval + explicit data-theme).
+   ========================================================= */
+:root{
+  color-scheme: light;
+  --text-scale: 1;
+
+  --bg:#FBF7F1; --surface:#FFFDF9; --surface-2:#F4EDE3; --surface-3:#EAE0D2;
+  --line:#E5DBCE; --line-strong:#B9AB9A;
+  --text:#1F1B17; --text-2:#5C5249;
+  --btn:#1F1B17; --on-btn:#FFFDF9;
+  --focus:#1F1B17;
+  --toast-bg:#1F1B17; --toast-text:#FFFDF9;
+
+  /* illustrationens fasta färger */
+  --il-w:#FFF8EF; --face:#2A1F1A; --leaf:#6FA27B; --sun:#FFD867; --cheek:#EE8F80; --cloud:#D8CEC1;
+  --s1:#F3C9A8; --s2:#C98C63; --s3:#8A5A3C;
+  --h1:#2B211C; --h2:#7A4526; --h3:#E3B24F;
+
+  /* kategorier: bas (vit text ≥ 4,5:1) · t = ljus ton · k = djup ton · soft = UI-bakgrund */
+  --igang:#C44E3D;      --igang-t:#F8C8BB;      --igang-k:#7E2D22;      --igang-soft:#FBE6DF;
+  --planera:#7563BE;    --planera-t:#DAD2F6;    --planera-k:#3E3270;    --planera-soft:#EEEAFB;
+  --tid:#8F6A00;        --tid-t:#FFD867;        --tid-k:#4F3A00;        --tid-soft:#FFF3CC;
+  --minne:#2E78B5;      --minne-t:#BFE0F7;      --minne-k:#16426A;      --minne-soft:#E3F1FB;
+  --fokus:#AD6134;      --fokus-t:#FFD3B3;      --fokus-k:#633114;      --fokus-soft:#FFEBDC;
+  --kanslor:#AB5673;    --kanslor-t:#F4C9D6;    --kanslor-k:#62283D;    --kanslor-soft:#F9E6EC;
+  --forandring:#4F7A5E; --forandring-t:#CDE3D2; --forandring-k:#294433; --forandring-soft:#E6F1E8;
+  --balans:#27336B;     --balans-t:#B9C3EA;     --balans-k:#121A3D;     --balans-soft:#E4E8F7;
+
+  --r-lg:20px; --r-md:16px; --r-sm:12px;
+  --ease:cubic-bezier(.22,.8,.3,1); --dur:280ms;
+  --font-head:"Nunito", ui-rounded, "Segoe UI", system-ui, sans-serif;
+  --font-body:"Atkinson Hyperlegible", "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --bg:#1C1714; --surface:#27201B; --surface-2:#312822; --surface-3:#3D332B;
+    --line:#3E342C; --line-strong:#76685A;
+    --text:#F4ECE3; --text-2:#C9BCAE;
+    --btn:#F4ECE3; --on-btn:#1C1714; --focus:#F4ECE3;
+    --toast-bg:#F4ECE3; --toast-text:#1C1714;
+    --il-w:#F1E6D8; --leaf:#5F8B69; --sun:#E6C25F; --cloud:#6E6257;
+    --igang:#A84A3E;      --igang-t:#E3AFA2;      --igang-k:#5E241C;      --igang-soft:#3A2521;
+    --planera:#625596;    --planera-t:#BDB3E0;    --planera-k:#2E2656;    --planera-soft:#2E2A40;
+    --tid:#7A5D14;        --tid-t:#E6C25F;        --tid-k:#3B2C05;        --tid-soft:#372E17;
+    --minne:#2E6696;      --minne-t:#A5C8E0;      --minne-k:#123452;      --minne-soft:#1F2E3B;
+    --fokus:#8F5431;      --fokus-t:#E8BC9C;      --fokus-k:#4A250F;      --fokus-soft:#3A2A1F;
+    --kanslor:#8C4D63;    --kanslor-t:#DDB0BF;    --kanslor-k:#4A1F2E;    --kanslor-soft:#3A2530;
+    --forandring:#476B51; --forandring-t:#B4CDB9; --forandring-k:#1F3527; --forandring-soft:#243328;
+    --balans:#3A4A86;     --balans-t:#A0AAD6;     --balans-k:#161D40;     --balans-soft:#232842;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --bg:#1C1714; --surface:#27201B; --surface-2:#312822; --surface-3:#3D332B;
+  --line:#3E342C; --line-strong:#76685A;
+  --text:#F4ECE3; --text-2:#C9BCAE;
+  --btn:#F4ECE3; --on-btn:#1C1714; --focus:#F4ECE3;
+  --toast-bg:#F4ECE3; --toast-text:#1C1714;
+  --il-w:#F1E6D8; --leaf:#5F8B69; --sun:#E6C25F; --cloud:#6E6257;
+  --igang:#A84A3E;      --igang-t:#E3AFA2;      --igang-k:#5E241C;      --igang-soft:#3A2521;
+  --planera:#625596;    --planera-t:#BDB3E0;    --planera-k:#2E2656;    --planera-soft:#2E2A40;
+  --tid:#7A5D14;        --tid-t:#E6C25F;        --tid-k:#3B2C05;        --tid-soft:#372E17;
+  --minne:#2E6696;      --minne-t:#A5C8E0;      --minne-k:#123452;      --minne-soft:#1F2E3B;
+  --fokus:#8F5431;      --fokus-t:#E8BC9C;      --fokus-k:#4A250F;      --fokus-soft:#3A2A1F;
+  --kanslor:#8C4D63;    --kanslor-t:#DDB0BF;    --kanslor-k:#4A1F2E;    --kanslor-soft:#3A2530;
+  --forandring:#476B51; --forandring-t:#B4CDB9; --forandring-k:#1F3527; --forandring-soft:#243328;
+  --balans:#3A4A86;     --balans-t:#A0AAD6;     --balans-k:#161D40;     --balans-soft:#232842;
+}
+
+/* kategoriomfång: sätter --base/--tint/--ink/--soft/--acc för kort och illustrationer */
+.cat-igang{--base:var(--igang);--tint:var(--igang-t);--ink:var(--igang-k);--soft:var(--igang-soft);--acc:var(--minne-t)}
+.cat-planera{--base:var(--planera);--tint:var(--planera-t);--ink:var(--planera-k);--soft:var(--planera-soft);--acc:var(--tid-t)}
+.cat-tid{--base:var(--tid);--tint:var(--tid-t);--ink:var(--tid-k);--soft:var(--tid-soft);--acc:var(--fokus-t)}
+.cat-minne{--base:var(--minne);--tint:var(--minne-t);--ink:var(--minne-k);--soft:var(--minne-soft);--acc:var(--fokus-t)}
+.cat-fokus{--base:var(--fokus);--tint:var(--fokus-t);--ink:var(--fokus-k);--soft:var(--fokus-soft);--acc:var(--planera-t)}
+.cat-kanslor{--base:var(--kanslor);--tint:var(--kanslor-t);--ink:var(--kanslor-k);--soft:var(--kanslor-soft);--acc:var(--forandring-t)}
+.cat-forandring{--base:var(--forandring);--tint:var(--forandring-t);--ink:var(--forandring-k);--soft:var(--forandring-soft);--acc:var(--igang-t)}
+.cat-balans{--base:var(--balans);--tint:var(--balans-t);--ink:var(--balans-k);--soft:var(--balans-soft);--acc:var(--fokus-t)}
+
+/* illustrationsklasser: fyllning (f-) och linje (s-) */
+.il{display:block;overflow:visible}
+.il .f-w{fill:var(--il-w)} .il .f-t{fill:var(--tint)} .il .f-k{fill:var(--ink)} .il .f-a{fill:var(--acc)} .il .f-b{fill:var(--cut,var(--base))}
+.il .f-s1{fill:var(--s1)} .il .f-s2{fill:var(--s2)} .il .f-s3{fill:var(--s3)}
+.il .f-h1{fill:var(--h1)} .il .f-h2{fill:var(--h2)} .il .f-h3{fill:var(--h3)}
+.il .f-face{fill:var(--face)} .il .f-leaf{fill:var(--leaf)} .il .f-sun{fill:var(--sun)} .il .f-cheek{fill:var(--cheek)} .il .f-cloud{fill:var(--cloud)}
+.il .ln{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.il .s-w{stroke:var(--il-w)} .il .s-t{stroke:var(--tint)} .il .s-k{stroke:var(--ink)} .il .s-a{stroke:var(--acc)} .il .s-b{stroke:var(--base)}
+.il .s-s1{stroke:var(--s1)} .il .s-s2{stroke:var(--s2)} .il .s-s3{stroke:var(--s3)}
+.il .s-face{stroke:var(--face)} .il .s-leaf{stroke:var(--leaf)}
+
+/* =========================================================
+   Grund
+   ========================================================= */
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{font-size:calc(100% * var(--text-scale));height:100%;-webkit-text-size-adjust:100%}
+body{
+  margin:0;min-height:100%;
+  background:var(--bg);color:var(--text);
+  font-family:var(--font-body);font-size:1.0625rem;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0;padding:0;text-align:inherit}
+h1,h2,h3{font-family:var(--font-head);font-weight:800;line-height:1.2;margin:0;text-wrap:balance;letter-spacing:-.005em}
+h1{font-size:1.75rem}
+h2{font-size:1.3125rem}
+h3{font-size:1.125rem}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:10px}
+[tabindex="-1"]:focus{outline:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+#app{max-width:34rem;margin:0 auto;min-height:100%;display:flex;flex-direction:column}
+.enter{animation:enter var(--dur) var(--ease)}
+@keyframes enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* rörelse av: systemval eller appens inställning */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+:root[data-motion="reduce"] *,:root[data-motion="reduce"] *::before,:root[data-motion="reduce"] *::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+
+/* =========================================================
+   Sidlayout
+   ========================================================= */
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px;padding-inline:16px;padding-top:8px}
+.tb-left,.tb-right{display:flex;align-items:center;gap:4px;min-height:48px}
+.tb-right{margin-left:auto}
+.page{flex:1;padding-inline:16px;padding-block:8px 120px;display:flex;flex-direction:column;gap:32px}
+.page.flow{padding-bottom:24px}
+.stack{display:flex;flex-direction:column;gap:12px}
+.stack-lg{display:flex;flex-direction:column;gap:20px}
+.eyebrow{font-family:var(--font-head);font-weight:800;font-size:1rem;color:var(--text-2);letter-spacing:.01em}
+.lead{color:var(--text-2);max-width:36ch}
+.sub{color:var(--text-2);margin-top:2px}
+.section-head{display:flex;flex-direction:column;gap:2px;margin-bottom:14px}
+.greet{font-size:1.625rem}
+.date{color:var(--text-2);font-size:1rem}
+
+/* knappar */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border-radius:999px;font-family:var(--font-head);font-weight:800;font-size:1.0625rem;transition:transform var(--dur) var(--ease),background-color var(--dur) var(--ease)}
+.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--btn);color:var(--on-btn)}
+.btn-secondary{background:var(--surface-2);color:var(--text)}
+.btn-wide{width:100%}
+.btn-text{display:inline-flex;align-items:center;gap:6px;min-height:48px;padding:0 12px;border-radius:999px;font-family:var(--font-head);font-weight:800;font-size:1.0625rem;color:var(--text);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px;text-decoration-color:var(--line-strong)}
+.btn-icon{display:inline-grid;place-items:center;width:48px;height:48px;border-radius:999px;color:var(--text)}
+.btn-icon:hover{background:var(--surface-2)}
+.btn-icon svg,.btn-text svg,.btn svg{width:24px;height:24px;flex:none}
+.btn-back{display:inline-flex;align-items:center;gap:4px;min-height:48px;padding:0 14px 0 6px;border-radius:999px;font-family:var(--font-head);font-weight:800}
+.btn-back svg{width:24px;height:24px}
+.btn-back:hover{background:var(--surface-2)}
+.btn-round{display:grid;place-items:center;width:60px;height:60px;border-radius:999px;background:var(--btn);color:var(--on-btn);flex:none;transition:transform var(--dur) var(--ease)}
+.btn-round:active{transform:scale(.94)}
+.btn-round svg{width:26px;height:26px}
+.btn-round[aria-disabled="true"]{opacity:.45}
+
+/* ordmärke */
+.logo{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-head);font-weight:900;font-size:1.25rem;letter-spacing:-.01em}
+.logo svg{width:30px;height:24px}
+
+/* flödesfot: stegindikator + nästa */
+.flowbar{position:sticky;bottom:0;display:flex;align-items:center;gap:16px;padding:12px 16px calc(14px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line)}
+.stepbar{flex:1;display:flex;gap:6px;align-items:center}
+.stepbar span{flex:1;height:4px;border-radius:4px;background:var(--line)}
+.stepbar span.on{background:var(--text)}
+.stepbar span.done{background:var(--text-2)}
+
+/* val (onboarding m.m.) */
+.choices{display:flex;flex-direction:column;gap:10px}
+.choice{display:flex;align-items:center;gap:14px;width:100%;min-height:60px;padding:12px 16px;border-radius:var(--r-md);background:var(--surface);border:2px solid var(--line);font-size:1.0625rem;line-height:1.35;transition:border-color var(--dur) var(--ease),background-color var(--dur) var(--ease)}
+.choice:hover{border-color:var(--line-strong)}
+.choice[aria-pressed="true"]{border-color:var(--text);background:var(--soft,var(--surface-2))}
+.choice .c-text{flex:1;display:flex;flex-direction:column;gap:2px}
+.choice .c-title{font-weight:700}
+.choice .c-desc{color:var(--text-2);font-size:1rem}
+.choice .dot{width:16px;height:16px;border-radius:999px;background:var(--base);flex:none}
+.choice .c-icon{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--surface-2);flex:none;color:var(--text)}
+.choice[aria-pressed="true"] .c-icon{background:var(--surface)}
+.choice .c-icon svg{width:26px;height:26px}
+.choice .mark{display:grid;place-items:center;width:30px;height:30px;border-radius:999px;border:2px solid var(--line-strong);flex:none;font-family:var(--font-head);font-weight:900;font-size:1rem}
+.choice[aria-pressed="true"] .mark{background:var(--text);border-color:var(--text);color:var(--bg)}
+.choice .mark svg{width:18px;height:18px}
+.hint{min-height:1.6em;color:var(--text);font-weight:700}
+.wave svg{width:44px;height:30px}
+
+.field{display:flex;flex-direction:column;gap:8px}
+.field label{font-weight:700}
+.input{width:100%;min-height:52px;padding:12px 16px;border-radius:var(--r-sm);border:2px solid var(--line-strong);background:var(--surface);font-size:1.0625rem}
+.input:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.counter{color:var(--text-2);font-size:1rem}
+
+/* =========================================================
+   Kategorikort
+   ========================================================= */
+.card{position:relative;display:flex;flex-direction:column;width:100%;margin-top:24px;border-radius:var(--r-lg);background:var(--base);color:#fff;text-align:left;overflow:visible;transition:transform var(--dur) var(--ease)}
+button.card:active{transform:scale(.985)}
+.card-illu{display:flex;justify-content:flex-end;height:168px;padding-right:8px;margin-top:-24px;pointer-events:none}
+.card-illu .il{height:100%;width:auto;max-width:100%}
+.card-body{display:flex;flex-direction:column;gap:4px;padding:6px 18px 18px}
+.card-meta{font-size:1rem;font-weight:700;color:#fff}
+.card-title{font-family:var(--font-head);font-weight:800;font-size:1.375rem;line-height:1.2;color:#fff;text-wrap:balance}
+.card-under{font-size:1rem;color:#fff}
+.card-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px}
+.pill{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:2px 12px;border-radius:999px;background:var(--ink);color:#fff;font-size:1rem;font-weight:700}
+.pill svg{width:18px;height:18px}
+.play-dot{display:grid;place-items:center;width:52px;height:52px;border-radius:999px;background:#fff;color:var(--ink);flex:none}
+.play-dot svg{width:24px;height:24px;margin-left:3px}
+
+/* Idag: energirad */
+.energy-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 6px 8px 16px;border-radius:var(--r-md);background:var(--surface-2)}
+.e-lab{display:flex;flex-direction:column;line-height:1.3}
+.e-lab small{font-size:1rem;color:var(--text-2)}
+.e-lab b{font-family:var(--font-head);font-weight:800;font-size:1.125rem}
+.welcome{padding:16px 18px;border-radius:var(--r-md);background:var(--surface-2)}
+
+/* Idag: dagens steg klart */
+.soft-card{--cut:var(--soft);display:flex;gap:16px;align-items:center;padding:16px;border-radius:var(--r-lg);background:var(--soft)}
+.soft-card .stack{gap:6px}
+
+/* Just nu */
+.jn-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.jn-row{display:flex;align-items:center;gap:14px;width:100%;min-height:72px;padding:8px 12px 8px 8px;border-radius:var(--r-md);background:var(--surface);border:2px solid var(--line)}
+.jn-row:hover{border-color:var(--line-strong)}
+.jn-tile{display:grid;place-items:center;width:56px;height:56px;border-radius:14px;background:var(--base);flex:none}
+.jn-tile svg{width:34px;height:34px}
+.jn-text{flex:1;display:flex;flex-direction:column}
+.jn-title{font-family:var(--font-head);font-weight:800;font-size:1.125rem;line-height:1.25}
+.jn-meta{color:var(--text-2);font-size:1rem}
+.chev{width:22px;height:22px;color:var(--text-2);flex:none}
+.e-tile{display:grid;place-items:end center;width:76px;height:64px;border-radius:14px;background:var(--base);overflow:hidden;flex:none}
+.e-tile svg{width:76px;height:auto}
+
+/* Dagsplan */
+.plan{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.plan-item{display:flex;align-items:center;gap:8px;min-height:64px;padding:6px 4px 6px 8px;border-radius:var(--r-md);background:var(--surface);border:2px solid var(--line);transition:background-color var(--dur) var(--ease)}
+.plan-item.is-done{background:var(--surface-2);border-color:transparent}
+.check{display:grid;place-items:center;width:48px;height:48px;border-radius:999px;flex:none}
+.check span{display:grid;place-items:center;width:32px;height:32px;border-radius:999px;border:2.5px solid var(--line-strong);color:transparent;transition:background-color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
+.check svg{width:20px;height:20px;stroke-width:3}
+.check[aria-pressed="true"] span{background:var(--forandring);border-color:var(--forandring);color:#fff}
+.plan-text{flex:1;display:flex;flex-direction:column;line-height:1.35}
+.is-done .plan-text .pt{color:var(--text-2)}
+.plan-src{font-size:1rem;color:var(--text-2)}
+.plan-empty{display:flex;align-items:center;gap:12px;width:100%;min-height:64px;padding:8px 16px;border-radius:var(--r-md);border:2px dashed var(--line-strong);color:var(--text);font-weight:700}
+.plan-empty svg{width:24px;height:24px}
+.plan-editor{padding:16px;border-radius:var(--r-md);background:var(--surface);border:2px solid var(--text);display:flex;flex-direction:column;gap:14px}
+.ideas{display:flex;flex-wrap:wrap;gap:8px}
+.idea{min-height:44px;padding:6px 14px;border-radius:999px;background:var(--surface-2);font-size:1rem;font-weight:700}
+.idea-wrap{display:flex;flex-direction:column;gap:8px}
+.idea-wrap p{color:var(--text-2);font-size:1rem}
+.row-end{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap}
+.empty{display:flex;align-items:center;gap:16px;padding:4px 0 8px}
+.empty .il{width:88px;flex:none}
+.all-done{display:flex;flex-direction:column;gap:6px;align-items:flex-start;padding:16px 18px;border-radius:var(--r-md);background:var(--forandring-soft)}
+
+/* Bottenmeny */
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:5;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.tabbar-in{max-width:34rem;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr)}
+.tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:64px;font-family:var(--font-head);font-weight:800;font-size:.9375rem;color:var(--text-2)}
+.tab .tab-ic{display:grid;place-items:center;width:56px;height:30px;border-radius:999px;transition:background-color var(--dur) var(--ease)}
+.tab svg{width:24px;height:24px}
+.tab[aria-current="page"]{color:var(--text)}
+.tab[aria-current="page"] .tab-ic{background:var(--surface-3)}
+
+/* Session */
+.video{position:relative;display:block;width:100%;aspect-ratio:16/10;max-width:100%;border-radius:var(--r-lg);background:var(--base);overflow:hidden;color:#fff}
+.video .il{position:absolute;inset:8% 4% 0 auto;height:92%;width:auto}
+.video .v-play{position:absolute;left:18px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:68px;height:68px;border-radius:999px;background:#fff;color:var(--ink)}
+.video .v-play svg{width:30px;height:30px;margin-left:4px}
+.video .v-len{position:absolute;left:14px;bottom:14px}
+.prose{display:flex;flex-direction:column;gap:14px;max-width:38rem}
+.listen{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 18px 0 14px;border-radius:999px;background:var(--surface-2);font-family:var(--font-head);font-weight:800}
+.listen svg{width:22px;height:22px}
+.listen[aria-pressed="true"]{background:var(--btn);color:var(--on-btn)}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s;display:flex;flex-direction:column;gap:12px}
+.steps li{counter-increment:s;display:flex;gap:14px;align-items:flex-start}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:999px;background:var(--base);color:#fff;font-family:var(--font-head);font-weight:900;flex:none;margin-top:-2px}
+.tip{padding:14px 16px;border-radius:var(--r-md);background:var(--soft)}
+.examples{display:flex;flex-direction:column;gap:10px}
+.example{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:var(--r-md);background:var(--surface);border:2px solid var(--line)}
+.example svg{width:24px;height:24px;flex:none;margin-top:2px}
+.example b{display:block;font-family:var(--font-head);font-weight:800}
+.chip{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:2px 12px;border-radius:999px;background:var(--surface-2);font-size:1rem;font-weight:700}
+.chip svg{width:20px;height:20px}
+.prose .chip{align-self:flex-start}
+.chip-dev{background:transparent;border:2px dashed var(--line-strong);color:var(--text-2)}
+.weather svg{width:34px;height:34px}
+
+/* Sammanfattning */
+.sum-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+.sum-list li{display:flex;gap:14px;align-items:flex-start}
+.sum-list .c-icon{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--surface-2);flex:none}
+.sum-list svg{width:24px;height:24px}
+.sum-list b{display:block;font-family:var(--font-head);font-weight:800}
+
+/* Menysidor */
+.menu-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.menu-row{display:flex;align-items:center;gap:14px;width:100%;min-height:68px;padding:10px 14px;border-radius:var(--r-md);background:var(--surface);border:2px solid var(--line);font-family:var(--font-head);font-weight:800;font-size:1.125rem}
+.menu-row .c-icon{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--surface-2);flex:none}
+.menu-row .c-icon svg{width:24px;height:24px}
+.menu-row .m-text{flex:1;display:flex;flex-direction:column}
+.menu-row small{font-family:var(--font-body);font-weight:400;font-size:1rem;color:var(--text-2)}
+.help-card{display:flex;flex-direction:column;gap:6px;padding:18px;border-radius:var(--r-md);background:var(--surface);border:2px solid var(--line)}
+.help-card.urgent{border-color:var(--text)}
+.help-num{font-family:var(--font-head);font-weight:900;font-size:2rem;line-height:1.1;letter-spacing:.02em;font-variant-numeric:tabular-nums}
+.help-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.placeholder{--cut:var(--soft);display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:22px;border-radius:var(--r-lg);background:var(--soft)}
+.illu-block{--cut:var(--base);display:flex;justify-content:center;align-items:flex-end;align-self:stretch;padding:18px 16px 0;border-radius:var(--r-lg);background:var(--base);overflow:hidden}
+.illu-block .il{width:100%;max-width:240px;height:auto}
+.illu-block.sm{align-self:center;width:96px;padding:8px 6px 0;border-radius:14px;flex:none}
+.confirm{display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:var(--r-md);border:2px solid var(--text);background:var(--surface)}
+.goal-box{display:flex;gap:14px;align-items:flex-start;padding:18px;border-radius:var(--r-lg);background:var(--surface);border:2px solid var(--line)}
+.goal-box svg{width:28px;height:28px;flex:none}
+
+/* Toast */
+#toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:20;width:min(30rem,calc(100% - 32px));display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px 14px 20px;border-radius:var(--r-md);background:var(--toast-bg);color:var(--toast-text);font-weight:700;animation:enter var(--dur) var(--ease)}
+body[data-view="session"] #toast,body[data-view="onboarding"] #toast,body[data-view="checkin"] #toast{bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+#toast button{min-height:44px;padding:0 14px;border-radius:999px;background:var(--toast-text);color:var(--toast-bg);font-family:var(--font-head);font-weight:800}
+
+@media (min-width:600px){
+  h1{font-size:2rem}
+  .card-illu{height:190px}
+}
+</style>
+</head>
+<body>
+<div id="app" aria-live="off"></div>
+<div id="toast" role="status" aria-live="polite" hidden></div>
+<div id="sr" class="sr-only" aria-live="polite"></div>
+
+<!-- =========================================================
+     INNEHÅLL
+     All text i appen ligger här som JSON, så att den kan granskas
+     och byggas ut utan att röra koden. Fältet "granskning" på
+     varje session anger vilken princip strategin bygger på.
+     ========================================================= -->
+<script type="application/json" id="innehall">
+{
+  "_om": "Innehåll för Småsteg. Allt är skrivet för att granskas av legitimerad arbetsterapeut innan användning. Sessioner med skriven:false har bara titel och planerad princip.",
+  "version": "0.1.0 (steg 1)",
+  "granskningsstatus": "Ej granskat av arbetsterapeut",
+
+  "kategorier": [
+    { "id": "igang", "titel": "Komma igång", "formaga": "Igångsättning", "pastaende": "Jag kommer inte igång",
+      "mal": ["Komma igång med vardagssysslor utan att fastna så länge", "Börja på saker innan det blir bråttom"], "program": "p-igang" },
+    { "id": "planera", "titel": "Planera och prioritera", "formaga": "Planering", "pastaende": "Jag vet inte var jag ska börja",
+      "mal": ["Veta vad jag ska göra idag", "Få bättre överblick över veckan"], "program": "p-planera" },
+    { "id": "tid", "titel": "Hålla koll på tiden", "formaga": "Tidsuppfattning", "pastaende": "Tiden bara försvinner",
+      "mal": ["Komma i tid oftare", "Veta ungefär hur lång tid saker tar"], "program": "p-tid" },
+    { "id": "minne", "titel": "Komma ihåg", "formaga": "Arbetsminne", "pastaende": "Jag glömmer saker",
+      "mal": ["Glömma färre saker i vardagen", "Hålla koll på tider och viktiga papper"], "program": "p-minne" },
+    { "id": "fokus", "titel": "Behålla fokus", "formaga": "Uppmärksamhet och impulskontroll", "pastaende": "Jag tappar lätt fokus",
+      "mal": ["Kunna hålla fokus en stund i taget", "Göra klart det jag har börjat på"], "program": "p-fokus" },
+    { "id": "kanslor", "titel": "Hantera känslor och stress", "formaga": "Emotionsreglering", "pastaende": "Jag blir lätt stressad eller överväldigad",
+      "mal": ["Hitta lugnet när det blir för mycket", "Återhämta mig lite snabbare efter stress"], "program": "p-kanslor" },
+    { "id": "forandring", "titel": "Hantera förändringar", "formaga": "Flexibilitet", "pastaende": "Det är jobbigt när planer ändras",
+      "mal": ["Klara ändrade planer med mindre stress", "Känna mig tryggare inför nya saker"], "program": "p-forandring" },
+    { "id": "balans", "titel": "Balans och återhämtning", "formaga": "Aktivitetsbalans", "pastaende": "Energin tar slut för snabbt",
+      "mal": ["Orka hela dagen", "Hitta en bättre balans mellan att göra och att vila"], "program": "p-balans" }
+  ],
+
+  "livsomraden": [
+    { "id": "hem", "titel": "Hemmet", "ikon": "home", "dagsplanForslag": ["Diska en liten stund", "Plocka undan på ett ställe", "Sätta på en tvätt"] },
+    { "id": "ekonomi", "titel": "Ekonomi", "ikon": "coins", "dagsplanForslag": ["Titta på en räkning", "Kolla saldot", "Lägga ett kvitto på sin plats"] },
+    { "id": "arbete", "titel": "Arbete och studier", "ikon": "work", "dagsplanForslag": ["Svara på ett mejl", "Läsa en sida", "Skriva ner nästa steg i en uppgift"] },
+    { "id": "relationer", "titel": "Relationer", "ikon": "people", "dagsplanForslag": ["Skicka ett sms till någon", "Ringa någon en kort stund", "Bestämma en tid att ses"] },
+    { "id": "halsa", "titel": "Hälsa", "ikon": "leaf", "dagsplanForslag": ["Gå en kort promenad", "Äta något", "Dricka ett glas vatten"] }
+  ],
+  "dagsplanForslagAllmant": ["Dricka ett glas vatten", "Gå ut en kort stund", "Plocka undan en sak"],
+
+  "energiBas": [
+    { "id": "jamn", "titel": "Ganska jämn", "text": "Energin är ungefär likadan de flesta dagar." },
+    { "id": "varierar", "titel": "Varierar mycket", "text": "Vissa dagar går det bra, andra inte alls." },
+    { "id": "lag", "titel": "Oftast låg", "text": "Det mesta tar mycket kraft." }
+  ],
+
+  "energiIdag": [
+    { "id": "lite", "titel": "Lite", "text": "Vi håller det kort. En sak i dagsplanen.", "platser": 1 },
+    { "id": "mitt", "titel": "Mittemellan", "text": "Lagom tempo. Två saker i dagsplanen.", "platser": 2 },
+    { "id": "mycket", "titel": "Mycket", "text": "Du har mer att ge idag. Upp till tre saker.", "platser": 3 }
+  ],
+
+  "reflektion": {
+    "fraga": "Hur gick det?",
+    "val": [
+      { "id": "bra", "text": "Det kändes bra", "svar": "Vad fint att höra. Ta med dig den känslan till nästa gång." },
+      { "id": "sadar", "text": "Det gick sådär", "svar": "Det är helt okej. Att prova är det viktiga. Resten kommer med tiden." },
+      { "id": "svart", "text": "Det var svårt idag", "svar": "Tack för att du provade ändå. Svåra dagar hör till. När energin är låg blir passen kortare av sig själva." }
+    ]
+  },
+
+  "justNu": [
+    { "id": "jn-igang", "titel": "Jag kommer inte igång", "min": 2, "kategori": "igang", "skriven": false },
+    { "id": "jn-kaos", "titel": "Allt känns kaotiskt", "min": 3, "kategori": "planera", "skriven": false },
+    { "id": "jn-slut", "titel": "Jag är helt slut", "min": 2, "kategori": "balans", "skriven": false }
+  ],
+
+  "program": [
+    {
+      "id": "p-igang", "kategori": "igang", "titel": "Komma igång", "undertitel": "Små knep för att ta första steget.",
+      "delar": [
+        { "id": "igang-1", "del": 1, "titel": "Det minsta första steget", "min": 4, "minKort": 2, "skriven": true,
+          "forklaring": {
+            "text": ["Ofta är det inte själva uppgiften som är svårast. Det svåra är att börja. Hjärnan ser hela berget på en gång, och då är det lätt att fastna.",
+                     "Om du gör första steget riktigt litet, blir tröskeln lägre. När du väl har börjat är det ofta lättare att fortsätta. Och gör du bara det första steget, så räknas det också."],
+            "kort": "Att börja är ofta det svåraste. Gör första steget så litet att det nästan känns för lätt.",
+            "film": { "langd": "1:10", "beskrivning": "Film: därför är det svårt att börja" } },
+          "strategi": { "titel": "Hitta det minsta steget",
+            "steg": ["Välj en sak som du har skjutit upp.", "Fråga dig: vad är det allra första jag gör med händerna?", "Gör steget ännu mindre, tills det tar under två minuter.", "Gör bara det. Sen får du välja om du fortsätter."],
+            "tips": "Det är helt okej att stanna efter första steget. Du har ändå kommit igång." },
+          "exempel": {
+            "hem": "Inte ”städa köket”, utan ”ställ en tallrik i diskmaskinen”.",
+            "ekonomi": "Inte ”betala räkningarna”, utan ”öppna bankappen”.",
+            "arbete": "Inte ”skriva rapporten”, utan ”öppna dokumentet och skriv rubriken”.",
+            "relationer": "Inte ”höra av mig till Kim”, utan ”öppna chatten med Kim”.",
+            "halsa": "Inte ”träna”, utan ”ta på dig skorna”." },
+          "ovning": { "text": "Välj en sak idag och gör bara det minsta första steget.", "dagsplan": "Göra det minsta första steget på en sak" },
+          "granskning": { "princip": "Uppgiftsanalys och gradering av aktivitet", "notis": "Aktiviteten bryts ned i delmoment, och första delmomentet görs så litet att det blir genomförbart. Bygger på uppgiftsanalys och gradering, grundbegrepp inom arbetsterapi.", "status": "Ej granskad" } },
+        { "id": "igang-2", "del": 2, "titel": "Gör starten lätt", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Miljöanpassning: förbereda material och plats i förväg", "status": "Planerad" } },
+        { "id": "igang-3", "del": 3, "titel": "En tydlig startsignal", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Externt stöd: yttre signal (t.ex. larm) som påminnelse om start", "status": "Planerad" } },
+        { "id": "igang-4", "del": 4, "titel": "Koppla till något du redan gör", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Rutiner och vanor: koppla ny aktivitet till befintlig rutin", "status": "Planerad" } },
+        { "id": "igang-5", "del": 5, "titel": "När det ändå är trögt", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Gradering: sänka kraven och anpassa svårighetsgraden", "status": "Planerad" } }
+      ]
+    },
+    {
+      "id": "p-planera", "kategori": "planera", "titel": "Planera och prioritera", "undertitel": "Fem korta steg mot en dag som går att överblicka.",
+      "delar": [
+        { "id": "planera-1", "del": 1, "titel": "Få ut allt ur huvudet", "min": 4, "minKort": 2, "skriven": true,
+          "forklaring": {
+            "text": ["Hjärnan är bra på att tänka, men sämre på att förvara. När många saker snurrar samtidigt blir det svårt att veta var man ska börja.",
+                     "När du skriver ner allt behöver hjärnan inte hålla i det längre. Då blir det lättare att se vad som finns, och att välja."],
+            "kort": "När du skriver ner det som snurrar slipper hjärnan hålla i allt. Då blir det lättare att välja.",
+            "film": { "langd": "1:20", "beskrivning": "Film: så tömmer du huvudet på ett papper" } },
+          "strategi": { "titel": "Töm huvudet på papper",
+            "steg": ["Ta ett papper, eller öppna anteckningar i mobilen.", "Skriv ner allt du tänker att du behöver göra. Stort och smått, i vilken ordning som helst.", "Sluta när det känns tomt, eller efter fem minuter."],
+            "tips": "Du behöver inte sortera något nu. Det gör vi i nästa del." },
+          "exempel": {
+            "hem": "Handla mjölk, byta lakan, laga lampan i hallen.",
+            "ekonomi": "Betala elräkningen, kolla vad abonnemanget kostar.",
+            "arbete": "Svara Sara, läsa kapitel 3, boka ett möte.",
+            "relationer": "Ringa mamma, svara på inbjudan till fredag.",
+            "halsa": "Hämta ut medicinen, boka tid hos tandläkaren." },
+          "ovning": { "text": "Någon gång idag: skriv ner allt som snurrar. Det räcker med fem minuter.", "dagsplan": "Skriva ner allt som snurrar (5 min)" },
+          "granskning": { "princip": "Externt minnesstöd", "notis": "Att skriva ner uppgifter avlastar arbetsminnet. Vanlig kompensatorisk strategi inom arbetsterapi vid nedsatta exekutiva funktioner.", "status": "Ej granskad" } },
+        { "id": "planera-2", "del": 2, "titel": "Välj det viktigaste", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Prioritering: begränsa antalet uppgifter och sortera efter vikt", "status": "Planerad (steg 2)" } },
+        { "id": "planera-3", "del": 3, "titel": "Dela upp en stor sak", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Uppgiftsanalys: bryta ned en aktivitet i delmoment", "status": "Planerad (steg 2)" } },
+        { "id": "planera-4", "del": 4, "titel": "Ge saken en plats i dagen", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Tidsplanering med kalender eller visuellt schema", "status": "Planerad (steg 2)" } },
+        { "id": "planera-5", "del": 5, "titel": "Planera efter din energi", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Energiplanering och aktivitetsbalans", "status": "Planerad (steg 2)" } }
+      ]
+    },
+    {
+      "id": "p-tid", "kategori": "tid", "titel": "Hålla koll på tiden", "undertitel": "Gör tiden lättare att se och känna.",
+      "delar": [
+        { "id": "tid-1", "del": 1, "titel": "Gör tiden synlig", "min": 4, "minKort": 2, "skriven": true,
+          "forklaring": {
+            "text": ["Tid är osynlig. För många känns tio minuter och en timme nästan likadant, särskilt när man är uppslukad av något.",
+                     "När du kan se tiden, till exempel på en timer som räknar ner, behöver du inte känna den. Du ser den i stället."],
+            "kort": "Tid är osynlig. En timer som räknar ner gör den lättare att se.",
+            "film": { "langd": "1:05", "beskrivning": "Film: varför tiden försvinner" } },
+          "strategi": { "titel": "Använd en timer som syns",
+            "steg": ["Välj en sak du ska göra idag.", "Ställ en timer på den tid du vill lägga, till exempel 15 minuter.", "Ställ timern där du ser den, och titta på den då och då.", "När den ringer: stanna och bestäm vad du gör sen."],
+            "tips": "Det finns timers som visar tiden som en färgad yta som krymper. Många tycker att de är lättare att läsa av än siffror." },
+          "exempel": {
+            "hem": "Städa badrummet i 15 minuter. Sen är du klar, även om det inte är perfekt.",
+            "ekonomi": "Gå igenom räkningarna i 10 minuter.",
+            "arbete": "Plugga i 20 minuter, sen paus.",
+            "relationer": "Ställ en timer för när det är dags att gå hemifrån för att träffa någon.",
+            "halsa": "Ställ en timer för när det är dags att äta lunch." },
+          "ovning": { "text": "Använd en timer för en sak idag.", "dagsplan": "Använda en timer för en sak" },
+          "granskning": { "princip": "Externt tidsstöd", "notis": "Tidshjälpmedel, t.ex. timer eller visuell timer, används som kompensation vid nedsatt tidsuppfattning. Vanligt kognitivt hjälpmedel inom arbetsterapi.", "status": "Ej granskad" } },
+        { "id": "tid-2", "del": 2, "titel": "Hur lång tid tar det?", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Tidsuppskattning med återkoppling: jämföra gissad och verklig tid", "status": "Planerad" } },
+        { "id": "tid-3", "del": 3, "titel": "Räkna baklänges från en tid", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Tidsplanering bakåt från en fast tidpunkt", "status": "Planerad" } },
+        { "id": "tid-4", "del": 4, "titel": "Luft mellan sakerna", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Planera marginaler mellan aktiviteter", "status": "Planerad" } },
+        { "id": "tid-5", "del": 5, "titel": "Larm som hjälper", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Externt stöd: påminnelser och larm", "status": "Planerad" } }
+      ]
+    },
+    {
+      "id": "p-minne", "kategori": "minne", "titel": "Komma ihåg", "undertitel": "Låt saker och platser minnas åt dig.",
+      "delar": [
+        { "id": "minne-1", "del": 1, "titel": "En fast plats för det viktiga", "min": 4, "minKort": 2, "skriven": true,
+          "forklaring": {
+            "text": ["Arbetsminnet är som en liten ficka i huvudet. Det får inte plats så mycket där, och det som ligger där kan lätt ramla ur.",
+                     "Om nycklar, plånbok och mobil alltid har samma plats, behöver du inte komma ihåg var de är. Platsen kommer ihåg åt dig."],
+            "kort": "Ge viktiga saker en fast plats. Då behöver du inte komma ihåg var de är.",
+            "film": { "langd": "1:00", "beskrivning": "Film: därför hjälper fasta platser" } },
+          "strategi": { "titel": "Bestäm en fast plats",
+            "steg": ["Välj en sak som du ofta letar efter, till exempel nycklarna.", "Bestäm en plats nära dörren, som en krok eller en skål.", "Lägg saken där varje gång du kommer hem.", "Gör platsen tydlig de första veckorna, till exempel med en lapp."],
+            "tips": "Det tar ett tag innan det blir en vana. Glömmer du någon gång, lägg bara tillbaka saken när du hittar den." },
+          "exempel": {
+            "hem": "Nycklarna på kroken vid dörren.",
+            "ekonomi": "Kvitton och räkningar i en och samma låda.",
+            "arbete": "Laddaren och passerkortet i väskans framficka.",
+            "relationer": "Kort och presenter du ska ge bort i en påse vid dörren.",
+            "halsa": "Medicinen bredvid tandborsten." },
+          "ovning": { "text": "Välj en sak och ge den en fast plats idag.", "dagsplan": "Ge en sak en fast plats" },
+          "granskning": { "princip": "Strukturering av miljön: fasta platser", "notis": "Fasta platser för föremål minskar kraven på minne och sökande. Vanlig strategi för miljöanpassning vid minnessvårigheter, t.ex. efter förvärvad hjärnskada och vid ADHD.", "status": "Ej granskad" } },
+        { "id": "minne-2", "del": 2, "titel": "Skriv ner direkt", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Externt minnesstöd: anteckna direkt, på ett och samma ställe", "status": "Planerad" } },
+        { "id": "minne-3", "del": 3, "titel": "En kalender för allt", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Externt minnesstöd: en samlad kalender", "status": "Planerad" } },
+        { "id": "minne-4", "del": 4, "titel": "Checklistor för det som återkommer", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Checklistor som kognitivt stöd", "status": "Planerad" } },
+        { "id": "minne-5", "del": 5, "titel": "Påminnelser vid rätt tillfälle", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Externt stöd: påminnelse kopplad till tid eller plats", "status": "Planerad" } }
+      ]
+    },
+    {
+      "id": "p-fokus", "kategori": "fokus", "titel": "Behålla fokus", "undertitel": "Gör det lättare att stanna kvar i en sak.",
+      "delar": [
+        { "id": "fokus-1", "del": 1, "titel": "Minska det som stör", "min": 4, "minKort": 2, "skriven": true,
+          "forklaring": {
+            "text": ["Uppmärksamheten dras lätt till det som låter, lyser eller rör sig. Det handlar inte om vilja. Så fungerar hjärnan, och för en del är dragningen extra stark.",
+                     "Det är lättare att ändra omgivningen än att kämpa emot. Varje sak som stör lite mindre ger fokus lite mer plats."],
+            "kort": "Det är lättare att ändra omgivningen än att kämpa emot. Ta bort en sak som stör.",
+            "film": { "langd": "1:15", "beskrivning": "Film: därför tappar vi fokus" } },
+          "strategi": { "titel": "Ta bort en störning innan du börjar",
+            "steg": ["Välj en sak du ska göra.", "Titta dig omkring. Vad brukar dra i dig? Ofta är det mobilen.", "Lägg mobilen i ett annat rum, eller vänd den nedåt med ljudet av.", "Börja på uppgiften. Tappar du tråden är det okej. Gå bara tillbaka."],
+            "tips": "Du behöver inte ta bort allt. En enda störning mindre gör skillnad." },
+          "exempel": {
+            "hem": "Stäng av radion medan du lagar mat efter recept.",
+            "ekonomi": "Stäng andra flikar när du ska göra en betalning.",
+            "arbete": "Stäng mejlen medan du skriver.",
+            "relationer": "Lägg undan mobilen när du pratar med någon du tycker om.",
+            "halsa": "Ha mobilen i ett annat rum när du ska sova." },
+          "ovning": { "text": "Ta bort en störning innan du gör en sak idag.", "dagsplan": "Ta bort en störning, sen göra en sak" },
+          "granskning": { "princip": "Miljöanpassning: minska yttre distraktioner", "notis": "Anpassning av den fysiska miljön för att minska distraktioner. Etablerad strategi vid uppmärksamhetssvårigheter.", "status": "Ej granskad" } },
+        { "id": "fokus-2", "del": 2, "titel": "Korta arbetspass", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Tidsavgränsade arbetspass med pauser", "status": "Planerad" } },
+        { "id": "fokus-3", "del": 3, "titel": "Parkera tankarna", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Externt minnesstöd: skriv ner avbrytande tankar till senare", "status": "Planerad" } },
+        { "id": "fokus-4", "del": 4, "titel": "En sak i taget", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Göra uppgifter i följd i stället för parallellt", "status": "Planerad" } },
+        { "id": "fokus-5", "del": 5, "titel": "Stanna upp innan du gör", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Impulskontroll: paus före handling (självinstruktion)", "status": "Planerad" } }
+      ]
+    },
+    {
+      "id": "p-kanslor", "kategori": "kanslor", "titel": "Hantera känslor och stress", "undertitel": "Hitta lugnet lite oftare.",
+      "delar": [
+        { "id": "kanslor-1", "del": 1, "titel": "Andas ut lite längre", "min": 4, "minKort": 2, "skriven": true,
+          "forklaring": {
+            "text": ["När du blir stressad gör kroppen sig redo att agera. Hjärtat slår fortare och andningen blir snabb och ytlig.",
+                     "Du kan inte alltid ändra det som händer runt dig. Men du kan påverka andningen. En lugn andning där du andas ut lite längre än du andas in kan hjälpa kroppen att varva ner."],
+            "kort": "Lugn andning, med lite längre utandning, kan hjälpa kroppen att varva ner.",
+            "film": { "langd": "1:30", "beskrivning": "Film: vad händer i kroppen vid stress?" } },
+          "strategi": { "titel": "Lugn andning",
+            "steg": ["Sitt eller stå bekvämt. Släpp ner axlarna.", "Andas in lugnt genom näsan medan du räknar till fyra.", "Andas ut långsamt medan du räknar till sex.", "Gör det fem gånger."],
+            "tips": "Känns det obekvämt eller yr, andas som vanligt i stället. Det finns inget rätt sätt." },
+          "exempel": {
+            "hem": "När det känns rörigt hemma, innan du börjar plocka.",
+            "ekonomi": "Innan du öppnar ett brev som känns jobbigt.",
+            "arbete": "Innan ett möte eller en uppgift som stressar.",
+            "relationer": "När ett samtal börjar kännas jobbigt.",
+            "halsa": "I väntrummet innan en tid i vården." },
+          "ovning": { "text": "Prova lugn andning en gång idag, gärna innan något som känns stressigt.", "dagsplan": "Andas lugnt fem gånger" },
+          "granskning": { "princip": "Andningsövning med förlängd utandning", "notis": "Långsam andning med förlängd utandning används brett inom stresshantering för att minska kroppsligt stresspåslag.", "status": "Ej granskad" } },
+        { "id": "kanslor-2", "del": 2, "titel": "Sätt ord på känslan", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Känslomedvetenhet: känna igen och benämna känslor", "status": "Planerad" } },
+        { "id": "kanslor-3", "del": 3, "titel": "Dina tidiga signaler", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Känna igen tidiga tecken på stress", "status": "Planerad" } },
+        { "id": "kanslor-4", "del": 4, "titel": "En lugn plats", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Sensorisk anpassning och återhämtning", "status": "Planerad" } },
+        { "id": "kanslor-5", "del": 5, "titel": "En plan för svåra stunder", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Förberedd handlingsplan för svåra situationer", "status": "Planerad" } }
+      ]
+    },
+    {
+      "id": "p-forandring", "kategori": "forandring", "titel": "Hantera förändringar", "undertitel": "Bli lite tryggare när saker ändras.",
+      "delar": [
+        { "id": "forandring-1", "del": 1, "titel": "Om det händer, så gör jag …", "min": 4, "minKort": 2, "skriven": true,
+          "forklaring": {
+            "text": ["När något ändras plötsligt kan det kännas som att marken försvinner. Det är vanligt, särskilt om man mår bäst av att veta vad som ska hända.",
+                     "Du kan inte veta allt i förväg. Men du kan bestämma hur du vill göra om något ändras. Då finns planen redan där när det händer."],
+            "kort": "Bestäm i förväg vad du gör om något ändras. Då finns planen redan där.",
+            "film": { "langd": "1:10", "beskrivning": "Film: varför förändringar tar så mycket kraft" } },
+          "strategi": { "titel": "Gör en om-så-plan",
+            "steg": ["Tänk på något idag som skulle kunna ändras.", "Skriv: ”Om det händer …”", "Fortsätt: ”… så gör jag …”", "Håll planen kort. En sak räcker."],
+            "tips": "Planen behöver inte vara perfekt. Det viktiga är att du har tänkt tanken en gång innan." },
+          "exempel": {
+            "hem": "Om det inte finns mjölk, så äter jag gröt med vatten i stället.",
+            "ekonomi": "Om kortet inte fungerar i affären, så betalar jag med mobilen.",
+            "arbete": "Om mötet flyttas, så använder jag tiden till att läsa mejl.",
+            "relationer": "Om min vän ställer in, så går jag en promenad i stället.",
+            "halsa": "Om bussen är full, så väntar jag på nästa och skickar ett sms om att jag blir sen." },
+          "ovning": { "text": "Gör en om-så-plan för något idag.", "dagsplan": "Göra en om-så-plan" },
+          "granskning": { "princip": "Om-så-planer (implementeringsintentioner)", "notis": "Förutbestämda handlingsplaner i formen ”om X, så Y” är en välbeforskad strategi för målinriktat beteende. Används här för att öka förutsägbarheten vid förändringar.", "status": "Ej granskad" } },
+        { "id": "forandring-2", "del": 2, "titel": "Förbered dig på det nya", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Förberedelse och förutsägbarhet", "status": "Planerad" } },
+        { "id": "forandring-3", "del": 3, "titel": "Små förändringar i lagom takt", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Gradvis tillvänjning", "status": "Planerad" } },
+        { "id": "forandring-4", "del": 4, "titel": "När planen ändras", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Flexibel planering med reservplan", "status": "Planerad" } },
+        { "id": "forandring-5", "del": 5, "titel": "Efter en förändring", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Återhämtning efter påfrestning", "status": "Planerad" } }
+      ]
+    },
+    {
+      "id": "p-balans", "kategori": "balans", "titel": "Balans och återhämtning", "undertitel": "Få energin att räcka lite längre.",
+      "delar": [
+        { "id": "balans-1", "del": 1, "titel": "Pausa innan du behöver", "min": 4, "minKort": 2, "skriven": true,
+          "forklaring": {
+            "text": ["Många vilar först när energin redan är slut. Då tar det ofta längre tid att hämta sig.",
+                     "Om du tar små pauser innan du är helt slut, räcker energin ofta längre. Pausen är en del av planen, inte en belöning som du måste förtjäna."],
+            "kort": "Pausa innan du är helt slut. Då räcker energin ofta längre.",
+            "film": { "langd": "1:20", "beskrivning": "Film: därför lönar det sig att pausa tidigt" } },
+          "strategi": { "titel": "Planera in en paus",
+            "steg": ["Välj en sak idag som brukar ta på krafterna.", "Bestäm en kort paus mitt i eller direkt efter, till exempel fem minuter.", "Vila på riktigt: sitt eller ligg, gärna utan mobil.", "Lägg märke till hur det känns efteråt."],
+            "tips": "En paus behöver inte vara lång för att räknas." },
+          "exempel": {
+            "hem": "Dela upp städningen: ett rum, sen en paus.",
+            "ekonomi": "En paus efter att du har gått igenom räkningarna.",
+            "arbete": "Fem minuters paus varje timme.",
+            "relationer": "En lugn stund ensam efter att du har träffat många.",
+            "halsa": "Sätt dig en stund efter att du har handlat." },
+          "ovning": { "text": "Lägg in en kort paus i din dag.", "dagsplan": "Ta en kort paus (5 min)" },
+          "granskning": { "princip": "Energiplanering och aktivitetsbalans", "notis": "Planerade pauser innan man blir uttröttad är en central del av energiplanering vid fatigue, t.ex. efter förvärvad hjärnskada och vid utmattning.", "status": "Ej granskad" } },
+        { "id": "balans-2", "del": 2, "titel": "Hur ser din dag ut?", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Aktivitetsbalans: kartlägga dagens aktiviteter", "status": "Planerad" } },
+        { "id": "balans-3", "del": 3, "titel": "Vad ger och vad tar energi?", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Energikartläggning", "status": "Planerad" } },
+        { "id": "balans-4", "del": 4, "titel": "Lagom även på bra dagar", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Undvika att göra för mycket på dagar med mer energi", "status": "Planerad" } },
+        { "id": "balans-5", "del": 5, "titel": "Vila som räknas", "min": 4, "minKort": 2, "skriven": false,
+          "granskning": { "princip": "Återhämtande aktiviteter", "status": "Planerad" } }
+      ]
+    }
+  ]
+}
+</script>
+
+<script>
+(function(){
+'use strict';
+
+/* =========================================================
+   Innehåll och uppslag
+   ========================================================= */
+var C = JSON.parse(document.getElementById('innehall').textContent);
+var CAT = {}, PROG = {}, AREA = {}, SESS = {}, JN = {}, EBAS = {}, EDAG = {};
+C.kategorier.forEach(function(c){ CAT[c.id] = c; });
+C.livsomraden.forEach(function(a){ AREA[a.id] = a; });
+C.justNu.forEach(function(j){ JN[j.id] = j; });
+C.energiBas.forEach(function(e){ EBAS[e.id] = e; });
+C.energiIdag.forEach(function(e){ EDAG[e.id] = e; });
+C.program.forEach(function(p){
+  PROG[p.id] = p;
+  p.delar.forEach(function(d){ d.programId = p.id; SESS[d.id] = d; });
+});
+
+/* =========================================================
+   Lagring (bara lokalt på enheten)
+   Allt går via load/save så att synk kan läggas till senare.
+   ========================================================= */
+var KEY = 'smasteg:v1';
+function defaultState(){
+  return {
+    schemaVersion: 1,
+    onboarded: false, obStep: 0,
+    profile: { challenges: [], lifeAreas: [], energyBaseline: null, goal: null },
+    program: { id: null, index: 0, paused: false, started: null },
+    completed: [],            /* {sessionId, programId, date, reflection} */
+    energy: {},               /* {'2026-09-25': 'mitt'} */
+    checkinSkipped: null,     /* datum då incheckningen hoppades över */
+    plans: {},                /* {'2026-09-25': {items:[], extra:0}} */
+    goalRatings: [],          /* steg 3 */
+    settings: { textSize: 1, tts: true, theme: 'system', reducedMotion: false },
+    lastVisit: null
+  };
+}
+function load(){
+  try {
+    var raw = localStorage.getItem(KEY);
+    if (!raw) return defaultState();
+    var s = JSON.parse(raw), d = defaultState();
+    for (var k in d) if (!(k in s)) s[k] = d[k];
+    return s;
+  } catch (e) { return defaultState(); }
+}
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
+
+var S = load();
+var PREV_VISIT = S.lastVisit;
+
+/* =========================================================
+   Hjälpfunktioner
+   ========================================================= */
+function pad(n){ return String(n).padStart(2, '0'); }
+function dateKey(d){ d = d || new Date(); return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+function today(){ return dateKey(); }
+function daysBetween(a, b){ return Math.round((new Date(b + 'T12:00') - new Date(a + 'T12:00')) / 864e5); }
+function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function uid(){ return Math.random().toString(36).slice(2, 9); }
+function cap(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+function listJoin(arr){ if (arr.length < 2) return arr.join(''); return arr.slice(0, -1).join(', ') + ' och ' + arr[arr.length - 1]; }
+
+function currentProgram(){ return PROG[S.program.id] || PROG['p-planera']; }
+function programIdForProfile(){ var c = S.profile.challenges[0]; return c ? CAT[c].program : 'p-planera'; }
+function energyToday(){ return S.energy[today()] || null; }
+function isShort(){ return S.profile.energyBaseline === 'lag' || energyToday() === 'lite'; }
+function slotsToday(){ var e = energyToday(); return e ? EDAG[e].platser : 2; }
+function planToday(){
+  var k = today();
+  if (!S.plans[k]) S.plans[k] = { items: [], extra: 0 };
+  return S.plans[k];
+}
+
+/* =========================================================
+   Ikoner (UI, linjebaserade 24×24)
+   ========================================================= */
+function ic(body, extra){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"' + (extra || '') + '>' + body + '</svg>'; }
+var ICON = {
+  arrow: ic('<path d="M5 12h14M13 6l6 6-6 6"/>'),
+  back: ic('<path d="M15 5l-7 7 7 7"/>'),
+  chevR: ic('<path d="M9 5l7 7-7 7"/>', ' class="chev"'),
+  close: ic('<path d="M6 6l12 12M18 6L6 18"/>'),
+  play: ic('<path d="M8 5.6v12.8a1 1 0 0 0 1.5.86l10-6.4a1 1 0 0 0 0-1.72l-10-6.4A1 1 0 0 0 8 5.6z" fill="currentColor" stroke="none"/>'),
+  plus: ic('<path d="M12 5v14M5 12h14"/>'),
+  check: ic('<path d="M5 12.5l4.5 4.5L19 7.5"/>'),
+  speaker: ic('<path d="M4 9.5v5h4l5 4v-13l-5 4H4z" fill="currentColor"/><path d="M16.5 9a4 4 0 0 1 0 6M19 6.5a7.5 7.5 0 0 1 0 11"/>'),
+  stop: ic('<rect x="6" y="6" width="12" height="12" rx="2.5" fill="currentColor" stroke="none"/>'),
+  user: ic('<circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/>'),
+  clock: ic('<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>'),
+  sun: ic('<circle cx="12" cy="12" r="4.2"/><path d="M12 2.8v2M12 19.2v2M2.8 12h2M19.2 12h2M5.5 5.5l1.4 1.4M17.1 17.1l1.4 1.4M5.5 18.5l1.4-1.4M17.1 6.9l1.4-1.4"/>'),
+  grid: ic('<rect x="3.5" y="3.5" width="7" height="7" rx="2.2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2.2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2.2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2.2"/>'),
+  sprout: ic('<path d="M12 21v-8"/><path d="M12 13c0-4-3-6.5-7.5-6.5 0 4 3 6.5 7.5 6.5z"/><path d="M12 11c0-3.5 2.5-6 6.5-6 0 3.5-2.5 6-6.5 6z"/>'),
+  home: ic('<path d="M4 11l8-6.5 8 6.5V19a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 19z"/><path d="M10 20.5v-5h4v5"/>'),
+  coins: ic('<ellipse cx="12" cy="7" rx="7" ry="3"/><path d="M5 7v5c0 1.7 3.1 3 7 3s7-1.3 7-3V7"/><path d="M5 12v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5"/>'),
+  work: ic('<rect x="3.5" y="7.5" width="17" height="12" rx="2.5"/><path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5M3.5 13h17"/>'),
+  people: ic('<circle cx="9" cy="9" r="3.2"/><circle cx="16.8" cy="10" r="2.6"/><path d="M3.5 19.5a5.5 5.5 0 0 1 11 0M14.5 19.5a4 4 0 0 1 6.5-3"/>'),
+  leaf: ic('<path d="M5 19c0-8 5-13.5 14-14 0 9-5.5 14-14 14z"/><path d="M5 19l7-7"/>'),
+  target: ic('<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/>'),
+  help: ic('<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.5"/><path d="M6 6l3.5 3.5M14.5 14.5L18 18M18 6l-3.5 3.5M9.5 14.5L6 18"/>'),
+  sliders: ic('<path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2.2"/><circle cx="10" cy="17" r="2.2"/>'),
+  info: ic('<circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5M12 7.8v.1"/>'),
+  phone: ic('<path d="M6.5 4h3l1.5 4-2 1.5a11 11 0 0 0 5.5 5.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 4.5 6a2 2 0 0 1 2-2z"/>'),
+  ext: ic('<path d="M14 4h6v6M20 4l-8.5 8.5M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10"/>'),
+  battery: ic('<path d="M12 3v3M8 21h8M9 6h6a2 2 0 0 1 2 2v9H7V8a2 2 0 0 1 2-2z"/>')
+};
+function waveIcon(kind){
+  var d = kind === 'jamn' ? 'M4 16H44' : kind === 'varierar' ? 'M4 16C9 3 15 3 19 16S29 29 33 16 40 5 44 11' : 'M4 25H44';
+  var ghost = kind === 'lag' ? '<path d="M4 12H44" stroke-dasharray="2 5" stroke-width="2" opacity=".5"/>' : '';
+  return '<span class="wave"><svg viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true">' + ghost + '<path d="' + d + '"/></svg></span>';
+}
+function weatherIcon(kind){
+  var sun = '<circle cx="14" cy="14" r="7" class="f-sun"/>';
+  var cloud = '<path d="M11 28h15a6 6 0 0 0 0-12 8 8 0 0 0-15 2 5 5 0 0 0 0 10z" class="f-cloud"/>';
+  var drops = '<path d="M13 31l-1.5 3M19 31l-1.5 3M25 31l-1.5 3" class="ln" stroke="var(--minne)" stroke-width="2.4"/>';
+  var inner = kind === 'bra' ? '<g transform="translate(4 4)">' + sun + '</g>' : kind === 'sadar' ? sun + '<g transform="translate(4 0)">' + cloud + '</g>' : '<g transform="translate(0 -3)">' + cloud + drops + '</g>';
+  return '<span class="weather"><svg class="il" viewBox="0 0 36 36" aria-hidden="true">' + inner + '</svg></span>';
+}
+function logo(){
+  return '<span class="logo"><svg viewBox="0 0 30 24" aria-hidden="true"><circle cx="5" cy="19" r="4" fill="var(--igang)"/><circle cx="14" cy="13.5" r="5" fill="var(--tid-t)"/><circle cx="24" cy="7" r="6" fill="var(--planera)"/></svg>Småsteg</span>';
+}
+
+/* =========================================================
+   Illustrationer (inline-SVG, platta former utan konturer)
+   Figurer ritas i lokala koordinater: fötter vid y=0, mitt x=0.
+   ========================================================= */
+function head(cx, cy, r, o){
+  o = o || {};
+  var sk = o.skin || 's1', hr = o.hair || 'h1', st = o.style || 'short';
+  var lx = (o.look || [0, 0])[0], ly = (o.look || [0, 0])[1];
+  var back = '', top = '';
+  if (st === 'long') back = '<rect x="' + (cx - r - 4) + '" y="' + (cy - 6) + '" width="' + (2 * r + 8) + '" height="' + (r + 16) + '" rx="12" class="f-' + hr + '"/>';
+  if (st === 'bun') back = '<circle cx="' + (cx + r * 0.5) + '" cy="' + (cy - r * 0.95) + '" r="' + (r * 0.46) + '" class="f-' + hr + '"/>';
+  if (st === 'curly') {
+    [200, 235, 270, 305, 340].forEach(function(a){
+      var rad = a * Math.PI / 180;
+      top += '<circle cx="' + (cx + Math.cos(rad) * r * 0.78).toFixed(1) + '" cy="' + (cy + Math.sin(rad) * r * 0.78).toFixed(1) + '" r="' + (r * 0.42).toFixed(1) + '" class="f-' + hr + '"/>';
+    });
+  } else {
+    top = '<path d="M' + (cx - r) + ' ' + cy + 'A' + r + ' ' + r + ' 0 0 1 ' + (cx + r) + ' ' + cy + 'Q' + (cx + r * 0.25) + ' ' + (cy - r * 0.72) + ' ' + (cx - r) + ' ' + cy + 'Z" class="f-' + hr + '"/>';
+  }
+  var eyes;
+  if (o.eyes === 'closed') {
+    eyes = '<path d="M' + (cx - 10 + lx) + ' ' + (cy + 4) + 'q3 3 6 0M' + (cx + 4 + lx) + ' ' + (cy + 4) + 'q3 3 6 0" class="ln s-face" stroke-width="2.2"/>';
+  } else {
+    eyes = '<ellipse cx="' + (cx - 7 + lx) + '" cy="' + (cy + 4 + ly) + '" rx="2.2" ry="2.8" class="f-face"/><ellipse cx="' + (cx + 7 + lx) + '" cy="' + (cy + 4 + ly) + '" rx="2.2" ry="2.8" class="f-face"/>';
+  }
+  var cheeks = '<circle cx="' + (cx - 11 + lx * .5) + '" cy="' + (cy + 10) + '" r="3" class="f-cheek" opacity=".55"/><circle cx="' + (cx + 11 + lx * .5) + '" cy="' + (cy + 10) + '" r="3" class="f-cheek" opacity=".55"/>';
+  var mouth = '<path d="M' + (cx - 4 + lx) + ' ' + (cy + 11) + 'q4 3.5 8 0" class="ln s-face" stroke-width="2.2"/>';
+  return back + '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" class="f-' + sk + '"/>' + top + cheeks + eyes + mouth;
+}
+/* stående figur. armL/armR = [handX, handY, kontrollX, kontrollY] */
+function fig(o){
+  var t = o.top || 'w', lg = o.legs || 'k', sk = o.skin || 's1';
+  var legs = o.noLegs ? '' : '<path d="M-9 -40V-9M9 -40V-9" class="ln s-' + lg + '" stroke-width="12"/><ellipse cx="-11" cy="-5" rx="9" ry="5" class="f-' + lg + '"/><ellipse cx="11" cy="-5" rx="9" ry="5" class="f-' + lg + '"/>';
+  function arm(a, side){
+    if (!a) return '';
+    var sx = side * 14;
+    return '<path d="M' + sx + ' -74Q' + a[2] + ' ' + a[3] + ' ' + a[0] + ' ' + a[1] + '" class="ln s-' + t + '" stroke-width="10"/><circle cx="' + a[0] + '" cy="' + a[1] + '" r="6" class="f-' + sk + '"/>';
+  }
+  return '<g transform="translate(' + o.x + ' ' + o.y + ') scale(' + (o.s || 1) + ')">' + legs +
+    '<rect x="-21" y="-88" width="42" height="56" rx="21" class="f-' + t + '"/>' +
+    (o.mid || '') + head(0, -106, 20, o.head) + arm(o.armL, -1) + arm(o.armR, 1) + (o.front || '') + '</g>';
+}
+
+var SCENES = {
+  /* Komma igång: vattnar en blomma */
+  igang: function(){
+    return '<circle cx="150" cy="46" r="40" class="f-t"/>' +
+      '<path d="M150 124V90" class="ln s-leaf" stroke-width="4"/>' +
+      '<ellipse cx="139" cy="106" rx="13" ry="6" transform="rotate(-28 139 106)" class="f-leaf"/>' +
+      '<ellipse cx="161" cy="100" rx="13" ry="6" transform="rotate(28 161 100)" class="f-leaf"/>' +
+      '<ellipse cx="150" cy="86" rx="6" ry="11" class="f-leaf"/>' +
+      '<path d="M130 122H170L165 158Q164 162 160 162H140Q136 162 135 158Z" class="f-k"/>' +
+      '<circle cx="142" cy="74" r="2.8" class="f-w"/><circle cx="146" cy="84" r="2.8" class="f-w"/><circle cx="139" cy="88" r="2.8" class="f-w"/>' +
+      fig({ x: 70, y: 164, top: 'w', legs: 'k', skin: 's2',
+        head: { skin: 's2', hair: 'h1', style: 'short', look: [2, 0] },
+        armL: [-26, -44, -28, -64],
+        armR: [44, -84, 30, -64],
+        front: '<rect x="32" y="-76" width="30" height="22" rx="8" class="f-a"/><path d="M38 -76Q46 -90 56 -76" class="ln s-a" stroke-width="4"/><path d="M60 -70L72 -88" class="ln s-a" stroke-width="5"/>' });
+  },
+  /* Planera: skriver en lista */
+  planera: function(){
+    return '<circle cx="44" cy="44" r="34" class="f-t"/>' +
+      fig({ x: 66, y: 164, top: 'a', legs: 'k', skin: 's1',
+        head: { skin: 's1', hair: 'h2', style: 'long', look: [3, 2] },
+        armL: null, armR: null }) +
+      '<rect x="92" y="56" width="66" height="88" rx="10" class="f-w"/>' +
+      '<rect x="112" y="50" width="26" height="12" rx="5" class="f-k"/>' +
+      '<rect x="114" y="78" width="32" height="6" rx="3" class="f-t"/><rect x="114" y="96" width="32" height="6" rx="3" class="f-t"/><rect x="114" y="114" width="24" height="6" rx="3" class="f-t"/>' +
+      '<path d="M100 81l3 3 6-7M100 99l3 3 6-7" class="ln s-b" stroke-width="3"/>' +
+      '<circle cx="104" cy="117" r="3.5" class="f-t"/>' +
+      '<path d="M52 90Q66 124 96 124" class="ln s-a" stroke-width="10"/><circle cx="96" cy="124" r="6" class="f-s1"/>' +
+      '<path d="M80 90Q100 108 126 112" class="ln s-a" stroke-width="10"/>' +
+      '<path d="M128 112L142 96" class="ln s-k" stroke-width="5"/><circle cx="127" cy="112" r="6" class="f-s1"/>';
+  },
+  /* Tiden: tittar på en stor klocka */
+  tid: function(){
+    return '<circle cx="62" cy="60" r="48" class="f-k"/><circle cx="62" cy="60" r="40" class="f-w"/>' +
+      '<circle cx="62" cy="28" r="4" class="f-t"/><circle cx="94" cy="60" r="4" class="f-t"/><circle cx="62" cy="92" r="4" class="f-t"/><circle cx="30" cy="60" r="4" class="f-t"/>' +
+      '<rect x="59" y="38" width="6" height="25" rx="3" transform="rotate(-55 62 60)" class="f-k"/>' +
+      '<rect x="60" y="30" width="4" height="33" rx="2" transform="rotate(35 62 60)" class="f-k"/>' +
+      '<circle cx="62" cy="60" r="5" class="f-b"/>' +
+      fig({ x: 148, y: 164, top: 't', legs: 'k', skin: 's3',
+        head: { skin: 's3', hair: 'h1', style: 'curly', look: [-3, -2] },
+        armL: [-15, -86, -32, -76],
+        armR: [24, -44, 26, -62] });
+  },
+  /* Komma ihåg: hänger nycklar på en krok */
+  minne: function(){
+    return '<rect x="22" y="34" width="100" height="22" rx="11" class="f-a"/>' +
+      '<rect x="41" y="50" width="6" height="14" rx="3" class="f-k"/><rect x="69" y="50" width="6" height="14" rx="3" class="f-k"/><rect x="97" y="50" width="6" height="14" rx="3" class="f-k"/>' +
+      '<circle cx="44" cy="72" r="8" class="f-t"/><circle cx="44" cy="72" r="3.4" class="f-b"/><rect x="41" y="78" width="6" height="22" rx="3" class="f-t"/><rect x="46" y="91" width="6" height="4" rx="1.5" class="f-t"/>' +
+      '<path d="M66 64h12l-2 16h-8z" class="f-t"/>' +
+      fig({ x: 138, y: 164, top: 't', legs: 'k', skin: 's1',
+        head: { skin: 's1', hair: 'h3', style: 'bun', look: [-3, -3] },
+        armL: [-36, -102, -34, -80],
+        armR: [24, -44, 26, -62],
+        front: '<circle cx="-36" cy="-88" r="7" class="f-w"/><circle cx="-36" cy="-88" r="3" class="f-b"/><rect x="-39" y="-83" width="6" height="18" rx="3" class="f-w"/>' });
+  },
+  /* Fokus: sitter vid datorn med hörlurar */
+  fokus: function(){
+    return '<path d="M170 118V72" class="ln s-k" stroke-width="4"/><path d="M154 78Q170 48 186 78Z" class="f-a"/>' +
+      '<rect x="24" y="96" width="16" height="22" rx="5" class="f-t"/><path d="M40 102q8 0 8 6t-8 6" class="ln s-t" stroke-width="4"/>' +
+      fig({ x: 80, y: 172, top: 'a', legs: 'k', skin: 's2', noLegs: true,
+        head: { skin: 's2', hair: 'h2', style: 'short', look: [3, 3] },
+        armL: null, armR: null,
+        front: '<path d="M-23 -110A23 23 0 0 1 23 -110" class="ln s-t" stroke-width="5"/><rect x="-28" y="-116" width="10" height="20" rx="5" class="f-t"/><rect x="18" y="-116" width="10" height="20" rx="5" class="f-t"/>' }) +
+      '<rect x="14" y="116" width="172" height="10" rx="5" class="f-k"/>' +
+      '<rect x="28" y="124" width="8" height="40" rx="4" class="f-k"/><rect x="164" y="124" width="8" height="40" rx="4" class="f-k"/>' +
+      '<rect x="98" y="80" width="56" height="36" rx="6" class="f-w"/><circle cx="126" cy="98" r="4" class="f-t"/>' +
+      '<path d="M66 96Q70 112 88 114" class="ln s-a" stroke-width="10"/><circle cx="90" cy="114" r="6" class="f-s2"/>' +
+      '<path d="M94 96Q102 110 100 114" class="ln s-a" stroke-width="10"/><circle cx="100" cy="114" r="6" class="f-s2"/>';
+  },
+  /* Känslor och stress: lugn andning */
+  kanslor: function(){
+    return '<circle cx="100" cy="98" r="70" class="f-t" opacity=".4"/><circle cx="100" cy="98" r="52" class="f-t" opacity=".75"/>' +
+      '<circle cx="34" cy="44" r="4" class="f-w"/><circle cx="170" cy="54" r="3" class="f-w"/><circle cx="160" cy="30" r="5" class="f-w"/>' +
+      '<g transform="translate(100 162)">' +
+        '<rect x="-42" y="-26" width="84" height="24" rx="12" class="f-k"/>' +
+        '<rect x="-21" y="-78" width="42" height="56" rx="21" class="f-w"/>' +
+        head(0, -98, 20, { skin: 's3', hair: 'h1', style: 'long', eyes: 'closed' }) +
+        '<path d="M-14 -66Q-30 -40 -6 -40" class="ln s-w" stroke-width="10"/><path d="M14 -66Q30 -40 6 -40" class="ln s-w" stroke-width="10"/>' +
+        '<circle cx="-6" cy="-40" r="6" class="f-s3"/><circle cx="6" cy="-40" r="6" class="f-s3"/>' +
+      '</g>';
+  },
+  /* Förändringar: paraply när vädret skiftar */
+  forandring: function(){
+    return '<circle cx="182" cy="24" r="17" class="f-sun"/>' +
+      '<circle cx="34" cy="34" r="14" class="f-w"/><circle cx="52" cy="26" r="18" class="f-w"/><circle cx="70" cy="34" r="14" class="f-w"/><rect x="20" y="34" width="64" height="14" rx="7" class="f-w"/>' +
+      '<path d="M30 58l-3 8M48 62l-3 8M66 58l-3 8M38 80l-3 8M58 82l-3 8" class="ln s-t" stroke-width="4"/>' +
+      '<path d="M112 50A38 38 0 0 1 188 50Q178 42 169 50Q160 42 150 50Q140 42 131 50Q122 42 112 50Z" class="f-a"/>' +
+      '<path d="M150 50V104q0 8-7 8" class="ln s-k" stroke-width="4"/>' +
+      fig({ x: 132, y: 164, s: .92, top: 't', legs: 'k', skin: 's2',
+        head: { skin: 's2', hair: 'h1', style: 'short', look: [1, 0] },
+        armL: [-24, -44, -26, -62],
+        armR: [20, -78, 26, -62] });
+  },
+  /* Balans och återhämtning: vilar i soffan */
+  balans: function(){
+    return '<circle cx="156" cy="36" r="18" class="f-w"/><circle cx="164" cy="30" r="15" class="f-b"/>' +
+      '<circle cx="112" cy="24" r="2.6" class="f-w"/><circle cx="128" cy="50" r="2" class="f-w"/><circle cx="186" cy="64" r="2.6" class="f-w"/><circle cx="96" cy="46" r="2" class="f-w"/>' +
+      '<rect x="18" y="90" width="164" height="46" rx="20" class="f-t"/>' +
+      '<rect x="26" y="146" width="8" height="14" rx="3" class="f-k"/><rect x="166" y="146" width="8" height="14" rx="3" class="f-k"/>' +
+      head(46, 104, 18, { skin: 's1', hair: 'h2', style: 'short', eyes: 'closed' }) +
+      '<rect x="60" y="104" width="112" height="28" rx="14" class="f-a"/>' +
+      '<circle cx="176" cy="112" r="6" class="f-s1"/><circle cx="178" cy="124" r="6" class="f-s1"/>' +
+      '<path d="M64 112Q80 108 96 114" class="ln s-w" stroke-width="10"/><circle cx="98" cy="115" r="6" class="f-s1"/>' +
+      '<rect x="10" y="126" width="180" height="24" rx="12" class="f-w"/>';
+  }
+};
+function illuBlock(id, cls){ return '<div class="illu-block cat-' + id + (cls ? ' ' + cls : '') + '">' + scene(id) + '</div>'; }
+function scene(id, cls){ return '<svg class="il' + (cls ? ' ' + cls : '') + '" viewBox="0 0 200 170" aria-hidden="true" focusable="false">' + SCENES[id]() + '</svg>'; }
+
+/* små scener för energiincheckningen */
+var MINI = {
+  lite: function(){
+    return '<circle cx="96" cy="24" r="11" class="f-w"/><circle cx="101" cy="20" r="9" class="f-b"/>' +
+      '<rect x="8" y="66" width="104" height="22" rx="11" class="f-t"/>' +
+      head(28, 58, 14, { skin: 's2', hair: 'h1', eyes: 'closed' }) +
+      '<rect x="40" y="52" width="66" height="20" rx="10" class="f-a"/>';
+  },
+  mitt: function(){
+    return fig({ x: 60, y: 100, s: .62, top: 'w', legs: 'k', skin: 's1',
+      head: { skin: 's1', hair: 'h3', style: 'bun' },
+      armL: [-8, -56, -30, -50], armR: [8, -56, 30, -50],
+      front: '<rect x="-12" y="-66" width="24" height="22" rx="6" class="f-a"/>' });
+  },
+  mycket: function(){
+    return '<circle cx="94" cy="26" r="14" class="f-sun"/>' +
+      fig({ x: 56, y: 100, s: .62, top: 'a', legs: 'k', skin: 's3',
+        head: { skin: 's3', hair: 'h1', style: 'curly' },
+        armL: [-34, -130, -36, -96], armR: [34, -130, 36, -96] });
+  },
+  plan: function(){
+    return '<rect x="22" y="12" width="64" height="80" rx="10" class="f-w"/><rect x="42" y="6" width="24" height="12" rx="5" class="f-k"/>' +
+      '<rect x="36" y="36" width="36" height="6" rx="3" class="f-t"/><rect x="36" y="54" width="26" height="6" rx="3" class="f-t"/>' +
+      '<path d="M86 96V70" class="ln s-leaf" stroke-width="3"/><ellipse cx="80" cy="76" rx="8" ry="4" transform="rotate(-30 80 76)" class="f-leaf"/><ellipse cx="92" cy="70" rx="8" ry="4" transform="rotate(30 92 70)" class="f-leaf"/>';
+  }
+};
+function mini(id){ return '<svg class="il" viewBox="0 0 120 100" aria-hidden="true" focusable="false">' + MINI[id]() + '</svg>'; }
+
+/* symboler för Just nu */
+var JN_GLYPH = {
+  'jn-igang': '<svg class="il" viewBox="0 0 34 34" aria-hidden="true"><ellipse cx="11" cy="22" rx="4.6" ry="7" class="f-w" transform="rotate(-8 11 22)"/><ellipse cx="23" cy="12" rx="4.6" ry="7" class="f-w" transform="rotate(8 23 12)"/></svg>',
+  'jn-kaos': '<svg class="il" viewBox="0 0 34 34" aria-hidden="true"><path d="M4 20c3-9 9 2 6-4s-6-6 1-7 5 9 9 8 3-6 6-2l4 0" class="ln s-w" stroke-width="3"/><path d="M4 28h26" class="ln s-w" stroke-width="3"/></svg>',
+  'jn-slut': '<svg class="il" viewBox="0 0 34 34" aria-hidden="true"><circle cx="16" cy="18" r="11" class="f-w"/><circle cx="22" cy="13" r="9.5" class="f-b"/></svg>'
+};
+
+/* =========================================================
+   Uppläsning (webbläsarens talsyntes, svenska)
+   ========================================================= */
+var TTS = {
+  ok: 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window,
+  voice: null, on: false, warned: false,
+  init: function(){
+    if (!this.ok) return;
+    var self = this;
+    function pick(){ var v = window.speechSynthesis.getVoices(); self.voice = v.filter(function(x){ return /^sv([-_]|$)/i.test(x.lang); })[0] || null; }
+    pick();
+    try { window.speechSynthesis.addEventListener('voiceschanged', pick); } catch (e) {}
+  },
+  toggle: function(text){
+    if (!this.ok) return;
+    if (this.on) { this.stop(); return; }
+    var self = this, u = new SpeechSynthesisUtterance(text);
+    u.lang = 'sv-SE'; u.rate = 0.92;
+    if (this.voice) u.voice = this.voice;
+    u.onend = u.onerror = function(){ self.on = false; syncListen(); };
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+    this.on = true; syncListen();
+    if (!this.voice && !this.warned) { this.warned = true; toast('Hittade ingen svensk röst på enheten. Uppläsningen kan låta konstig.'); }
+  },
+  stop: function(){ if (this.ok) window.speechSynthesis.cancel(); this.on = false; syncListen(); }
+};
+function syncListen(){
+  var b = document.querySelector('[data-act="listen"]');
+  if (!b) return;
+  b.setAttribute('aria-pressed', TTS.on ? 'true' : 'false');
+  b.innerHTML = (TTS.on ? ICON.stop + 'Sluta läsa' : ICON.speaker + 'Lyssna');
+}
+function listenBtn(){ return TTS.ok && S.settings.tts ? '<button class="listen" data-act="listen" aria-pressed="false" data-key="listen">' + ICON.speaker + 'Lyssna</button>' : ''; }
+
+/* =========================================================
+   Toast (lugn bekräftelse)
+   ========================================================= */
+var toastTimer = null, toastAction = null;
+function toast(msg, action){
+  var t = document.getElementById('toast');
+  toastAction = action || null;
+  t.innerHTML = '<span>' + esc(msg) + '</span>' + (action ? '<button type="button" id="toast-btn">' + esc(action.label) + '</button>' : '');
+  t.hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ t.hidden = true; toastAction = null; }, action ? 6000 : 3200);
+}
+document.getElementById('toast').addEventListener('click', function(e){
+  if (e.target.id === 'toast-btn' && toastAction) { var fn = toastAction.fn; toastAction = null; this.hidden = true; fn(); }
+});
+
+/* =========================================================
+   Vy-tillstånd och rendering
+   ========================================================= */
+var V;
+var NAV = [];
+function initialView(){
+  if (!S.onboarded) return { name: 'onboarding', step: S.obStep || 0 };
+  if (needsCheckin()) return { name: 'checkin' };
+  return { name: 'tab', tab: 'idag' };
+}
+function needsCheckin(){ return !energyToday() && S.checkinSkipped !== today(); }
+
+var $app = document.getElementById('app');
+function render(keep){
+  var active = document.activeElement, key = active && active.dataset ? active.dataset.key : null, y = window.scrollY;
+  if (!keep) TTS.stop();
+  $app.innerHTML = VIEWS[V.name]();
+  document.body.setAttribute('data-view', V.name);
+  if (keep) {
+    if (key) { var el = $app.querySelector('[data-key="' + key + '"]'); if (el) el.focus({ preventScroll: true }); }
+    window.scrollTo(0, y);
+    var f = $app.querySelector('[data-autofocus]'); if (f && keep === 'focus') f.focus();
+  } else {
+    window.scrollTo(0, 0);
+    var h = $app.querySelector('h1');
+    if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
+    $app.classList.remove('enter'); void $app.offsetWidth; $app.classList.add('enter');
+  }
+}
+function go(view){ V = view; render(); }
+function push(view){ NAV.push(V); go(view); }
+function back(){ go(NAV.pop() || { name: 'tab', tab: 'idag' }); }
+
+/* gemensamma delar */
+function topbar(left, right){ return '<header class="topbar"><div class="tb-left">' + (left || '') + '</div><div class="tb-right">' + (right || '') + '</div></header>'; }
+function backBtn(act){ return '<button class="btn-back" data-act="' + (act || 'back') + '" data-key="back">' + ICON.back + 'Tillbaka</button>'; }
+function profileBtn(){ return '<button class="btn-icon" data-act="open-more" data-key="more" aria-label="Mer: hjälp, inställningar och om appen">' + ICON.user + '</button>'; }
+function stepbar(n, cur){
+  var s = '';
+  for (var i = 0; i < n; i++) s += '<span class="' + (i === cur ? 'on' : i < cur ? 'done' : '') + '"></span>';
+  return '<div class="stepbar" role="img" aria-label="Steg ' + (cur + 1) + ' av ' + n + '">' + s + '</div>';
+}
+function tabbar(cur){
+  function t(id, label, icon){ return '<button class="tab" data-act="tab" data-tab="' + id + '"' + (cur === id ? ' aria-current="page"' : '') + '><span class="tab-ic">' + icon + '</span>' + label + '</button>'; }
+  return '<nav class="tabbar" aria-label="Huvudmeny"><div class="tabbar-in">' + t('idag', 'Idag', ICON.sun) + t('utforska', 'Utforska', ICON.grid) + t('framsteg', 'Framsteg', ICON.sprout) + '</div></nav>';
+}
+function catCard(catId, o){
+  o = o || {};
+  var tag = o.act ? 'button' : 'div';
+  var attrs = o.act ? ' data-act="' + o.act + '" data-key="' + (o.key || o.act) + '"' : '';
+  return '<' + tag + ' class="card cat-' + catId + (o.cls ? ' ' + o.cls : '') + '"' + attrs + '>' +
+    '<span class="card-illu">' + scene(catId) + '</span>' +
+    '<span class="card-body">' +
+      (o.meta ? '<span class="card-meta">' + o.meta + '</span>' : '') +
+      '<span class="card-title">' + o.title + '</span>' +
+      (o.under ? '<span class="card-under">' + o.under + '</span>' : '') +
+      (o.foot ? '<span class="card-foot">' + o.foot + '</span>' : '') +
+    '</span></' + tag + '>';
+}
+
+/* =========================================================
+   ONBOARDING – fem skärmar, en fråga per skärm
+   ========================================================= */
+function goalSuggestions(){
+  var ch = S.profile.challenges, c1 = CAT[ch[0] || 'planera'], c2 = ch[1] ? CAT[ch[1]] : null;
+  return [c1.mal[0], c2 ? c2.mal[0] : c1.mal[1]];
+}
+function vOnboarding(){
+  var step = V.step, P = S.profile, body = '';
+  if (step === 0) {
+    body = '<p class="eyebrow">Fråga 1 av 5 · tar ungefär 2 minuter</p>' +
+      '<h1 id="q">Vad är svårast i vardagen just nu?</h1>' +
+      '<p class="lead">Välj en eller två. Det du väljer först börjar vi med.</p>' +
+      '<div class="choices" role="group" aria-labelledby="q">' +
+      C.kategorier.map(function(c){
+        var idx = P.challenges.indexOf(c.id), on = idx > -1;
+        return '<button class="choice cat-' + c.id + '" aria-pressed="' + on + '" data-act="ob-cat" data-id="' + c.id + '" data-key="cat-' + c.id + '">' +
+          '<span class="dot" aria-hidden="true"></span><span class="c-text"><span class="c-title">' + c.pastaende + '</span></span>' +
+          '<span class="mark" aria-hidden="true">' + (on ? (idx + 1) : '') + '</span>' +
+          (on ? '<span class="sr-only">, val ' + (idx + 1) + '</span>' : '') + '</button>';
+      }).join('') + '</div>';
+  } else if (step === 1) {
+    body = '<p class="eyebrow">Fråga 2 av 5</p>' +
+      '<h1 id="q">Var i livet märks det mest?</h1>' +
+      '<p class="lead">Välj så många du vill. Vi använder det för att ge exempel som passar dig.</p>' +
+      '<div class="choices" role="group" aria-labelledby="q">' +
+      C.livsomraden.map(function(a){
+        var on = P.lifeAreas.indexOf(a.id) > -1;
+        return '<button class="choice" aria-pressed="' + on + '" data-act="ob-area" data-id="' + a.id + '" data-key="area-' + a.id + '">' +
+          '<span class="c-icon">' + ICON[a.ikon] + '</span><span class="c-text"><span class="c-title">' + a.titel + '</span></span>' +
+          '<span class="mark" aria-hidden="true">' + (on ? ICON.check : '') + '</span></button>';
+      }).join('') + '</div>';
+  } else if (step === 2) {
+    body = '<p class="eyebrow">Fråga 3 av 5</p>' +
+      '<h1 id="q">Hur ser din energi oftast ut?</h1>' +
+      '<p class="lead">Vi anpassar hur långa passen är.</p>' +
+      '<div class="choices" role="group" aria-labelledby="q">' +
+      C.energiBas.map(function(e){
+        var on = P.energyBaseline === e.id;
+        return '<button class="choice" aria-pressed="' + on + '" data-act="ob-energy" data-id="' + e.id + '" data-key="eb-' + e.id + '">' +
+          '<span class="c-icon">' + waveIcon(e.id) + '</span><span class="c-text"><span class="c-title">' + e.titel + '</span><span class="c-desc">' + e.text + '</span></span>' +
+          '<span class="mark" aria-hidden="true">' + (on ? ICON.check : '') + '</span></button>';
+      }).join('') + '</div>';
+  } else if (step === 3) {
+    var sug = goalSuggestions(), g = P.goal, own = V.ownGoal || (g && g.typ === 'eget');
+    body = '<p class="eyebrow">Fråga 4 av 5</p>' +
+      '<h1 id="q">Vad vill du ska bli bättre?</h1>' +
+      '<p class="lead">Välj ett mål, eller skriv ett eget. Du kan ändra det senare.</p>' +
+      '<div class="choices" role="group" aria-labelledby="q">' +
+      sug.map(function(s, i){
+        var on = !own && g && g.text === s;
+        return '<button class="choice" aria-pressed="' + !!on + '" data-act="ob-goal" data-idx="' + i + '" data-key="goal-' + i + '">' +
+          '<span class="c-icon">' + ICON.target + '</span><span class="c-text"><span class="c-title">' + s + '</span></span>' +
+          '<span class="mark" aria-hidden="true">' + (on ? ICON.check : '') + '</span></button>';
+      }).join('') +
+      '<button class="choice" aria-pressed="' + !!own + '" data-act="ob-goal-own" data-key="goal-own"><span class="c-icon">' + ICON.plus + '</span><span class="c-text"><span class="c-title">Skriv ett eget mål</span></span><span class="mark" aria-hidden="true">' + (own ? ICON.check : '') + '</span></button>' +
+      '</div>' +
+      (own ? '<div class="field"><label for="goal-input">Ditt mål, med en mening</label>' +
+        '<input class="input" id="goal-input" type="text" maxlength="90" autocomplete="off" placeholder="Till exempel: hinna äta frukost" value="' + esc(g && g.typ === 'eget' ? g.text : '') + '" data-autofocus data-key="goal-input">' +
+        '<p class="counter" id="goal-count">Högst 90 tecken.</p></div>' : '');
+  } else {
+    var prog = PROG[programIdForProfile()], cat = CAT[prog.kategori], short = P.energyBaseline === 'lag';
+    var areas = P.lifeAreas.map(function(a){ return AREA[a].titel.toLowerCase(); });
+    body = '<p class="eyebrow">Klart</p>' +
+      '<h1>Så här börjar vi</h1>' +
+      catCard(cat.id, { meta: 'Program · ' + prog.delar.length + ' delar · ' + (short ? 'under 3 min' : 'ca 4 min') + ' per gång', title: prog.titel, under: prog.undertitel }) +
+      '<ul class="sum-list">' +
+        '<li><span class="c-icon">' + ICON.target + '</span><span><b>Ditt mål</b>' + (P.goal && P.goal.text ? esc(P.goal.text) : 'Inget mål än. Du kan lägga till ett senare.') + '</span></li>' +
+        '<li><span class="c-icon">' + ICON.home + '</span><span><b>Exemplen handlar om</b>' + (areas.length ? cap(listJoin(areas)) : 'Vardagen i stort') + '</span></li>' +
+        '<li><span class="c-icon">' + ICON.clock + '</span><span><b>Passens längd</b>' + (short ? 'Korta pass, under 3 minuter, eftersom din energi oftast är låg.' : 'Ungefär 4 minuter. På dagar med lite energi blir de kortare.') + '</span></li>' +
+      '</ul>' +
+      '<p class="sub">Du kan pausa när du vill och fortsätta där du slutade. Allt sparas bara på den här enheten.</p>';
+  }
+  var left = step > 0 ? backBtn('ob-back') : logo();
+  var right = step < 4 ? '<button class="btn-text" data-act="ob-skip" data-key="skip">Hoppa över</button>' : '';
+  var nextBtn = step < 4
+    ? '<button class="btn-round" data-act="ob-next" data-key="next" aria-label="Nästa">' + ICON.arrow + '</button>'
+    : '<button class="btn btn-primary" data-act="ob-finish" data-key="finish">Sätt igång ' + ICON.arrow + '</button>';
+  return topbar(left, right) +
+    '<main class="page flow"><div class="stack-lg">' + body + '<p class="hint">' + (V.hint || '') + '</p></div></main>' +
+    '<footer class="flowbar">' + stepbar(5, step) + nextBtn + '</footer>';
+}
+
+/* =========================================================
+   ENERGIINCHECKNING
+   ========================================================= */
+function vCheckin(){
+  var cur = energyToday(), cats = { lite: 'balans', mitt: 'forandring', mycket: 'tid' };
+  var right = cur ? '' : '<button class="btn-text" data-act="checkin-skip" data-key="skip">Inte nu</button>';
+  var left = cur ? backBtn('checkin-back') : logo();
+  return topbar(left, right) +
+    '<main class="page flow"><div class="stack-lg">' +
+      '<p class="eyebrow">Tar några sekunder</p>' +
+      '<h1 id="q">Hur mycket energi har du idag?</h1>' +
+      '<p class="lead">Det finns inga rätt eller fel. Vi anpassar dagen efter ditt svar.</p>' +
+      (S.profile.energyBaseline === 'varierar' ? '<p class="sub">Din energi varierar mycket. Därför frågar vi varje dag.</p>' : '') +
+      '<div class="choices" role="group" aria-labelledby="q">' +
+      C.energiIdag.map(function(e){
+        return '<button class="choice cat-' + cats[e.id] + '" aria-pressed="' + (cur === e.id) + '" data-act="checkin-set" data-id="' + e.id + '" data-key="e-' + e.id + '">' +
+          '<span class="e-tile">' + mini(e.id) + '</span>' +
+          '<span class="c-text"><span class="c-title">' + e.titel + '</span><span class="c-desc">' + e.text + '</span></span></button>';
+      }).join('') + '</div>' +
+    '</div></main>';
+}
+
+/* =========================================================
+   IDAG
+   ========================================================= */
+function greeting(){ var h = new Date().getHours(); return h >= 5 && h < 10 ? 'God morgon' : h >= 17 && h < 24 ? 'God kväll' : 'Hej'; }
+function todayIntro(){
+  var e = energyToday();
+  if (e === 'lite') return 'Idag tar vi det lugnt. Här är en kort version.';
+  if (S.profile.energyBaseline === 'lag') return 'Ett kort steg, i din takt.';
+  if (e === 'mycket') return 'Du har mer energi idag. Spara gärna lite till i morgon också.';
+  return 'Här är ditt nästa steg.';
+}
+function stepSection(){
+  var prog = currentProgram(), idx = S.program.index, cat = CAT[prog.kategori], total = prog.delar.length;
+  var doneToday = S.completed.some(function(c){ return c.date === today() && c.programId === prog.id; });
+  if (idx >= total) {
+    return '<div class="soft-card cat-' + cat.id + '">' + illuBlock(cat.id, 'sm') + '<div class="stack"><h3>Du har gått igenom hela programmet</h3><p>Fint jobbat. Du kan gå tillbaka till det när du vill, eller hitta något nytt i Utforska.</p></div></div>';
+  }
+  if (doneToday && !V.showNext) {
+    return '<div class="soft-card cat-' + cat.id + '">' + illuBlock(cat.id, 'sm') + '<div class="stack"><h3>Dagens steg är gjort</h3><p>Nästa del väntar tills i morgon, eller tills du vill.</p><button class="btn-text" data-act="show-next" data-key="show-next" style="padding-left:0">Visa nästa del ändå</button></div></div>';
+  }
+  var s = prog.delar[idx], short = isShort(), min = short ? s.minKort : s.min;
+  return '<p class="sub" style="margin:-8px 0 14px">' + todayIntro() + '</p>' +
+    catCard(cat.id, {
+      act: 'start-session', key: 'stepcard',
+      meta: 'Del ' + s.del + ' av ' + total + ' · ' + prog.titel,
+      title: s.titel,
+      foot: '<span class="pill">' + ICON.clock + 'tar ' + min + ' min' + (short ? ' · kort version' : '') + '</span><span class="play-dot">' + ICON.play + '</span>'
+    });
+}
+function justNuSection(){
+  var list = C.justNu.slice();
+  if (energyToday() === 'lite') list.sort(function(a, b){ return (b.id === 'jn-slut') - (a.id === 'jn-slut'); });
+  return '<ul class="jn-list">' + list.map(function(j){
+    return '<li><button class="jn-row" data-act="open-justnu" data-id="' + j.id + '" data-key="jn-' + j.id + '">' +
+      '<span class="jn-tile cat-' + j.kategori + '">' + JN_GLYPH[j.id] + '</span>' +
+      '<span class="jn-text"><span class="jn-title">' + j.titel + '</span><span class="jn-meta">tar ' + j.min + ' min</span></span>' + ICON.chevR + '</button></li>';
+  }).join('') + '</ul>';
+}
+function planIdeas(){
+  var areas = S.profile.lifeAreas.length ? S.profile.lifeAreas : null, out = [];
+  if (!areas) return C.dagsplanForslagAllmant.slice(0, 3);
+  var i = 0;
+  while (out.length < 3 && i < 9) {
+    var a = AREA[areas[i % areas.length]], idea = a.dagsplanForslag[Math.floor(i / areas.length)];
+    if (idea && out.indexOf(idea) < 0) out.push(idea);
+    i++;
+  }
+  return out;
+}
+function slotsText(n){ return n === 1 ? 'En sak räcker idag.' : n === 2 ? 'Två saker räcker gott.' : 'Upp till tre saker idag.'; }
+function planSection(){
+  var plan = planToday(), slots = slotsToday() + (plan.extra || 0), items = plan.items;
+  var empties = Math.max(0, slots - items.length), html = '';
+  var allDone = items.length > 0 && items.every(function(i){ return i.done; });
+  if (!items.length && !V.planEdit) {
+    html += '<div class="empty cat-planera">' + mini('plan') + '<p>Vad vill du hinna med idag? Skriv in det här, så slipper du hålla det i huvudet.</p></div>';
+  }
+  html += '<ul class="plan">';
+  items.forEach(function(it){
+    html += '<li class="plan-item' + (it.done ? ' is-done' : '') + '">' +
+      '<button class="check" data-act="plan-toggle" data-id="' + it.id + '" data-key="pt-' + it.id + '" aria-pressed="' + !!it.done + '" aria-label="Gjort: ' + esc(it.text) + '"><span>' + ICON.check + '</span></button>' +
+      '<span class="plan-text"><span class="pt">' + esc(it.text) + '</span>' + (it.src === 'session' ? '<span class="plan-src">Från dagens steg</span>' : '') + '</span>' +
+      '<button class="btn-icon" data-act="plan-remove" data-id="' + it.id + '" data-key="pr-' + it.id + '" aria-label="Ta bort: ' + esc(it.text) + '">' + ICON.close + '</button></li>';
+  });
+  for (var i = 0; i < empties; i++) {
+    if (i === 0 && V.planEdit) {
+      html += '<li class="plan-editor"><form data-form="plan" class="stack" novalidate>' +
+        '<div class="field"><label for="plan-input">Vad vill du göra?</label><input class="input" id="plan-input" type="text" maxlength="60" autocomplete="off" data-autofocus data-key="plan-input"></div>' +
+        '<div class="idea-wrap"><p>Förslag</p><div class="ideas">' + planIdeas().map(function(x){ return '<button type="button" class="idea" data-act="plan-idea" data-text="' + esc(x) + '">' + esc(x) + '</button>'; }).join('') + '</div></div>' +
+        '<div class="row-end"><button type="button" class="btn btn-secondary" data-act="plan-cancel">Avbryt</button><button type="submit" class="btn btn-primary">Spara</button></div>' +
+        '</form></li>';
+    } else {
+      html += '<li><button class="plan-empty" data-act="plan-add" data-key="add-' + i + '">' + ICON.plus + 'Lägg till något</button></li>';
+    }
+  }
+  html += '</ul>';
+  if (allDone && empties === 0) {
+    html += '<div class="all-done"><p><b>Allt i dagsplanen är gjort.</b> Det räcker gott för idag.</p>' +
+      (items.length < 5 ? '<button class="btn-text" data-act="plan-extra" data-key="extra" style="padding-left:0">Jag vill lägga till en sak till</button>' : '') + '</div>';
+  }
+  return html;
+}
+function vIdag(){
+  var e = energyToday(), welcome = '';
+  if (PREV_VISIT && daysBetween(PREV_VISIT, today()) >= 3 && S.completed.length) {
+    welcome = '<div class="welcome"><p><b>Välkommen tillbaka.</b> Vi fortsätter där du slutade.</p></div>';
+  }
+  return topbar('<div><h1 class="greet">' + greeting() + '</h1><p class="date">' + cap(new Intl.DateTimeFormat('sv-SE', { weekday: 'long', day: 'numeric', month: 'long' }).format(new Date())) + '</p></div>', profileBtn()) +
+    '<main class="page">' + welcome +
+      '<div class="energy-row"><span class="e-lab"><small>Energi idag</small><b>' + (e ? EDAG[e].titel : 'Inte vald') + '</b></span><button class="btn-text" data-act="checkin-change" data-key="energy">' + (e ? 'Ändra' : 'Välj') + '</button></div>' +
+      '<section aria-labelledby="h-steg"><div class="section-head"><h2 id="h-steg">Dagens steg</h2></div>' + stepSection() + '</section>' +
+      '<section aria-labelledby="h-jn"><div class="section-head"><h2 id="h-jn">Just nu</h2><p class="sub">Korta övningar för stunder när det är svårt.</p></div>' + justNuSection() + '</section>' +
+      '<section aria-labelledby="h-plan"><div class="section-head"><h2 id="h-plan">Din dag</h2><p class="sub">' + slotsText(slotsToday()) + '</p></div>' + planSection() + '</section>' +
+    '</main>' + tabbar('idag');
+}
+
+/* =========================================================
+   SESSION: förklaring → strategi → övning → reflektion
+   ========================================================= */
+function sessionText(s, step, short){
+  if (step === 0) return s.titel + '. ' + (short ? s.forklaring.kort : s.forklaring.text.join(' '));
+  if (step === 1) return s.strategi.titel + '. ' + s.strategi.steg.join(' ') + ' ' + (s.strategi.tips || '');
+  if (step === 2) return 'Din övning idag. ' + s.ovning.text;
+  return '';
+}
+function examplesFor(s){
+  var areas = S.profile.lifeAreas.filter(function(a){ return s.exempel[a]; }).slice(0, 2);
+  if (!areas.length) areas = ['hem'];
+  return areas.map(function(a){ return '<div class="example">' + ICON[AREA[a].ikon] + '<span><b>' + AREA[a].titel + '</b>' + s.exempel[a] + '</span></div>'; }).join('');
+}
+function vSession(){
+  var s = SESS[V.sid], prog = PROG[s.programId], cat = CAT[prog.kategori], step = V.step, short = isShort(), body = '';
+  var eyebrow = '<p class="eyebrow">' + prog.titel + ' · Del ' + s.del + ' av ' + prog.delar.length + (short ? ' · Kort version' : '') + '</p>';
+  if (step === 0) {
+    body = eyebrow + '<h1>' + s.titel + '</h1>' +
+      (short ? '' : '<button class="video" data-act="video" data-key="video" aria-label="' + s.forklaring.film.beskrivning + ', ' + s.forklaring.film.langd + ' lång. Inte inspelad än.">' + scene(cat.id) + '<span class="v-play">' + ICON.play + '</span><span class="pill v-len">' + ICON.clock + s.forklaring.film.langd + '</span></button>') +
+      '<div class="prose">' + listenBtn() + '<h2>Varför hjälper det?</h2>' +
+      (short ? '<p>' + s.forklaring.kort + '</p>' : s.forklaring.text.map(function(p){ return '<p>' + p + '</p>'; }).join('')) + '</div>';
+  } else if (step === 1) {
+    body = eyebrow + '<h1>' + s.strategi.titel + '</h1><div class="prose">' + listenBtn() +
+      '<ol class="steps">' + s.strategi.steg.map(function(x){ return '<li><span>' + x + '</span></li>'; }).join('') + '</ol>' +
+      (s.strategi.tips ? '<p class="tip">' + s.strategi.tips + '</p>' : '') +
+      '<h2>Så kan det se ut</h2><div class="examples">' + examplesFor(s) + '</div></div>';
+  } else if (step === 2) {
+    var added = planToday().items.some(function(i){ return i.sessionId === s.id; });
+    body = eyebrow + '<h1>Din övning idag</h1><div class="prose">' + listenBtn() +
+      '<p class="tip" style="font-size:1.1875rem;font-weight:700">' + s.ovning.text + '</p>' +
+      '<p>Lägg den i dagsplanen, så slipper du komma ihåg den.</p>' +
+      (added ? '<p class="chip">' + ICON.check + 'Finns i dagsplanen</p>' : '<button class="btn btn-secondary" data-act="s-addplan" data-key="addplan" style="align-self:flex-start">' + ICON.plus + 'Lägg i dagsplanen</button>') +
+      (V.planFull ? '<div class="confirm"><p>Dagsplanen har redan så många saker som din energi räcker till idag. Det är okej att vänta med övningen.</p><div class="row-end"><button class="btn btn-secondary" data-act="s-addplan-no">Vänta</button><button class="btn btn-primary" data-act="s-addplan-force">Lägg till ändå</button></div></div>' : '') +
+      '<p class="sub">Du kan också göra den en annan dag. Det gör ingenting.</p></div>';
+  } else {
+    body = eyebrow + '<h1 id="q">' + C.reflektion.fraga + '</h1><p class="lead">Välj det som stämmer bäst. Det finns inga fel svar.</p>' +
+      '<div class="choices" role="group" aria-labelledby="q">' + C.reflektion.val.map(function(r){
+        return '<button class="choice" aria-pressed="false" data-act="s-reflect" data-id="' + r.id + '" data-key="r-' + r.id + '"><span class="c-icon">' + weatherIcon(r.id) + '</span><span class="c-text"><span class="c-title">' + r.text + '</span></span></button>';
+      }).join('') + '</div>';
+  }
+  return '<div class="cat-' + cat.id + '" style="display:contents">' +
+    topbar(step > 0 ? backBtn('s-back') : '', '<button class="btn-text" data-act="s-close" data-key="close">Stäng</button>') +
+    '<main class="page flow"><div class="stack-lg">' + body + '</div></main>' +
+    '<footer class="flowbar">' + stepbar(4, step) + (step < 3 ? '<button class="btn-round" data-act="s-next" data-key="next" aria-label="Nästa">' + ICON.arrow + '</button>' : '') + '</footer></div>';
+}
+function vDone(){
+  var s = SESS[V.sid], prog = PROG[s.programId], cat = CAT[prog.kategori];
+  var r = C.reflektion.val.filter(function(x){ return x.id === V.reflection; })[0];
+  var left = prog.delar.length - S.program.index;
+  return topbar('', '') +
+    '<main class="page flow"><div class="stack-lg cat-' + cat.id + '">' +
+      illuBlock(cat.id) +
+      '<h1>Klart för idag</h1>' +
+      '<p style="font-size:1.1875rem">' + (r ? r.svar : '') + '</p>' +
+      '<p class="sub">Del ' + s.del + ' av ' + prog.delar.length + ' är gjord. ' + (left > 0 ? 'Nästa del finns här när du vill.' : 'Det var sista delen.') + '</p>' +
+    '</div></main>' +
+    '<footer class="flowbar"><span style="flex:1"></span><button class="btn btn-primary" data-act="done-home" data-key="home">Till Idag ' + ICON.arrow + '</button></footer>';
+}
+function vComing(){
+  var s = SESS[V.sid], prog = PROG[s.programId], cat = CAT[prog.kategori];
+  return topbar(backBtn(), '') +
+    '<main class="page flow"><div class="stack-lg">' +
+      '<p class="eyebrow">' + prog.titel + ' · Del ' + s.del + '</p><h1>' + s.titel + '</h1>' +
+      illuBlock(cat.id) + '<div class="placeholder cat-' + cat.id + '"><span class="chip chip-dev">' + (prog.id === 'p-planera' ? 'Skrivs i steg 2' : 'Inte skriven än') + '</span><p>Den här delen är inte skriven än. Den kommer att bygga på: ' + s.granskning.princip.toLowerCase() + '.</p></div>' +
+    '</div></main>';
+}
+
+/* =========================================================
+   JUST NU (platshållare – byggs i steg 3)
+   ========================================================= */
+function vJustNu(){
+  var j = JN[V.id];
+  return topbar(backBtn(), '') +
+    '<main class="page flow"><div class="stack-lg">' +
+      '<p class="eyebrow">Just nu · tar ' + j.min + ' min</p><h1>' + j.titel + '</h1>' +
+      '<div class="placeholder cat-' + j.kategori + '"><span class="chip chip-dev">Byggs i steg 3</span><p>Här kommer en kort guidad övning för just den här stunden.</p></div>' +
+      '<button class="btn btn-secondary btn-wide" data-act="open-help" data-key="morehelp">' + ICON.help + 'Jag behöver mer hjälp än så här</button>' +
+    '</div></main>';
+}
+
+/* =========================================================
+   UTFORSKA och FRAMSTEG (platshållare)
+   ========================================================= */
+function vUtforska(){
+  return topbar('<h1>Utforska</h1>', profileBtn()) +
+    '<main class="page"><div class="stack-lg">' + illuBlock('minne') + '<div class="placeholder cat-minne"><span class="chip chip-dev">Byggs i steg 2</span><h2>Alla åtta områden samlas här</h2><p>Här kommer du kunna bläddra bland program och korta strategier, sorterade efter det du vill bli bättre på.</p></div></div></main>' + tabbar('utforska');
+}
+function vFramsteg(){
+  var g = S.profile.goal;
+  return topbar('<h1>Framsteg</h1>', profileBtn()) +
+    '<main class="page">' +
+      '<div class="goal-box">' + ICON.target + '<div class="stack" style="gap:4px"><p class="eyebrow">Ditt mål</p><p style="font-family:var(--font-head);font-weight:800;font-size:1.25rem">' + (g && g.text ? esc(g.text) : 'Inget mål än') + '</p></div></div>' +
+      illuBlock('igang') + '<div class="placeholder cat-forandring"><span class="chip chip-dev">Byggs i steg 3</span><h2>Här ser du hur det går</h2><p>En gång i veckan får du svara på hur det går med ditt mål. Du ser också det du har gjort, utan poäng och utan jämförelser.</p></div>' +
+    '</main>' + tabbar('framsteg');
+}
+
+/* =========================================================
+   MER, HJÄLP, OM, INSTÄLLNINGAR
+   ========================================================= */
+function vMore(){
+  function row(act, icon, title, sub){ return '<li><button class="menu-row" data-act="' + act + '" data-key="' + act + '"><span class="c-icon">' + icon + '</span><span class="m-text">' + title + (sub ? '<small>' + sub + '</small>' : '') + '</span>' + ICON.chevR + '</button></li>'; }
+  return topbar(backBtn(), '') +
+    '<main class="page flow"><div class="stack-lg"><h1>Mer</h1><ul class="menu-list">' +
+      row('open-help', ICON.help, 'Vart kan jag vända mig?', 'Hjälp och stöd utanför appen') +
+      row('open-settings', ICON.sliders, 'Inställningar', 'Text, uppläsning och dina svar') +
+      row('open-about', ICON.info, 'Om appen', 'Vad appen är och inte är') +
+    '</ul></div></main>';
+}
+function vHelp(){
+  function card(o){
+    return '<div class="help-card' + (o.urgent ? ' urgent' : '') + '"><h2>' + o.title + '</h2>' + (o.num ? '<p class="help-num">' + o.num + '</p>' : '') + '<p>' + o.text + '</p>' +
+      (o.actions ? '<div class="help-actions">' + o.actions + '</div>' : '') + '</div>';
+  }
+  function tel(n, label){ return '<a class="btn btn-secondary" href="tel:' + n + '">' + ICON.phone + (label || 'Ring ' + n) + '</a>'; }
+  function web(url, label){ return '<a class="btn btn-secondary" href="https://' + url + '" target="_blank" rel="noopener">' + ICON.ext + label + '</a>'; }
+  return topbar(backBtn(), '') +
+    '<main class="page flow"><div class="stack-lg">' +
+      '<h1>Vart kan jag vända mig?</h1><p class="lead">Appen är ett stöd i vardagen. Ibland behövs mer hjälp än så, och det är helt okej att be om den.</p>' +
+      card({ urgent: true, title: 'Om det är akut', num: '112', text: 'Ring 112 om det gäller liv och hälsa.', actions: tel('112') }) +
+      card({ title: 'Vårdrådgivning dygnet runt', num: '1177', text: 'Ring 1177 eller gå till 1177.se för råd om vart du ska vända dig.', actions: tel('1177') + web('1177.se', '1177.se') }) +
+      card({ title: 'Om du har tankar på att ta ditt liv', num: '90101', text: 'Ring Självmordslinjen på 90101 eller chatta på mind.se. Öppet dygnet runt.', actions: tel('90101') + web('mind.se', 'mind.se') }) +
+      card({ title: 'Din vårdcentral', text: 'Kontakta vårdcentralen via 1177.se eller telefon. Berätta vad som är svårt i vardagen. Du kan fråga om att träffa en arbetsterapeut. Ibland behövs en remiss, och den kan vårdcentralen skriva.' }) +
+      card({ title: 'Intresseorganisationer', text: 'Här finns kunskap, gemenskap och stöd.', actions: web('attention.se', 'Riksförbundet Attention') + web('autism.se', 'Autism Sverige') + web('hjarnkraft.se', 'Hjärnskadeförbundet Hjärnkraft') }) +
+      '<p class="sub">Autism Sverige hette tidigare Autism- och Aspergerförbundet. Sidan byggs ut i steg 3.</p>' +
+    '</div></main>';
+}
+function vAbout(){
+  return topbar(backBtn(), '') +
+    '<main class="page flow"><div class="stack-lg"><h1>Om appen</h1><div class="prose">' +
+      '<p>Småsteg är ett stöd för vardagen. Appen ersätter inte vård eller behandling.</p>' +
+      '<p>Det du väljer och skriver sparas bara på den här enheten. Inget skickas någonstans.</p>' +
+      '<p>Innehållet bygger på vanliga arbetsterapeutiska principer. Det ska granskas av en legitimerad arbetsterapeut innan appen används på riktigt.</p>' +
+      '<p class="chip">Status: ej granskat · version ' + esc(C.version) + '</p>' +
+    '</div></div></main>';
+}
+function vSettings(){
+  return topbar(backBtn(), '') +
+    '<main class="page flow"><div class="stack-lg"><h1>Inställningar</h1>' +
+      '<div class="placeholder cat-planera" style="padding:18px"><span class="chip chip-dev">Byggs i steg 3</span><p>Textstorlek, uppläsning, mörkt läge, minskad rörelse och ändra mål.</p></div>' +
+      '<h2>Återställ</h2>' +
+      (V.confirmReset
+        ? '<div class="confirm"><p><b>Vill du radera allt?</b> Dina svar, din dagsplan och det du har gjort försvinner från enheten.</p><div class="row-end"><button class="btn btn-secondary" data-act="reset-cancel" data-key="rc">Avbryt</button><button class="btn btn-primary" data-act="reset-do" data-key="rd">Ja, radera allt</button></div></div>'
+        : '<button class="btn btn-secondary" data-act="reset-ask" data-key="reset" style="align-self:flex-start">Återställ all data</button>') +
+    '</div></main>';
+}
+
+var VIEWS = {
+  onboarding: vOnboarding, checkin: vCheckin,
+  tab: function(){ return V.tab === 'utforska' ? vUtforska() : V.tab === 'framsteg' ? vFramsteg() : vIdag(); },
+  session: vSession, done: vDone, coming: vComing, justnu: vJustNu,
+  more: vMore, help: vHelp, about: vAbout, settings: vSettings
+};
+
+/* =========================================================
+   Handlingar
+   ========================================================= */
+var CALM = ['Klart. Det räknas.', 'Gjort. Skönt att ha det bakom sig.', 'Klart. Ta en liten paus om du vill.'];
+function announce(msg){ var el = document.getElementById('sr'); el.textContent = ''; setTimeout(function(){ el.textContent = msg; }, 50); }
+function obStep(n){ S.obStep = n; save(); V = { name: 'onboarding', step: n }; render(); }
+function obValid(){
+  var P = S.profile;
+  if (V.step === 0) return P.challenges.length > 0;
+  if (V.step === 1) return P.lifeAreas.length > 0;
+  if (V.step === 2) return !!P.energyBaseline;
+  if (V.step === 3) return !!(P.goal && P.goal.text && P.goal.text.trim());
+  return true;
+}
+function addPlanItem(text, extra){
+  var plan = planToday();
+  plan.items.push(Object.assign({ id: uid(), text: text, done: false, src: 'user' }, extra || {}));
+  save();
+}
+
+var ACT = {
+  /* onboarding */
+  'ob-cat': function(el){
+    var id = el.dataset.id, ch = S.profile.challenges, i = ch.indexOf(id);
+    V.hint = '';
+    if (i > -1) ch.splice(i, 1);
+    else if (ch.length >= 2) { V.hint = 'Du har redan valt två. Tryck på ett av dem för att ta bort det först.'; announce(V.hint); }
+    else ch.push(id);
+    if (S.profile.goal && S.profile.goal.typ === 'forslag' && goalSuggestions().indexOf(S.profile.goal.text) < 0) S.profile.goal = null;
+    save(); render(true);
+  },
+  'ob-area': function(el){
+    var a = S.profile.lifeAreas, i = a.indexOf(el.dataset.id);
+    if (i > -1) a.splice(i, 1); else a.push(el.dataset.id);
+    V.hint = ''; save(); render(true);
+  },
+  'ob-energy': function(el){ S.profile.energyBaseline = el.dataset.id; V.hint = ''; save(); render(true); },
+  'ob-goal': function(el){ S.profile.goal = { text: goalSuggestions()[+el.dataset.idx], typ: 'forslag' }; V.ownGoal = false; V.hint = ''; save(); render(true); },
+  'ob-goal-own': function(){
+    V.ownGoal = true; V.hint = '';
+    if (!S.profile.goal || S.profile.goal.typ !== 'eget') S.profile.goal = { text: '', typ: 'eget' };
+    save(); render('focus');
+  },
+  'ob-next': function(){
+    if (!obValid()) { V.hint = 'Välj något först, eller tryck på Hoppa över uppe till höger.'; render(true); announce(V.hint); return; }
+    V.hint = ''; obStep(V.step + 1);
+  },
+  'ob-back': function(){ V.hint = ''; obStep(Math.max(0, V.step - 1)); },
+  'ob-skip': function(){ obStep(V.step + 1); },
+  'ob-finish': function(){
+    S.onboarded = true; S.obStep = 0;
+    S.program = { id: programIdForProfile(), index: 0, paused: false, started: today() };
+    save(); go(needsCheckin() ? { name: 'checkin' } : { name: 'tab', tab: 'idag' });
+  },
+  /* energi */
+  'checkin-set': function(el){ S.energy[today()] = el.dataset.id; save(); NAV = []; go({ name: 'tab', tab: 'idag' }); },
+  'checkin-skip': function(){ S.checkinSkipped = today(); save(); go({ name: 'tab', tab: 'idag' }); },
+  'checkin-change': function(){ go({ name: 'checkin' }); },
+  'checkin-back': function(){ go({ name: 'tab', tab: 'idag' }); },
+  /* navigering */
+  'tab': function(el){ NAV = []; go({ name: 'tab', tab: el.dataset.tab }); },
+  'back': back,
+  'open-more': function(){ push({ name: 'more' }); },
+  'open-help': function(){ push({ name: 'help' }); },
+  'open-about': function(){ push({ name: 'about' }); },
+  'open-settings': function(){ push({ name: 'settings' }); },
+  'open-justnu': function(el){ push({ name: 'justnu', id: el.dataset.id }); },
+  'show-next': function(){ V.showNext = true; render(true); },
+  /* session */
+  'start-session': function(){
+    var prog = currentProgram(), s = prog.delar[S.program.index];
+    if (!s) return;
+    if (!s.skriven) { push({ name: 'coming', sid: s.id }); return; }
+    push({ name: 'session', sid: s.id, step: 0 });
+  },
+  's-next': function(){ V.step = Math.min(3, V.step + 1); V.planFull = false; render(); },
+  's-back': function(){ V.step = Math.max(0, V.step - 1); V.planFull = false; render(); },
+  's-close': function(){ back(); },
+  'listen': function(){ var s = SESS[V.sid]; TTS.toggle(sessionText(s, V.step, isShort())); },
+  'video': function(){ toast('Filmen är inte inspelad än. Texten nedanför säger samma sak.'); },
+  's-addplan': function(){
+    var plan = planToday(), slots = slotsToday() + (plan.extra || 0);
+    if (plan.items.length >= slots) { V.planFull = true; render(true); return; }
+    var s = SESS[V.sid]; addPlanItem(s.ovning.dagsplan, { src: 'session', sessionId: s.id });
+    toast('Tillagd i dagsplanen.'); render(true);
+  },
+  's-addplan-force': function(){
+    var plan = planToday(), s = SESS[V.sid];
+    plan.extra = (plan.extra || 0) + 1;
+    addPlanItem(s.ovning.dagsplan, { src: 'session', sessionId: s.id });
+    V.planFull = false; toast('Tillagd i dagsplanen.'); render(true);
+  },
+  's-addplan-no': function(){ V.planFull = false; render(true); },
+  's-reflect': function(el){
+    var s = SESS[V.sid];
+    S.completed.push({ sessionId: s.id, programId: s.programId, date: today(), reflection: el.dataset.id });
+    if (S.program.id === s.programId) S.program.index = Math.max(S.program.index, s.del);
+    save(); NAV = []; go({ name: 'done', sid: s.id, reflection: el.dataset.id });
+  },
+  'done-home': function(){ go({ name: 'tab', tab: 'idag' }); },
+  /* dagsplan */
+  'plan-add': function(){ V.planEdit = true; render('focus'); },
+  'plan-cancel': function(){ V.planEdit = false; render(true); },
+  'plan-idea': function(el){ addPlanItem(el.dataset.text); V.planEdit = false; render(true); },
+  'plan-toggle': function(el){
+    var it = planToday().items.filter(function(i){ return i.id === el.dataset.id; })[0];
+    if (!it) return;
+    it.done = !it.done; save(); render(true);
+    if (it.done) toast(CALM[Math.floor(Math.random() * CALM.length)]);
+  },
+  'plan-remove': function(el){
+    var plan = planToday(), idx = -1;
+    plan.items.forEach(function(i, n){ if (i.id === el.dataset.id) idx = n; });
+    if (idx < 0) return;
+    var removed = plan.items.splice(idx, 1)[0];
+    save(); render(true);
+    toast('Borttagen.', { label: 'Ångra', fn: function(){ planToday().items.splice(idx, 0, removed); save(); render(true); } });
+  },
+  'plan-extra': function(){ planToday().extra = (planToday().extra || 0) + 1; save(); V.planEdit = true; render('focus'); },
+  /* återställ */
+  'reset-ask': function(){ V.confirmReset = true; render(true); },
+  'reset-cancel': function(){ V.confirmReset = false; render(true); },
+  'reset-do': function(){ try { localStorage.removeItem(KEY); } catch (e) {} S = defaultState(); NAV = []; go({ name: 'onboarding', step: 0 }); toast('Allt är raderat.'); }
+};
+
+$app.addEventListener('click', function(e){
+  var el = e.target.closest('[data-act]');
+  if (!el || !$app.contains(el)) return;
+  var fn = ACT[el.dataset.act];
+  if (fn) { e.preventDefault(); fn(el, e); }
+});
+$app.addEventListener('submit', function(e){
+  if (e.target.dataset.form === 'plan') {
+    e.preventDefault();
+    var v = document.getElementById('plan-input').value.trim();
+    if (!v) { document.getElementById('plan-input').focus(); return; }
+    addPlanItem(v); V.planEdit = false; render(true);
+  }
+});
+$app.addEventListener('input', function(e){
+  if (e.target.id === 'goal-input') {
+    S.profile.goal = { text: e.target.value, typ: 'eget' }; save();
+    var c = document.getElementById('goal-count');
+    if (c) c.textContent = e.target.value.length + ' av 90 tecken';
+  }
+});
+$app.addEventListener('keydown', function(e){
+  if (e.key === 'Enter' && e.target.id === 'goal-input') { e.preventDefault(); ACT['ob-next'](); }
+});
+
+/* =========================================================
+   Start
+   ========================================================= */
+TTS.init();
+V = initialView();
+render();
+S.lastVisit = today(); save();
+})();
+</script>
+</body>
+</html>

@@ -3141,12 +3141,13 @@ function vIdag(){
   var mine = S.profile.challenges;
   var progs = C.program.slice().sort(function(a, b){ return (b.id === S.program.id) - (a.id === S.program.id) || (mine.indexOf(b.kategori) > -1) - (mine.indexOf(a.kategori) > -1); });
   var strats = C.strategier.slice().sort(function(a, b){ return (mine.indexOf(b.kategori) > -1) - (mine.indexOf(a.kategori) > -1) || (!!d[a.id]) - (!!d[b.id]); }).slice(0, 8);
+  var mixed = [], seen = {}; strats.forEach(function(x){ if (!seen[x.kategori]) { seen[x.kategori] = 1; mixed.push(x); } }); strats.forEach(function(x){ if (mixed.indexOf(x) < 0) mixed.push(x); }); strats = mixed;
   return topbar('<h1 class="greet">' + greeting() + '</h1>', profileBtn()) +
     '<main class="page home">' +
       '<section class="hero-sec" aria-labelledby="h-steg"><h2 id="h-steg" class="eyebrow">Fortsätt där du var</h2>' + stepSection() + '</section>' +
       '<div class="quick"><button class="qbtn" data-act="open-dag" data-key="dag"><b>Din dag</b><span>' + doneN + ' av ' + Math.max(slots, plan.items.length) + ' gjort</span></button>' +
         '<button class="qbtn" data-act="checkin-change" data-key="energy"><b>Energi</b><span>' + (e ? EDAG[e].titel : 'Välj') + '</span></button></div>' +
-      shelf('h-prog', 'Program för dig', progs.map(function(p){ var st = progState(p.id), w = p.delar.filter(function(x){ return x.skriven; }).length;
+      shelf('h-prog', 'Fler program', progs.filter(function(p){ return p.id !== S.program.id; }).map(function(p){ var st = progState(p.id), w = p.delar.filter(function(x){ return x.skriven; }).length;
         return poster(p.kategori, 'open-program', p.id, p.titel, st.done ? st.done + ' av ' + st.total + ' delar' : p.delar.length + ' delar' + (w < p.delar.length ? ' · ' + w + ' klar' : ''), 'pp-' + p.id); }).join('')) +
       shelf('h-str', 'Korta strategier', strats.map(function(x){ return poster(x.kategori, 'open-session', x.id, x.titel, minutesFor(x) + ' min' + (d[x.id] ? ' · gjord' : ''), 'ps-' + x.id, 'lite'); }).join('')) +
       '<section class="jn-box" aria-labelledby="h-jn"><h2 id="h-jn">Svårt just nu?</h2><p class="sub">Korta övningar på 2–3 minuter.</p><div class="jn-pills">' +
